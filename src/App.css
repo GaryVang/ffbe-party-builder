@@ -1,0 +1,19 @@
+.App {
+  text-align: center;
+}
+
+@font-face {
+  font-family: 'FINALFANTASY LOGO FONT';
+  font-style: normal;
+  font-weight: normal;
+  src: local('FINALFANTASY LOGO FONT'), url('finalf.ttf') format('truetype');
+}
+
+h1 {
+  font-family: 'FINALFANTASY LOGO FONT';
+  font-weight: 2000;
+  color: black;
+  text-align: center;
+  border-bottom-style: solid;
+  font-size: 15px;
+}
