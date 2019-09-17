@@ -1,3 +1,60 @@
+.unit-name { grid-area: unit-name; }
+.unit-stat { grid-area: unit-stat; }
+.unit-img { grid-area: unit-img; }
+.unit-weapon-type { grid-area: unit-weapon; }
+.unit-killer { grid-area: unit-killer; }
+.unit-ailment { grid-area: unit-ailment; }
+.unit-element { grid-area: unit-element; }
+
 .unit-info-container {
-    
+    /* border-color: yellow; */
+    /* border-style: solid; */
+    display: grid;
+    height: 25vh;
+    grid-gap: 0px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    grid-template-areas:
+        'unit-name unit-stat unit-stat unit-stat unit-stat'
+        'unit-img unit-stat unit-stat unit-stat unit-stat'
+        'unit-img unit-weapon unit-weapon unit-weapon unit-weapon'
+        'unit-ailment unit-ailment unit-killer unit-killer unit-killer'
+        'unit-element unit-element unit-killer unit-killer unit-killer';
+}
+
+.unit-info-container > * {
+    /* border-color: black; */
+    border-style: solid;
+    border-width: 1px;
+}
+
+.unit-img > img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;    
+}
+
+.unit-stat {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* justify-self: center; */
+}
+
+/* .unit-stat > * {
+    border-color: red;
+    border-style: solid;
+} */
+
+.unit-stat > ul {
+    display: grid;
+    grid: auto-flow / auto 1fr;
+    padding: 0;
+    margin: 0;
+}
+
+.unit-weapon-type > ul {
+    display: grid;
+    grid: auto-flow / auto 1fr;
+    padding: 0;
+    margin: 0;
 }
