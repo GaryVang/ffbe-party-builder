@@ -1,6 +1,6 @@
 import React from "react";
 import './UnitInfo.css';
-import lightning from './lightning-image.png';
+import lightning from './unit-lightning.png';
 
 const UnitInfo = ({ name= "Lightning", stats }) => {
     return (
