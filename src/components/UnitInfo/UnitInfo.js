@@ -39,44 +39,22 @@ const UnitInfo = ({ name= "Lightning", stats }) => {
             </div>
             <div className='unit-killer'>Killers</div>
             <div className='unit-ailment'>
-                <table className='table-ailment'>
-                    <tr>
-                        <th>
-                            <img className='icon-poison' alt='ailment' src={poison} />
-                        </th>
-                        <th>
-                            <img className='icon-blind' alt='ailment' src={blind} />
-                        </th>
-                        <th>
-                            <img className='icon-poison' alt='ailment' src={sleep} />
-                        </th>
-                        <th>
-                            <img className='icon-poison' alt='ailment' src={silence} />
-                        </th>
-                        <th>
-                            <img className='icon-poison' alt='ailment' src={paralysis} />
-                        </th>
-                        <th>
-                            <img className='icon-poison' alt='ailment' src={confusion} />
-                        </th>
-                        <th>
-                            <img className='icon-poison' alt='ailment' src={disease} />
-                        </th>
-                        <th>
-                            <img className='icon-poison' alt='ailment' src={petrification} />
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                    </tr>
-                </table>
+                <img className='icon-poison' alt='ailment' src={poison} />
+                <img className='icon-blind' alt='ailment' src={blind} />
+                <img className='icon-sleep' alt='ailment' src={sleep} />
+                <img className='icon-silence' alt='ailment' src={silence} />
+                <img className='icon-paralysis' alt='ailment' src={paralysis} />
+                <img className='icon-confusion' alt='ailment' src={confusion} />
+                <img className='icon-disease' alt='ailment' src={disease} />
+                <img className='icon-petrification' alt='ailment' src={petrification} />
+            	<div className='test1'>100</div>
+            	<div>100</div>
+            	<div>100</div>
+            	<div>100</div>
+            	<div>100</div>
+            	<div>100</div>
+            	<div>100</div>
+            	<div>100</div>
             </div>
             <div className='unit-element'>Element</div>
         </div>

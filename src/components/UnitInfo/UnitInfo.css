@@ -65,24 +65,32 @@
     overflow: hidden; /* Fix and remove later */
 }
 
-----------------------------------------
-/* Fix */
+.unit-ailment {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    /* background-color: lightblue; */
+    
+    /* border-style: solid;
+    border-width: 1px;
+    border-color: red; */
+}
 
-.icon-poison {
+.unit-ailment > img {
     max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+    /* max-height: 100%; */
+    /* object-fit: contain; */
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    justify-self: center;
 }
 
-.table-ailment {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;   
+.unit-ailment > div {
+    /* max-width: 100%; */
+    font-size: 2.9vw;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    justify-self: start;
 }
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: center;
-    /* padding: 8px; */
-
-  }
