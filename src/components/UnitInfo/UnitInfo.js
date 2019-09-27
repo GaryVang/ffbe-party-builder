@@ -9,7 +9,6 @@ import paralysis from './AilmentIcon/ailment-paralysis.png';
 import confusion from './AilmentIcon/ailment-confusion.png';
 import disease from './AilmentIcon/ailment-disease.png';
 import petrification from './AilmentIcon/ailment-petrification.png';
-
 import fire from './ElementalIcon/element-fire.png';
 import ice from './ElementalIcon/element-ice.png';
 import lightning from './ElementalIcon/element-lightning.png';
