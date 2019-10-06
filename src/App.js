@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UnitSearch from './components/UnitSearch/UnitSearch';
 import UnitInfo from './components/UnitInfo/UnitInfo';
-import EquipmentPanel from './components/Equipment/EquipmentPanel';
+import Equipment from './components/Equipment/Equipment';
 
 import './App.css';
 
@@ -19,7 +19,7 @@ class App extends Component {
         <h1>FFBE Unit Builder</h1>
         <UnitSearch></UnitSearch>
         <UnitInfo></UnitInfo>
-        <EquipmentPanel></EquipmentPanel>
+        <Equipment></Equipment>
         {/* <Materia></Materia>
         <Esper></Esper> */}
 
