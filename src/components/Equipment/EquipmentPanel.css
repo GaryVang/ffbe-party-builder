@@ -19,7 +19,8 @@
     border-style: solid;
     border-width: 1px;
     border-color: black;
-    font-size: 10px;
+    /* font-size: 10px; */
+    font-size: 2.5vw;
 }
 
 .eq-class {
@@ -36,35 +37,31 @@
     grid-column: 1 / 3;
     grid-row: 2 / 4;
     display: flex;
+
+    justify-content: center;
 }
 
 .eq-img > img {
     max-height: 100%;
 
-    border-style: solid;
+    border-style: solid; /*Remove later */
     border-width: 1px;
     border-color: yellow;
-
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .eq-element {
     grid-column: 3;
     grid-row: 2;
     display: flex;
-    
+    justify-content: center;
+
 }
 
 .eq-elemnt > img {
     max-height: 100%;
+    max-width: 100%;
 
-    border-style: solid;
-    border-width: 1px;
-    border-color: yellow;
-
-    margin-left: auto;
-    margin-right: auto;
+    margin: 100px;
 }
 
 .eq-handle {
