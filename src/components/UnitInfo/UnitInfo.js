@@ -18,7 +18,7 @@ import earth from './ElementalIcon/element-earth.png';
 import light from './ElementalIcon/element-light.png';
 import dark from './ElementalIcon/element-dark.png';
 
-const UnitInfo = ({ name= "Lightning", stats }) => {
+const UnitInfo = ({ name, stats }) => {
     return (
         <div className='unit-info-container'>
             <div className='unit-name'>{`${name}`}</div>
