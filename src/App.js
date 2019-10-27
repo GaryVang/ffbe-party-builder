@@ -17,7 +17,8 @@ class App extends Component {
         mag: 0,
         def: 0,
         spr: 0,
-      }
+      },
+      unitList: {},
     }
   }
 
@@ -41,6 +42,11 @@ class App extends Component {
       })
     });
   }
+
+  //Researved for search field
+  onSearchChange = () => {
+    console.log('This is from searchChange');
+  };
 
   componentDidMount () {
     fetch('http://localhost:3000/testUnit')
@@ -73,7 +79,13 @@ class App extends Component {
       //     unitName: result[0].name
       //   }
       // })})
-
+      fetch('http://localhost:3000/unitList')
+      .then(res => res.json())
+      // unitList is an object
+      // .then(unitList => {console.log('unit list: ', unitList)})
+      .then(result => {this.setState({
+        unitList: result
+      })})
 
   }
 
@@ -81,12 +93,13 @@ class App extends Component {
     return (
       <div className="App">
         <h1>FFBE Unit Builder</h1>
-        <UnitSearch></UnitSearch>
-        <UnitInfo unit={this.state.user}></UnitInfo>
+        <UnitSearch unitList={this.state.unitList} onSearchChange={this.onSearchChange}></UnitSearch>
+        <UnitInfo unit={this.state.user} ></UnitInfo>
         <Equipment></Equipment>
         {/* <Materia></Materia>
         <Esper></Esper> */}
         <h1>Name: {this.state.user.unitName}</h1>
+        <h2>Test: {console.log('unit list: ', this.state.unitList)}</h2> 
       </div>
     );
   }
