@@ -99,7 +99,7 @@ class App extends Component {
         {/* <Materia></Materia>
         <Esper></Esper> */}
         <h1>Name: {this.state.user.unitName}</h1>
-        <h2>Test: {console.log('unit list: ', this.state.unitList)}</h2> 
+        {/* <h2>Test: {console.log('unit list: ', this.state.unitList)}</h2>  */}
       </div>
     );
   }
