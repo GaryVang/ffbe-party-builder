@@ -4,16 +4,23 @@ import './UnitSearch.css';
 // const UnitSearch = ({ onSearchChange, unitList }) => {
   
 
-  const SearchList = ({ items }) => {
-    console.log('SearchList: ', items);
+  const SearchList = ({ items, onUnitSelection }) => {
+    // console.log('10: ', items);
+    // console.log('11: ', onUnitSelection);
     return (
       <ul>
         {
-          items.map((item, i) => <li>{item}</li>) 
+          // items.map((item, i) => <li onClick={myFunction.bind(this, item)}>{item}</li>) 
+          items.map((item, i) => <li onClick={onUnitSelection.bind(this, item)}>{item}</li>) 
         }
       </ul>
     )
   } 
+
+  function myFunction(unit) {
+    console.log("item", unit);
+    // this.onUnitSelection(unit);
+  }
 
 
 
@@ -47,6 +54,10 @@ class UnitSearch extends React.Component {
   //     </ul>
   //   )
   // } 
+
+  onUnitSelect = (unitName) => { // Triggers when an item on searchlist is clicked
+
+  };
 
   filterUnitList = () => {
     const { unitList } = this.props;
@@ -152,6 +163,7 @@ class UnitSearch extends React.Component {
 
   //SearchList is being rendered before state is set
   render(){
+    // console.log('props', this.props.onUnitSelection);
     return (
       <div>
         <div className="search-container">
@@ -166,7 +178,10 @@ class UnitSearch extends React.Component {
             
           />
           <button className='button-browse'>Browse</button>
-          <SearchList items={this.state.filteredList}> </SearchList>
+          <SearchList 
+            items={this.state.filteredList}
+            onUnitSelection={this.props.onUnitSelection} >
+          </SearchList>
         </div>
       </div>
     );

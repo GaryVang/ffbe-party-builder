@@ -44,8 +44,44 @@ class App extends Component {
   }
 
   //Researved for search field
-  onSearchChange = () => {
-    console.log('This is from searchChange');
+  onUnitSelection = (unitName) => {
+    fetch("http://localhost:3000/loadUnit", {
+        method: "post",
+        headers: { 
+          "Accept": "application/json",
+          "Content-Type": "application/json" },
+        body: JSON.stringify({
+          unitName: unitName,
+          // password: this.state.signInPassword
+        })
+      })
+      .then(response => response.json())
+      // .then(result => {console.log('result', result)})
+      .then(result => {this.setState({
+        user: {
+          unitName: result.name,
+          hp: result.hp,
+          mp: result.mp,
+          atk: result.atk,
+          mag: result.mag,
+          def: result.def,
+          spr: result.spr, 
+        }
+      })})
+  };
+
+  loadUnit = (unitData) => {
+    this.setState({
+      user: {
+        unitName: unitData.name,
+        hp: unitData.hp,
+        mp: unitData.mp,
+        atk: unitData.atk,
+        mag: unitData.mag,
+        def: unitData.def,
+        spr: unitData.spr, 
+      }
+    });
   };
 
   componentDidMount () {
@@ -64,6 +100,7 @@ class App extends Component {
           spr: result.spr, 
         }
       })})
+      
       // .then(console.log)
       // .then(result => {this.setState({ 
       //   user: {
@@ -93,7 +130,11 @@ class App extends Component {
     return (
       <div className="App">
         <h1>FFBE Unit Builder</h1>
-        <UnitSearch unitList={this.state.unitList} onSearchChange={this.onSearchChange}></UnitSearch>
+        <UnitSearch 
+          unitList={this.state.unitList} 
+          onUnitSelection={this.onUnitSelection}
+          loadUnit={this.loadUnit}>
+        </UnitSearch>
         <UnitInfo unit={this.state.user} ></UnitInfo>
         <Equipment></Equipment>
         {/* <Materia></Materia>
