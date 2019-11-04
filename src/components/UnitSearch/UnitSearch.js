@@ -4,24 +4,27 @@ import './UnitSearch.css';
 // const UnitSearch = ({ onSearchChange, unitList }) => {
   
 
-  const SearchList = ({ items, onUnitSelection }) => {
+  const SearchList = ({ items, onUnitSelection, resetSearchBar }) => {
     // console.log('10: ', items);
     // console.log('11: ', onUnitSelection);
-    return (
-      <ul>
-        {
-          // items.map((item, i) => <li onClick={myFunction.bind(this, item)}>{item}</li>) 
-          items.map((item, i) => <li onClick={onUnitSelection.bind(this, item)}>{item}</li>) 
-        }
-      </ul>
+    return ( //changed ul > div
+        <div className='search-list-container'>
+          {
+            // items.map((item, i) => <li onClick={myFunction.bind(this, item)}>{item}</li>) 
+            items.map((item, i) => 
+              <li 
+                className='search-list-item'
+                // onClick={onUnitSelection.bind(this, item)}>{item}
+                onClick={(e) => {
+                  onUnitSelection(item, e);
+                  resetSearchBar(e);
+                }}>{item}
+
+              </li>) 
+          }
+        </div>
     )
   } 
-
-  function myFunction(unit) {
-    console.log("item", unit);
-    // this.onUnitSelection(unit);
-  }
-
 
 
 class UnitSearch extends React.Component {
@@ -32,6 +35,7 @@ class UnitSearch extends React.Component {
           filteredList: [],
       };
       this.handleChange = this.handleChange.bind(this);
+      this.resetSearchBar = this.resetSearchBar.bind(this);
     }
 
   // const SearchList = ({ items }) => {
@@ -144,6 +148,14 @@ class UnitSearch extends React.Component {
     // createList(filteredList);
   };
 
+  resetSearchBar(event) {
+    console.log('reset searchbar');
+    this.setState({value: ''}, function(){
+      this.filterUnitList();
+    });
+    // this.refs.someName.value = '';
+  }
+
   handleChange(event) {
     console.log('input changed');
     // console.log('handleChange 1 value: ', this.state.value);
@@ -172,17 +184,18 @@ class UnitSearch extends React.Component {
             type="text"
             placeholder="Ex: Olive"
             // onKeyUp={filterUnitList()}
-            // value = {this.state.value} //Specifies initial value
+            value = {this.state.value} //Specifies initial value
             onChange={this.handleChange}
-            
-            
+            // ref='someName' //was using to reset text field, prob unnecessary
           />
-          <button className='button-browse'>Browse</button>
           <SearchList 
             items={this.state.filteredList}
-            onUnitSelection={this.props.onUnitSelection} >
+            onUnitSelection={this.props.onUnitSelection} 
+            resetSearchBar={this.resetSearchBar}
+            >
           </SearchList>
         </div>
+        <button className='button-browse'>Browse</button>
       </div>
     );
   }
