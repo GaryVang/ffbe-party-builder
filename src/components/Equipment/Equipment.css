@@ -2,3 +2,12 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
+
+.equipment-selection-container {
+    position: absolute;
+    left: 0px;
+    top: 35vh;
+    z-index: 1;
+    background-color: grey;
+    opacity: .5;
+}
