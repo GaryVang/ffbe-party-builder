@@ -1,9 +1,9 @@
-.search-container {
-    position: relative;
+.unit-search-container {
+    /* position: relative; */
     display: inline-block;
 }
 
-.search-box {
+.unit-search-box {
     color: white;
     padding-right: 10px;
     /* background: linear-gradient(89deg, rgb(94, 105, 255) 0%, #04C8DE 100%); */

@@ -178,9 +178,9 @@ class UnitSearch extends React.Component {
     // console.log('props', this.props.onUnitSelection);
     return (
       <div>
-        <div className="search-container">
+        <div className="unit-search-container">
           <input
-            className='search-box'
+            className='unit-search-box'
             type="text"
             placeholder="Ex: Olive"
             // onKeyUp={filterUnitList()}

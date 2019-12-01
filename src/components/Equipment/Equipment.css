@@ -9,5 +9,6 @@
     top: 35vh;
     z-index: 1;
     background-color: grey;
-    opacity: .5;
+
+    /* opacity: .5; */
 }

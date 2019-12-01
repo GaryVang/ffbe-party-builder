@@ -1,4 +1,65 @@
 .eq-select-container {
+    
+    /* position: relative; */
+    display: inline-block;
+    
+  
+}
+
+.eq-search-box {
+    color: white;
+    padding-right: 10px;
+
+    background: black;
+    border: none;
+    margin-right: 5px;
+    
+    margin-bottom: 5px;
+}
+
+.button-sort {
+    background: black;
+    color: white;
+    border-radius: 4px;
+    border: none;
+    margin-right: 5px;
+    
+}
+
+.button-filter {
+    background: black;
+    color: white;
+    border-radius: 4px;
+    border: none;
+}
+/*--------------------------------------------------*/
+/* .eq-icon-container > * {
+    width: 10px;
+
+    display: flex;
+    flex-wrap: wrap;
+} */
+
+/* .eq-icon-weapon {
+    display: flex;
+    flex-wrap: wrap;
+} */
+
+.eq-icon-container > * {
+    display: flex;
+    flex-wrap: wrap;
+
+    /* Hide and shift other elements up */
+    /* display: none; */
+}
+
+.eq-icon-container > img, 
+.eq-icon-weapon > img, 
+.eq-icon-armor > img {
+    width: 38px;
+}
+/*-----------------------------------------------*/
+.eq-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
