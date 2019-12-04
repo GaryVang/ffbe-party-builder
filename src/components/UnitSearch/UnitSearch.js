@@ -176,6 +176,7 @@ class UnitSearch extends React.Component {
   //SearchList is being rendered before state is set
   render(){
     // console.log('props', this.props.onUnitSelection);
+    // console.log('filtered: ', this.state.filteredList);
     return (
       <div>
         <div className="unit-search-container">
@@ -202,13 +203,6 @@ class UnitSearch extends React.Component {
 }
 
 export default UnitSearch;
-
-{/* <ul>
-{this.state.list.map(item => (
-  <li key={item}>{item}</li>
-))}
-</ul> */}
-
 
 
 // for (var key in unitList) {

@@ -2,8 +2,8 @@
     
     /* position: relative; */
     display: inline-block;
-    
-  
+
+    opacity: 1;
 }
 
 .eq-search-box {

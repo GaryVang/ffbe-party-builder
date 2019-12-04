@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import './EquipmentSelection.css';
 import EquipmentPanel from './EquipmentPanel';
 
@@ -29,8 +29,59 @@ import helm from './EquipmentIcon/Armor/equipment-helm.png';
 import accessory from './EquipmentIcon/equipment-accessory.png';
 
 
+const EquipmentSelection = ({ eqList, setDisplayEqSelection }) => {
 
-const EquipmentSelection = () => {
+    // eqList.map(i => {
+    //     return (
+    //         console.log('map: ', i)
+    //     )
+    // });
+    // console.log(eqList.eqList);
+
+    // eqList.map((item, index) => {
+    //     console.log(item);
+    // });
+
+    // console.log(5, eqList);
+
+    // for(let key in eqList)
+    // {
+    //     // console.log('1', eqList[key]);
+    //     let obj = eqList[key];
+    //     for(let index in obj)
+    //     {
+    //         // console.log('2: ', obj[index].name);
+    //     }
+    // }
+
+    // const test = Object.keys(eqList).map(key => {
+    //     console.log('test', eqList[key])
+    // })
+
+    //---------------------------------------------------
+    // if(eqList != undefined)
+    // {
+    //     const test = Object.keys(eqList).map(key => {
+    //         // console.log('test', eqList[key].info)
+    //         for(let index in eqList[key])
+    //         {
+    //             // console.log('2 test', eqList[key][index])
+                
+    //             // <EquipmentPanel info={eqList[key][index]}>
+    //             //     </EquipmentPanel>
+    //         }
+    //     })
+    // }
+
+    const memoizedHandleClick = useCallback(
+        () => {
+          console.log('Click happened');
+        },
+        [], // Tells React to memoize regardless of arguments.
+      );
+
+    // console.log('closedisplay:', setDisplayEqSelection);
+
     return (
         <div className='eq-select-container'>
             <input className='eq-search-box'
@@ -43,6 +94,7 @@ const EquipmentSelection = () => {
  
             <button className='button-sort'>Sort</button>
             <button className='button-filter'>Filter</button>
+            <button className='button-close' onClick={() => {setDisplayEqSelection(false)} }>X</button>
            
             <div className='eq-filter-icons'>
 
@@ -79,12 +131,26 @@ const EquipmentSelection = () => {
                 <img className='icon-accessory' alt='accessory' src={accessory} />
             </div>
             <div className='eq-list'>  
-                <EquipmentPanel>R-Hand</EquipmentPanel>
+                {/* <EquipmentPanel>R-Hand</EquipmentPanel>
                 <EquipmentPanel>L-Hand</EquipmentPanel>
                 <EquipmentPanel>Head</EquipmentPanel>
                 <EquipmentPanel>Body</EquipmentPanel>
                 <EquipmentPanel>Acc 1</EquipmentPanel>
-                <EquipmentPanel>Acc 2</EquipmentPanel>
+                <EquipmentPanel>Acc 2</EquipmentPanel> */}
+                
+                {   eqList !== undefined ? ( //Check to see if it should be !== instead
+                        Object.keys(eqList).map(key => {
+                            return(
+                                <EquipmentPanel
+                                    info={eqList[key].info}
+                                    key={key}
+                                    onClick={memoizedHandleClick}
+                                />
+                            )
+                        })
+                    ) : ('nothing') 
+                }
+
             </div>
         </div>
     );
