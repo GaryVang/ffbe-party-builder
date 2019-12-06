@@ -16,6 +16,7 @@ const Equipment = () => {
           () => {
             // console.log('Click happened');
             setDisplayEqSelection(true);
+            // setSlot(slot);
           },
           [], // Tells React to memoize regardless of arguments.
         );
@@ -57,18 +58,52 @@ const Equipment = () => {
     // selectSection(e) {
     //     console.log(e);
     // }
-
+    const [slot, setSlot] = useState('');
     const [displayEqSelection, setDisplayEqSelection] = useState(false);
+    
+    // if(data.equipmentList !== undefined)
+    // {
+    //     console.log('1:', data.equipmentList[1]);
+    // }
+
+    // if(data.equipmentList[0] !== undefined)
+    // {
+    //     console.log('5: ', data.equipmentList[0].info);
+    // }
+    
+    // console.log('2:', Object.keys(data.equipmentList));
+    
+    // console.log('3', 
+    //     Object.keys(data.equipmentList)
+    //       .filter(key => data.equipmentList[key].info == 1)
+    // );
+
+    Object.keys(data.equipmentList).map(key => {
+        console.log(data.equipmentList[key].info.name);
+    })
+        //   .filter(key => data.equipmentList[key].info == 1)
 
     return (
         <div>
             <div className='equipment-container'>
-                <EquipmentPanel onClick={memoizedHandleClick} >R-Hand</EquipmentPanel>
-                <EquipmentPanel>L-Hand</EquipmentPanel>
-                <EquipmentPanel>Head</EquipmentPanel>
-                <EquipmentPanel>Body</EquipmentPanel>
-                <EquipmentPanel>Acc 1</EquipmentPanel>
-                <EquipmentPanel>Acc 2</EquipmentPanel>
+                <EquipmentPanel onClick={ (event) => {
+                     memoizedHandleClick(event); 
+                     setSlot('hand'); }} />
+                <EquipmentPanel onClick={ (event) => {
+                     memoizedHandleClick(event); 
+                     setSlot('hand'); }} >L-Hand</EquipmentPanel>
+                <EquipmentPanel onClick={ (event) => {
+                     memoizedHandleClick(event); 
+                     setSlot('head'); }} >Head</EquipmentPanel>
+                <EquipmentPanel onClick={ (event) => {
+                     memoizedHandleClick(event); 
+                     setSlot('body'); }} >Body</EquipmentPanel>
+                <EquipmentPanel onClick={ (event) => {
+                     memoizedHandleClick(event); 
+                     setSlot('accessory'); }} >Acc 1</EquipmentPanel>
+                <EquipmentPanel onClick={ (event) => {
+                     memoizedHandleClick(event); 
+                     setSlot('accessory'); }}>Acc 2</EquipmentPanel>
                 {/* <button onClick={() => alert('goodbye')} >Goodbye </button> */}
             </div>
             <div className='equipment-selection-container'>
@@ -79,7 +114,9 @@ const Equipment = () => {
                 { displayEqSelection ? 
                     <EquipmentSelection 
                         eqList={data.equipmentList} 
-                        setDisplayEqSelection={setDisplayEqSelection}/> 
+                        setDisplayEqSelection={setDisplayEqSelection}
+                        slot={slot}
+                    /> 
                     : null 
                 }
 

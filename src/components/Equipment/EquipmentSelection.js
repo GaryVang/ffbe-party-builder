@@ -29,7 +29,7 @@ import helm from './EquipmentIcon/Armor/equipment-helm.png';
 import accessory from './EquipmentIcon/equipment-accessory.png';
 
 
-const EquipmentSelection = ({ eqList, setDisplayEqSelection }) => {
+const EquipmentSelection = ({ eqList, setDisplayEqSelection, slot }) => {
 
     // eqList.map(i => {
     //     return (
@@ -81,6 +81,8 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection }) => {
       );
 
     // console.log('closedisplay:', setDisplayEqSelection);
+
+        // console.log('slot: ', slot);
 
     return (
         <div className='eq-select-container'>
@@ -148,7 +150,7 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection }) => {
                                 />
                             )
                         })
-                    ) : ('nothing') 
+                    ) : (null) 
                 }
 
             </div>
