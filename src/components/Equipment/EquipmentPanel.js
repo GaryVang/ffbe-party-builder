@@ -58,7 +58,7 @@ const EquipmentPanel = ({ info, onClick }) => { // Maybe rename file to somethin
 
     // if(info != undefined)
     // console.log('test3: ', info.name);
-    var count = 1;
+
     return (
         // <div className='equipment-panel-container'>
         //     <div className='eq-name'>Omega Weapon</div>
@@ -80,7 +80,7 @@ const EquipmentPanel = ({ info, onClick }) => { // Maybe rename file to somethin
                 info !== undefined ? ( //Check to see if it should be !== instead
                     
                     <div className='equipment-panel-container' onClick={onClick}>
-                        <div className='eq-name'>{count} {info.name} </div>
+                        <div className='eq-name'> {info.name} </div>
                         <div className='eq-class'></div>
                         <div className='eq-stat'></div>
                         <div className='eq-img'>

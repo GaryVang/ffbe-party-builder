@@ -22,26 +22,26 @@ class App extends Component {
     }
   }
 
-  onDropdownSelect = () => {
-    this.setState({ });
-    fetch("http://localhost:3000/", {
-      method: "get",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+  // onDropdownSelect = () => {
+  //   this.setState({ });
+  //   fetch("http://localhost:3000/", {
+  //     method: "get",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({
 
-      })
-    })
-  }
+  //     })
+  //   })
+  // }
 
-  testGetRequest = () => {
-    fetch("http://localhost:3000/testUnit", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        unit_id: this.state.user.unit_id
-      })
-    });
-  }
+  // testGetRequest = () => {
+  //   fetch("http://localhost:3000/testUnit", {
+  //     method: "post",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({
+  //       unit_id: this.state.user.unit_id
+  //     })
+  //   });
+  // }
 
   //Researved for search field
   onUnitSelection = (unitName) => {
@@ -116,6 +116,7 @@ class App extends Component {
       //     unitName: result[0].name
       //   }
       // })})
+      
       fetch('http://localhost:3000/unitList')
       .then(res => res.json())
       // unitList is an object
@@ -139,7 +140,7 @@ class App extends Component {
         <Equipment></Equipment>
         {/* <Materia></Materia>
         <Esper></Esper> */}
-        <h1>Name: {this.state.user.unitName}</h1>
+        {/* <h1>Name: {this.state.user.unitName}</h1> */}
         {/* <h2>Test: {console.log('unit list: ', this.state.unitList)}</h2>  */}
       </div>
     );

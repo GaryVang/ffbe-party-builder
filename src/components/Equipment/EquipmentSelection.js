@@ -82,7 +82,8 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection, slot }) => {
 
     // console.log('closedisplay:', setDisplayEqSelection);
 
-        // console.log('slot: ', slot);
+        console.log('slot: ', slot);
+        console.log('eqList', eqList);
 
     return (
         <div className='eq-select-container'>
@@ -144,7 +145,8 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection, slot }) => {
                         Object.keys(eqList).map(key => {
                             return(
                                 <EquipmentPanel
-                                    info={eqList[key].info}
+                                    // info={eqList[key].info}
+                                    info={eqList[key]}
                                     key={key}
                                     onClick={memoizedHandleClick}
                                 />

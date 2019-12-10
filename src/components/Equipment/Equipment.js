@@ -12,10 +12,24 @@ const Equipment = () => {
 
 
     // function Foo() {
-        const memoizedHandleClick = useCallback(
-          () => {
+        const memoizedHandleClick = useCallback(() => {
             // console.log('Click happened');
-            setDisplayEqSelection(true);
+            // setDisplayEqSelection(true);
+
+            // let we = Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
+            // .filter(x => x.type === slot);
+            // console.log('we', we);
+            
+            // console.log(5, data.equipmentList);
+            // console.log('hello', 
+            // setNewList(Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
+            // .filter(x => x.type === 'accessory'))
+            // );
+
+            // setNewList(we);
+            // console.log(2, newList);
+            console.log(3, slot);
+            console.log('4 data: ', data.isFetching);
             // setSlot(slot);
           },
           [], // Tells React to memoize regardless of arguments.
@@ -23,7 +37,24 @@ const Equipment = () => {
         // return <Button onClick={memoizedHandleClick}>Click Me</Button>;
     //   }
     
+    function clickTest(event, y) {
+        console.log('event: ', event);
+        console.log('y: ', y);
 
+        console.log('object: ', Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
+        .filter(x => x.type === 'accessory'));
+
+        // let we = Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
+        // .filter(x => x.type === 'accessory');
+
+        // console.log(3, we);
+        setNewList(Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
+        .filter(x => x.type === 'accessory'));
+        // setNewList(we);
+        setNewList({'hello' : 3})
+        console.log('newList: ', newList);
+
+    }
 
 
     const [data, setData] = useState({equipmentList: {}, isFetching: false});
@@ -37,29 +68,28 @@ const Equipment = () => {
                 console.log('Hook: ', res.data);
                 // console.log('equipment: ', data.equipment);
             } catch (e) {
-                console.log(e)
+                console.log(e);
                 setData({equipmentList: data.equipmentList, isFetching: false});
             }
         };
         fetchEquipmentList();
     },[]);
 
-    // myClick: function () {
-    //     alert("Hello World!");
-    // }
+   
 
-
-    // constructor (props) {
-    //     super(props);
-    //     this.state = { selectedSection: 0 };
-
-    //     this.selectSection = this.selectSection.bind(this)
-    // }
-    // selectSection(e) {
-    //     console.log(e);
-    // }
     const [slot, setSlot] = useState('');
     const [displayEqSelection, setDisplayEqSelection] = useState(false);
+
+    const [newList, setNewList] = useState({});
+
+    const [lHand, setLHand] = useState({});
+    const [rHand, setRHand] = useState({});
+    const [head, setHead] = useState({});
+    const [body, setBody] = useState({});
+    const [acc1, setAcc1] = useState({});
+    const [acc2, setAcc2] = useState({});
+
+    
     
     // if(data.equipmentList !== undefined)
     // {
@@ -73,37 +103,112 @@ const Equipment = () => {
     
     // console.log('2:', Object.keys(data.equipmentList));
     
-    // console.log('3', 
-    //     Object.keys(data.equipmentList)
-    //       .filter(key => data.equipmentList[key].info == 1)
-    // );
+console.log(1);
 
-    Object.keys(data.equipmentList).map(key => {
-        console.log(data.equipmentList[key].info.name);
-    })
-        //   .filter(key => data.equipmentList[key].info == 1)
+console.log(data.equipmentList);
+
+console.log('1', Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
+    .filter(x => x.type === 'accessory'));
+
+    // let we = Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
+    //         .filter(x => x.type === 'accessory');
+    
+    // console.log('we ', we);
+
+    // console.log('newList 1: ', newList);
+    // setNewList(we);
+    // console.log('newList 2: ', newList);
+
+    function eventListener() {
+        // console.log(test);
+        setDisplayEqSelection(true);
+        
+        setSlot('accessory');
+
+        setNewList(Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
+        .filter(x => x.type === 'accessory'));
+    }
+
+    const handleChange = type => e => {
+        console.log('slot: ', type);
+        console.log('e: ', e);
+
+        setDisplayEqSelection(true);
+        
+        setSlot(type);
+
+        setNewList(Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
+        .filter(x => x.type === type));
+
+        switch(type) {
+            case 'accessory':
+                setNewList(Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
+                    .filter(x => x.type === 'accessory'));
+                break;
+            case 'head':
+                setNewList(Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
+                    .filter(x => x.type === 'hat' || 
+                                x.type === 'helm'));
+                break;
+            case 'body':
+                setNewList(Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
+                    .filter(x => x.type === 'clothes' || 
+                                x.type === 'light armor' || 
+                                x.type === 'heavy armor' || 
+                                x.type === 'robe' ));
+                break;
+            default: //weapon/shield
+                setNewList(Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
+                    .filter(x => x.type !== 'accessory' && 
+                                x.type !== 'hat' && 
+                                x.type !== 'helm' &&
+                                x.type !== 'clothes' &&
+                                x.type !== 'light armor' &&
+                                x.type !== 'heavy armor' &&
+                                x.type !== 'robe' ));
+                break;
+        }
+    };
+
+
 
     return (
         <div>
             <div className='equipment-container'>
-                <EquipmentPanel onClick={ (event) => {
+                {/* <EquipmentPanel onClick={ (event) => {
                      memoizedHandleClick(event); 
-                     setSlot('hand'); }} />
-                <EquipmentPanel onClick={ (event) => {
+                     setSlot('hand'); }} /> */}
+
+                <EquipmentPanel onClick={ handleChange('hand') } />
+
+                {/* <EquipmentPanel onClick={ (event) => {
                      memoizedHandleClick(event); 
-                     setSlot('hand'); }} >L-Hand</EquipmentPanel>
-                <EquipmentPanel onClick={ (event) => {
+                     setSlot('hand'); }} >L-Hand</EquipmentPanel> */}
+                <EquipmentPanel onClick={ handleChange('hand') } />
+
+
+                {/* <EquipmentPanel onClick={ (event) => {
                      memoizedHandleClick(event); 
-                     setSlot('head'); }} >Head</EquipmentPanel>
-                <EquipmentPanel onClick={ (event) => {
+                     setSlot('head'); }} >Head</EquipmentPanel> */}
+
+                <EquipmentPanel onClick={ handleChange('head') } />
+                {/* <EquipmentPanel onClick={ (event) => {
                      memoizedHandleClick(event); 
-                     setSlot('body'); }} >Body</EquipmentPanel>
-                <EquipmentPanel onClick={ (event) => {
+                     setSlot('body'); }} >Body</EquipmentPanel> */}
+                <EquipmentPanel onClick={ handleChange('body') } />
+
+                {/* <EquipmentPanel onClick={ (event) => {
                      memoizedHandleClick(event); 
-                     setSlot('accessory'); }} >Acc 1</EquipmentPanel>
-                <EquipmentPanel onClick={ (event) => {
+                     clickTest(event, 'testing');
+                     setSlot('accessory'); }} >Acc 1</EquipmentPanel> */}
+                <EquipmentPanel onClick={ handleChange('accessory') } />
+
+                {/* <EquipmentPanel onClick={ (event) => {
                      memoizedHandleClick(event); 
-                     setSlot('accessory'); }}>Acc 2</EquipmentPanel>
+                     setSlot('accessory'); }}>Acc 2</EquipmentPanel> */}
+                {/* <EquipmentPanel onClick={ eventListener }>Acc 2</EquipmentPanel> */}
+                <EquipmentPanel onClick={ handleChange('accessory') } />
+
                 {/* <button onClick={() => alert('goodbye')} >Goodbye </button> */}
             </div>
             <div className='equipment-selection-container'>
@@ -113,7 +218,8 @@ const Equipment = () => {
 
                 { displayEqSelection ? 
                     <EquipmentSelection 
-                        eqList={data.equipmentList} 
+                        // eqList={data.equipmentList} 
+                        eqList={newList} 
                         setDisplayEqSelection={setDisplayEqSelection}
                         slot={slot}
                     /> 
