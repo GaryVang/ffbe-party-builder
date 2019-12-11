@@ -82,8 +82,16 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection, slot }) => {
 
     // console.log('closedisplay:', setDisplayEqSelection);
 
-        console.log('slot: ', slot);
-        console.log('eqList', eqList);
+        console.log('slot x: ', slot);
+        console.log('eqList x', eqList);
+
+
+    const handleChange = equipment => e => {
+        console.log('eqS handle: ', equipment);
+        console.log('eqS ref: ', slot);
+        // console.log('eq', equipment);
+        slot(equipment);
+    };
 
     return (
         <div className='eq-select-container'>
@@ -148,7 +156,8 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection, slot }) => {
                                     // info={eqList[key].info}
                                     info={eqList[key]}
                                     key={key}
-                                    onClick={memoizedHandleClick}
+                                    // onClick={memoizedHandleClick}
+                                    onClick={ handleChange(eqList[key]) }
                                 />
                             )
                         })

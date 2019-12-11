@@ -95,7 +95,7 @@ const EquipmentPanel = ({ info, onClick }) => { // Maybe rename file to somethin
                 ) :  
                 (           //Change onClick
                     <div className='equipment-panel-container' onClick={onClick}>
-                        <div className='eq-name'>Omega Weapon</div>
+                        <div className='eq-name'>Undefined</div>
                         <div className='eq-class'></div>
                         <div className='eq-stat'></div>
                         <div className='eq-img'>
