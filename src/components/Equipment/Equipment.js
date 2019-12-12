@@ -77,7 +77,7 @@ const Equipment = () => {
 
    
 
-    const [slot1, setSlot] = useState();
+    const [slot1, setSlot] = useState({});
     const [displayEqSelection, setDisplayEqSelection] = useState(false);
 
     const [newList, setNewList] = useState({});
@@ -89,8 +89,12 @@ const Equipment = () => {
     const [acc1, setAcc1] = useState({});
     const [acc2, setAcc2] = useState({});
 
+    const[slotTest, setSlotTest] = useState('');
+
     // console.log('setSlot: ', typeof setSlot);
-    let setterRef = setSlot;
+
+    // let setterRef = setSlot;
+
     // console.log('setterRef', setterRef);
     // console.log('setSlot', setSlot);
     // if(data.equipmentList !== undefined)
@@ -133,32 +137,68 @@ console.log('acc1: ', acc1);
         .filter(x => x.type === 'accessory'));
     }
 
+    // let refTest;
+
     const handleChange = slot => e => {
         // console.log('slot: ', slot);
         // console.log('e: ', e);
 
+        // let test = {};
+        // test = setAcc1;
+
+        // setSlot(test);
+        // console.log('slot1: ', slot1);
+        // console.log('acc1 state: ', acc1);
+        // console.log('test: ', test);
+
+        // refTest = setAcc1;
+        // console.log('refTest: ', refTest);
+
+        // setTimeout(function() {console.log('timeout'); }, 7000);
         setDisplayEqSelection(true);
         
         // setSlot(type);
         // setSlot(setLHand);
 
-        // setNewList(Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
-        // .filter(x => x.type === type));
+        
 
         switch(slot) {
             case 'accessory 1': //fall-through
                 setNewList(Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
                     .filter(x => x.type === 'accessory'));
-                setSlot(setAcc1);
+            //    setSlot(setAcc1);
+                setSlotTest(slot);
+                console.log('slotTest: ', slotTest);
+         
+            //    console.log('slot1: ', slot1);
                 // setterRef = setAcc1;
                 // console.log('4444', setAcc1);
                 // console.log('ref555: ', slot1);
-
+                
+                // return <button> Thj9ise;rjwe;ljr</button>;
+                    // <div>
+                    //  displayEqSelection ? 
+                    // <EquipmentSelection 
+                    //     // eqList={data.equipmentList} 
+                    //     eqList={newList} 
+                    //     setDisplayEqSelection={setDisplayEqSelection}
+                    //     // slot={slot}
+                    //     // slot={setterRef}
+                    //     slot={setAcc1}
+                        
+                    // /> 
+                    // : null ;
+                     
+                    // </div>
+                    
                 break;
             case 'accessory 2':
                 setNewList(Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
                     .filter(x => x.type === 'accessory'));
                 setSlot(setAcc2);
+                // setSlot(2);
+                // console.log('slot1: ', slot1);
+
                 // setterRef = setAcc2;
                 break;
             case 'head':
@@ -178,7 +218,7 @@ console.log('acc1: ', acc1);
                 setSlot(setBody);
                 // setterRef = setBody;
                 break;
-            default: //weapon/shield
+            case 'rhand':
                 setNewList(Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
                     .filter(x => x.type !== 'accessory' && 
                                 x.type !== 'hat' && 
@@ -188,10 +228,33 @@ console.log('acc1: ', acc1);
                                 x.type !== 'heavy armor' &&
                                 x.type !== 'robe' ));
                 setSlot(setRHand);
-                // break;
+                break;
+            case 'lhand': //weapon/shield
+                setNewList(Object.keys(data.equipmentList).map( key => data.equipmentList[key].info)
+                    .filter(x => x.type !== 'accessory' && 
+                                x.type !== 'hat' && 
+                                x.type !== 'helm' &&
+                                x.type !== 'clothes' &&
+                                x.type !== 'light armor' &&
+                                x.type !== 'heavy armor' &&
+                                x.type !== 'robe' ));
+                setSlot(setLHand);
+                break;
+            default:
+                console.log('SHIT HIT THE FAN');
         }
     };
 
+
+    const testFunction = slot => e => {
+        console.log('testFunction');
+        return <div>TestFunction</div>;
+    };
+
+    const handleTest = useCallback(() => {
+        console.log('nobody');
+    return <button>Hello</button>
+    });
     // console.log('10', setLHand);
 
     return (
@@ -201,7 +264,12 @@ console.log('acc1: ', acc1);
                      memoizedHandleClick(event); 
                      setSlot('hand'); }} /> */}
 
-                <EquipmentPanel info={rHand} onClick={ handleChange('rhand') } />
+                <EquipmentPanel info={rHand} 
+                    onClick={ handleChange('rhand') }
+                    // onClick={ testFunction('rhand') }
+                    // onClick={ () => { handleTest }}
+                    // testKey={}
+                     />
 
                 {/* <EquipmentPanel onClick={ (event) => {
                      memoizedHandleClick(event); 
@@ -244,8 +312,20 @@ console.log('acc1: ', acc1);
                         eqList={newList} 
                         setDisplayEqSelection={setDisplayEqSelection}
                         // slot={slot}
-                        slot={setterRef}
+                        // slot={setterRef}
                         // slot={setAcc1}
+                        // slot={refTest}
+
+                        // slot={() => {
+                        //     console.log(slotTest);
+                        //     switch(slotTest) {
+                        //         case 'accessory 1':
+                        //             console.log('8: ', slotTest);
+                        //             return {setAcc1};
+                        //     }
+                        // }}
+                        
+
                         
                     /> 
                     : null 
