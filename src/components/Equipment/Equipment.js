@@ -91,6 +91,8 @@ const Equipment = () => {
 
     const[slotTest, setSlotTest] = useState('');
 
+    const[activeSlot, setActiveSlot] = useState('');
+
     // console.log('setSlot: ', typeof setSlot);
 
     // let setterRef = setSlot;
@@ -140,7 +142,7 @@ console.log('acc1: ', acc1);
     // let refTest;
 
     const handleChange = slot => e => {
-        // console.log('slot: ', slot);
+        console.log('slot: ', slot);
         // console.log('e: ', e);
 
         // let test = {};
@@ -257,47 +259,138 @@ console.log('acc1: ', acc1);
     });
     // console.log('10', setLHand);
 
+    function renderSwitch(param) {
+        console.log('renderSwitch');
+        let filteredEqList;
+
+        switch(param) {
+            case 'rHand': 
+                filteredEqList = Object.keys(data.equipmentList)
+                    .map( key => data.equipmentList[key].info)
+                    .filter(x => x.type !== 'accessory' && 
+                        x.type !== 'hat' && 
+                        x.type !== 'helm' &&
+                        x.type !== 'clothes' &&
+                        x.type !== 'light armor' &&
+                        x.type !== 'heavy armor' &&
+                        x.type !== 'robe' );
+
+                return <EquipmentSelection 
+                            eqList={filteredEqList} 
+                            setDisplayEqSelection={setActiveSlot} 
+                            slot={setRHand}
+                        />;
+            case 'lHand': 
+                filteredEqList = Object.keys(data.equipmentList)
+                    .map( key => data.equipmentList[key].info)
+                    .filter(x => x.type !== 'accessory' && 
+                        x.type !== 'hat' && 
+                        x.type !== 'helm' &&
+                        x.type !== 'clothes' &&
+                        x.type !== 'light armor' &&
+                        x.type !== 'heavy armor' &&
+                        x.type !== 'robe' );
+
+                return <EquipmentSelection 
+                            eqList={filteredEqList} 
+                            setDisplayEqSelection={setActiveSlot} 
+                            slot={setLHand}
+                        />;
+            case 'head': 
+                filteredEqList = Object.keys(data.equipmentList)
+                    .map( key => data.equipmentList[key].info)
+                    .filter(x => x.type === 'hat' || 
+                                 x.type === 'helm');
+
+                return <EquipmentSelection 
+                            eqList={filteredEqList} 
+                            setDisplayEqSelection={setActiveSlot} 
+                            slot={setHead}
+                        />;
+            case 'body':
+                filteredEqList = Object.keys(data.equipmentList)
+                    .map( key => data.equipmentList[key].info)
+                    .filter(x => x.type === 'clothes' || 
+                                 x.type === 'light armor' || 
+                                 x.type === 'heavy armor' || 
+                                 x.type === 'robe' );
+
+                return <EquipmentSelection 
+                            eqList={filteredEqList} 
+                            setDisplayEqSelection={setActiveSlot} 
+                            slot={setBody}
+                        />; 
+            case 'accessory 1': 
+                filteredEqList = Object.keys(data.equipmentList)
+                    .map( key => data.equipmentList[key].info)
+                    .filter(x => x.type === 'accessory');
+
+                return <EquipmentSelection 
+                            eqList={filteredEqList} 
+                            setDisplayEqSelection={setActiveSlot} 
+                            slot={setAcc1}
+                        />;
+            default: // accessory 2
+                filteredEqList = Object.keys(data.equipmentList)
+                    .map( key => data.equipmentList[key].info)
+                    .filter(x => x.type === 'accessory');
+
+                return <EquipmentSelection 
+                            eqList={filteredEqList} 
+                            setDisplayEqSelection={setActiveSlot} 
+                            slot={setAcc2}
+                        />;
+        }
+    }
+
     return (
         <div>
             <div className='equipment-container'>
-                {/* <EquipmentPanel onClick={ (event) => {
-                     memoizedHandleClick(event); 
-                     setSlot('hand'); }} /> */}
-
-                <EquipmentPanel info={rHand} 
-                    onClick={ handleChange('rhand') }
-                    // onClick={ testFunction('rhand') }
-                    // onClick={ () => { handleTest }}
-                    // testKey={}
-                     />
+                <EquipmentPanel info={rHand} onClick={ () => setActiveSlot('rHand') }/>
 
                 {/* <EquipmentPanel onClick={ (event) => {
                      memoizedHandleClick(event); 
                      setSlot('hand'); }} >L-Hand</EquipmentPanel> */}
-                <EquipmentPanel info={lHand} onClick={ handleChange('lhand') } />
+                <EquipmentPanel info={lHand} 
+                // onClick={ handleChange('lhand') } 
+                    onClick={ () => setActiveSlot('lHand')}
+                
+                />
 
 
                 {/* <EquipmentPanel onClick={ (event) => {
                      memoizedHandleClick(event); 
                      setSlot('head'); }} >Head</EquipmentPanel> */}
 
-                <EquipmentPanel info={head} onClick={ handleChange('head') } />
+                <EquipmentPanel info={head} 
+                    // onClick={ handleChange('head') } 
+                    onClick={ () => setActiveSlot('head')}
+                />
                 {/* <EquipmentPanel onClick={ (event) => {
                      memoizedHandleClick(event); 
                      setSlot('body'); }} >Body</EquipmentPanel> */}
-                <EquipmentPanel info={body} onClick={ handleChange('body') } />
+                <EquipmentPanel info={body} 
+                    // onClick={ handleChange('body') } 
+                    onClick={ () => setActiveSlot('body')}
+                />
 
                 {/* <EquipmentPanel onClick={ (event) => {
                      memoizedHandleClick(event); 
                      clickTest(event, 'testing');
                      setSlot('accessory'); }} >Acc 1</EquipmentPanel> */}
-                <EquipmentPanel info={acc1} onClick={ handleChange('accessory 1') } />
+                <EquipmentPanel info={acc1} 
+                    // onClick={ handleChange('acc1') } 
+                    onClick={ () => setActiveSlot('accessory 1')}
+                />
 
                 {/* <EquipmentPanel onClick={ (event) => {
                      memoizedHandleClick(event); 
                      setSlot('accessory'); }}>Acc 2</EquipmentPanel> */}
                 {/* <EquipmentPanel onClick={ eventListener }>Acc 2</EquipmentPanel> */}
-                <EquipmentPanel info={acc2} onClick={ handleChange('accessory 2') } />
+                <EquipmentPanel info={acc2} 
+                    // onClick={ handleChange('acc2') } 
+                    onClick={ () => setActiveSlot('accessory 2')}
+                />
 
                 {/* <button onClick={() => alert('goodbye')} >Goodbye </button> */}
             </div>
@@ -306,29 +399,21 @@ console.log('acc1: ', acc1);
 
                 {/* <EquipmentSelection eqList={data.equipmentList}/>  */}
 
-                { displayEqSelection ? 
+                {/* { displayEqSelection ? 
                     <EquipmentSelection 
                         // eqList={data.equipmentList} 
                         eqList={newList} 
                         setDisplayEqSelection={setDisplayEqSelection}
                         // slot={slot}
                         // slot={setterRef}
-                        // slot={setAcc1}
-                        // slot={refTest}
-
-                        // slot={() => {
-                        //     console.log(slotTest);
-                        //     switch(slotTest) {
-                        //         case 'accessory 1':
-                        //             console.log('8: ', slotTest);
-                        //             return {setAcc1};
-                        //     }
-                        // }}
-                        
-
-                        
+                        // slot={setAcc1}                   
                     /> 
                     : null 
+                } */}
+                { activeSlot ? (
+                    renderSwitch(activeSlot)
+                  ) : (null)
+            
                 }
 
                 {/* {console.log('data.eqlist: ', data.equipmentList)} */}
