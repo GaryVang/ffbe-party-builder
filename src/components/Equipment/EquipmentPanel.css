@@ -26,7 +26,18 @@
 .eq-class {
     grid-column: 3;
     grid-row: 1;
+
+    /* copied from eq-element */
+    display: flex;
+    justify-content: center;
 }
+
+/* .eq-class > img {
+    max-height: 100%;
+    max-width: 100%;
+
+    margin: 100px;
+} */
 
 .eq-stat {
     grid-column: 4 / 6;
