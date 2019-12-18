@@ -141,7 +141,9 @@ const EquipmentPanel = ({ info, onClick }) => { // Maybe rename file to somethin
         switch(eqType) {
             case 'weapon':
                 let weaponElement = '';
-                if (info.element === 'nonelemental') { weaponElement = fire; }
+                if (info.element === 'nonelemental') {//Design something for nonelemental
+                    weaponElement = fire; 
+                 }
                 else if (info.element === 'fire') { weaponElement = fire; }
                 else if (info.element === 'ice') { weaponElement = ice; }
                 else if (info.element === 'lightning') { weaponElement = lightning; }
@@ -160,9 +162,11 @@ const EquipmentPanel = ({ info, onClick }) => { // Maybe rename file to somethin
                             <div className='eq-img'>
                                 <img src='https://gamepedia.cursecdn.com/exvius_gamepedia_en/0/08/Icon-Omega_Weapon_%28FFXIII%29.png?version=bad7d1545f58a722eaa2826ff978e82e' alt='failed' />
                             </div>
-                            <div className='eq-element'>
-                                <img src={weaponElement} alt='e' />
-                            </div>
+                            { info.element !== 'nonelemental' ? ( //Checks to see if weapon has an element
+                                <div className='eq-element'>
+                                    <img src={weaponElement} alt='e' /> 
+                                </div>
+                            ) : (null) }
                             <div className='eq-handle'>1H</div>
                             <div className='eq-enhancement'></div>
                         </div>;
@@ -215,7 +219,8 @@ const EquipmentPanel = ({ info, onClick }) => { // Maybe rename file to somethin
                         <div className='eq-class'></div>
                         <div className='eq-stat'></div>
                         <div className='eq-img'>
-                            <img src='https://gamepedia.cursecdn.com/exvius_gamepedia_en/0/08/Icon-Omega_Weapon_%28FFXIII%29.png?version=bad7d1545f58a722eaa2826ff978e82e' alt='failed' />
+                            <img src='' 
+                            alt='eq' />
                         </div>
                         {/* <div className='eq-element'>
                             <img src={earth} alt='element' />
@@ -231,3 +236,6 @@ const EquipmentPanel = ({ info, onClick }) => { // Maybe rename file to somethin
 }
 
 export default EquipmentPanel;
+
+//<div className='eq-img'>
+//https://gamepedia.cursecdn.com/exvius_gamepedia_en/0/08/Icon-Omega_Weapon_%28FFXIII%29.png?version=bad7d1545f58a722eaa2826ff978e82e

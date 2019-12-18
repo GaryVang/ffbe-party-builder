@@ -1,9 +1,6 @@
 import React from "react";
 import './UnitSearch.css';
 
-// const UnitSearch = ({ onSearchChange, unitList }) => {
-  
-
   const SearchList = ({ items, onUnitSelection, resetSearchBar }) => {
     // console.log('10: ', items);
     // console.log('11: ', onUnitSelection);
@@ -203,18 +200,3 @@ class UnitSearch extends React.Component {
 }
 
 export default UnitSearch;
-
-
-// for (var key in unitList) {
-//   // skip loop if the property is from prototype
-//   if (!unitList.hasOwnProperty(key)) continue;
-
-//   var obj = unitList[key];
-//   for (var prop in obj) {
-//       // skip loop if the property is from prototype
-//       if (!obj.hasOwnProperty(prop)) continue;
-
-//       // your code
-//       alert(prop + " = " + obj[prop]);
-//   }
-// }

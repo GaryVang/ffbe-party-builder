@@ -28,6 +28,9 @@ import hat from './EquipmentIcon/Armor/equipment-hat.png';
 import helm from './EquipmentIcon/Armor/equipment-helm.png';
 import accessory from './EquipmentIcon/equipment-accessory.png';
 
+//To-do:
+// Make render trigger only when EqSelection is closed (i.e. when 'x' button is clicked)
+// While still updating
 const EquipmentSelection = ({ eqList, setDisplayEqSelection, slot }) => {
 
     // console.log('eqS slot: ', slot);

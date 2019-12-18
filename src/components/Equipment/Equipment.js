@@ -52,12 +52,10 @@ const Equipment = () => {
                         x.type !== 'light armor' &&
                         x.type !== 'heavy armor' &&
                         x.type !== 'robe' );
-
                 return <EquipmentSelection 
                             eqList={filteredEqList} 
                             setDisplayEqSelection={setActiveSlot} 
-                            slot={setRHand}
-                        />;
+                            slot={setRHand} />;
             case 'lHand': 
                 filteredEqList = Object.keys(data.equipmentList)
                     .map( key => data.equipmentList[key].info)
@@ -68,23 +66,19 @@ const Equipment = () => {
                         x.type !== 'light armor' &&
                         x.type !== 'heavy armor' &&
                         x.type !== 'robe' );
-
                 return <EquipmentSelection 
                             eqList={filteredEqList} 
                             setDisplayEqSelection={setActiveSlot} 
-                            slot={setLHand}
-                        />;
+                            slot={setLHand} />;
             case 'head': 
                 filteredEqList = Object.keys(data.equipmentList)
                     .map( key => data.equipmentList[key].info)
                     .filter(x => x.type === 'hat' || 
                                  x.type === 'helm');
-
                 return <EquipmentSelection 
                             eqList={filteredEqList} 
                             setDisplayEqSelection={setActiveSlot} 
-                            slot={setHead}
-                        />;
+                            slot={setHead} />;
             case 'body':
                 filteredEqList = Object.keys(data.equipmentList)
                     .map( key => data.equipmentList[key].info)
@@ -92,32 +86,26 @@ const Equipment = () => {
                                  x.type === 'light armor' || 
                                  x.type === 'heavy armor' || 
                                  x.type === 'robe' );
-
                 return <EquipmentSelection 
                             eqList={filteredEqList} 
                             setDisplayEqSelection={setActiveSlot} 
-                            slot={setBody}
-                        />; 
+                            slot={setBody} />; 
             case 'accessory 1': 
                 filteredEqList = Object.keys(data.equipmentList)
                     .map( key => data.equipmentList[key].info)
                     .filter(x => x.type === 'accessory');
-
                 return <EquipmentSelection 
                             eqList={filteredEqList} 
                             setDisplayEqSelection={setActiveSlot} 
-                            slot={setAcc1}
-                        />;
+                            slot={setAcc1} />;
             default: // accessory 2
                 filteredEqList = Object.keys(data.equipmentList)
                     .map( key => data.equipmentList[key].info)
                     .filter(x => x.type === 'accessory');
-
                 return <EquipmentSelection 
                             eqList={filteredEqList} 
                             setDisplayEqSelection={setActiveSlot} 
-                            slot={setAcc2}
-                        />;
+                            slot={setAcc2} />;
         }
     }
 
