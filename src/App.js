@@ -3,6 +3,9 @@ import UnitSearch from './components/UnitSearch/UnitSearch';
 import UnitInfo from './components/UnitInfo/UnitInfo';
 import Equipment from './components/Equipment/Equipment';
 
+import { useEffect, useState } from "react";
+import axios from 'axios';
+
 import './App.css';
 
 class App extends Component {
