@@ -8,6 +8,9 @@ import axios from 'axios';
 
 const DB_URL = 'http://localhost:3000/loadEq';
 
+
+//git pull test
+
 const Equipment = () => {
     
     const [data, setData] = useState({equipmentList: {}, isFetching: false});
