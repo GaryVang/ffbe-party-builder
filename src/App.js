@@ -21,6 +21,61 @@ class App extends Component {
         def: 0,
         spr: 0,
       },
+      unit: {
+        unitName: "",
+        hp: 0,
+        mp: 0,
+        atk: 0,
+        mag: 0,
+        def: 0,
+        spr: 0,
+        hp_base: 0,
+        mp_base: 0,
+        atk_base: 0,
+        mag_base: 0,
+        def_base: 0,
+        spr_base: 0,
+        hp_p: 0, //p=percentage
+        mp_p: 0,
+        atk_p: 0,
+        mag_p: 0,
+        def_p: 0,
+        spr_p: 0,
+        resist_element_fire: 0,
+        resist_element_ice: 0,
+        resist_element_lightning: 0,
+        resist_element_water: 0,
+        resist_element_wind: 0,
+        resist_element_earth: 0,
+        resist_element_light: 0,
+        resist_element_dark: 0,
+        resist_ailment_poison: 0,
+        resist_ailment_blind: 0,
+        resist_ailment_sleep: 0,
+        resist_ailment_silence: 0,
+        resist_ailment_paralysis: 0,
+        resist_ailment_confusion: 0,
+        resist_ailment_disease: 0,
+        resist_ailment_petrification: 0,
+        killer_aquatic: 0, //percentage
+        killer_beast: 0,
+        killer_bird: 0,
+        killer_demon: 0,
+        killer_dragon: 0,
+        killer_fairy: 0,
+        killer_human: 0,
+        killer_insect: 0,
+        killer_machine: 0,
+        killer_plant: 0,
+        killer_stone: 0,
+        tdh: 0, //percentage
+        tdw: 0, //percentage
+        lb_damage: 0, //percentage
+        lb_fill_stone: 0, //max 12
+        lb_fill_p: 0, //p=percentage
+        evasion_physical: 0, //softcap 100
+        evasion_magic: 0, //softcap 100, multiple sources do NOT stack
+      },
       unitList: {},
     }
   }
