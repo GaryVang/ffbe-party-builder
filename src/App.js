@@ -21,7 +21,7 @@ class App extends Component {
         def: 0,
         spr: 0,
       },
-      unit: {
+      unit_1: {
         unitName: "",
         hp: 0,
         mp: 0,
@@ -57,6 +57,10 @@ class App extends Component {
         resist_ailment_confusion: 0,
         resist_ailment_disease: 0,
         resist_ailment_petrification: 0,
+        resistance_enfeeblement_charm: 0,
+        resistance_enfeeblement_stop: 0,
+        resistance_enfeeblement_berserk: 0,
+        resistance_enfeeblement_break: 0,
         killer_aquatic: 0, //percentage
         killer_beast: 0,
         killer_bird: 0,
@@ -75,6 +79,7 @@ class App extends Component {
         lb_fill_p: 0, //p=percentage
         evasion_physical: 0, //softcap 100
         evasion_magic: 0, //softcap 100, multiple sources do NOT stack
+        conditional: {},
       },
       unitList: {},
     }
