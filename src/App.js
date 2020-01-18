@@ -22,24 +22,30 @@ class App extends Component {
         spr: 0,
       },
       unit_1: {
-        unitName: "",
-        hp: 0,
-        mp: 0,
-        atk: 0,
-        mag: 0,
-        def: 0,
-        spr: 0,
+        name: "",
+        hp: [],
+        mp: [],
+        atk: [],
+        def: [],
+        mag: [],
+        spr: [],
+        weapon:[],
+        armor:[],
+        resist_element: [0,0,0,0,0,0,0,0],
+        resist_ailment: [0,0,0,0,0,0,0,0],
+        resist_enfeeblement: [0,0,0,0],
+        killer:[],
         hp_base: 0,
         mp_base: 0,
         atk_base: 0,
-        mag_base: 0,
         def_base: 0,
+        mag_base: 0,
         spr_base: 0,
         hp_p: 0, //p=percentage
         mp_p: 0,
         atk_p: 0,
-        mag_p: 0,
         def_p: 0,
+        mag_p: 0,
         spr_p: 0,
         resist_element_fire: 0,
         resist_element_ice: 0,
@@ -82,7 +88,11 @@ class App extends Component {
         conditional: {},
       },
       unitList: {},
+      unit_2: {
+        name: '',
+      },
     }
+    this.initState = this.state.unit_1;
   }
 
   // onDropdownSelect = () => {
@@ -133,7 +143,7 @@ class App extends Component {
       })})
   };
 
-  loadUnit = (unitData) => {
+  loadUnit = (unitData) => { //Currently unused
     this.setState({
       user: {
         unitName: unitData.name,
@@ -145,6 +155,12 @@ class App extends Component {
         spr: unitData.spr, 
       }
     });
+  };
+
+  //resets unit to default state
+  //In the future, pass unit number as parameter unit_x, where x=number(1-5).
+  resetUnit = () => {
+    this.setState({['unit_1']: this.initState}); //
   };
 
   componentDidMount () {
@@ -164,22 +180,34 @@ class App extends Component {
         }
       })})
       
-      // .then(console.log)
-      // .then(result => {this.setState({ 
-      //   user: {
-      //     nameName: result.name
-      //   }
-      // })});
-        // unitName: result.name })})
-      // .then(console.log)
-      // .then(result => {console.log('result', result[0].name)})
+      fetch('http://localhost:3000/loadDefaultUnit')
+        .then(response => response.json())
+        // .then(result => {console.log('result', result)})
+        // .then(result => {console.log('result: ', result.name)})
+        .then(result => { this.setState(initState => ({ 
+          unit_1: {
+              ...initState.unit_1,
+            name: result.name,
+            hp: result.stats.hp,
+            mp: result.stats.mp,
+            atk: result.stats.atk,
+            def: result.stats.def,
+            mag: result.stats.mag,
+            spr: result.stats.spr,
+            //resistance_ailment:
+            //resistance_elemental:
+            //resistance_enfeeblement:
+            //killer
+            evasion_magic: result.evasion_magic,
+            evasion_physical: result.evasion_physical,
+            regen_mp: result.regen_mp,
+            conditional: result.conditional
+          }
+        }))
+      })
+        // .then(console.log('name: ', this.state.unit_1.name))
 
-      // .then(result => {this.setState({
-      //   user: {
-      //     unitName: result[0].name
-      //   }
-      // })})
-      
+
       fetch('http://localhost:3000/unitList')
       .then(res => res.json())
       // unitList is an object
@@ -189,15 +217,19 @@ class App extends Component {
       })})
 
   }
-
+  
   render() {
+    console.log('1: ', this.state.unit_1);
+    console.log('2 ', this.state.unit_2.name);
+
     return (
       <div className="App">
         <h1>FFBE Unit Builder</h1>
         <UnitSearch 
           unitList={this.state.unitList} 
           onUnitSelection={this.onUnitSelection}
-          loadUnit={this.loadUnit}>
+          // loadUnit={this.loadUnit} 
+          >
         </UnitSearch>
         <UnitInfo unit={this.state.user} ></UnitInfo>
         <Equipment></Equipment>
@@ -205,6 +237,7 @@ class App extends Component {
         <Esper></Esper> */}
         {/* <h1>Name: {this.state.user.unitName}</h1> */}
         {/* <h2>Test: {console.log('unit list: ', this.state.unitList)}</h2>  */}
+        <button onClick={() => {this.resetUnit()}} > Reset </button>
       </div>
     );
   }
