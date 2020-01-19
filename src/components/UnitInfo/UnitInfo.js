@@ -1,6 +1,5 @@
 import React from "react";
 import './UnitInfo.css';
-import imgLightning from './unit-lightning.png';
 import poison from './AilmentIcon/ailment-poison.png';
 import blind from './AilmentIcon/ailment-blind.png';
 import sleep from './AilmentIcon/ailment-sleep.png';
@@ -17,72 +16,163 @@ import wind from './ElementalIcon/element-wind.png';
 import earth from './ElementalIcon/element-earth.png';
 import light from './ElementalIcon/element-light.png';
 import dark from './ElementalIcon/element-dark.png';
+import imgLightning from './unit-lightning.png';
+import imgEsther from './unit-esther.png';
+import imgOlive from './unit-olive.png';
 
-const UnitInfo = ({ unit }) => {
+
+function capitalizeFirstLetter(str){
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function calcStat(arr){ //placeholder for when equipment is taken into account
+    return arr[0]+arr[1];
+}
+
+function getUnitImg(str){
+    if(str === 'lightning'){
+        return imgLightning;
+    } else if(str === 'esther'){
+        return imgEsther;
+    } else if(str === 'olvie'){
+        return imgOlive;
+    }
+    //default
+    return imgLightning;
+}
+
+const UnitInfo = ({ unit, unit_2}) => {
     // console.log('Unit: ', unit.hp);
     return (
-        <div className='unit-info-container'>
-            <div className='unit-name'>{`${unit.unitName}`}</div>
-            <div className='unit-stat'>
-                {/* {
-                    `HP: 5000 
-                    MP: 900 
-                    ATK: 3000 
-                    MAG: 3000 
-                    DEF: 1000 
-                    SPR: 1000`
-                } */}
-                <ul><b>HP: {unit.hp}</b></ul>
-                <ul><b>MP: {unit.mp}</b></ul>
-                <ul><b>ATK: {unit.atk}</b></ul>
-                <ul><b>MAG: {unit.mag}</b></ul>
-                <ul><b>DEF: {unit.def}</b></ul>
-                <ul><b>SPR: {unit.spr}</b></ul>
-            </div>
-            <div className='unit-img'>
-                <img alt='unit img' src={imgLightning} />
-            </div>
-            <div className='unit-weapon-type'>
-                <ul><b>TDW: 100% ATK: +100</b></ul>
-                <ul><b>TDH: 0% ATK: +0</b></ul>
-            </div>
-            <div className='unit-killer'>Killers</div>
-            <div className='unit-ailment'>
-                <img className='icon-poison' alt='ailment' src={poison} />
-                <img className='icon-blind' alt='ailment' src={blind} />
-                <img className='icon-sleep' alt='ailment' src={sleep} />
-                <img className='icon-silence' alt='ailment' src={silence} />
-                <img className='icon-paralysis' alt='ailment' src={paralysis} />
-                <img className='icon-confusion' alt='ailment' src={confusion} />
-                <img className='icon-disease' alt='ailment' src={disease} />
-                <img className='icon-petrification' alt='ailment' src={petrification} />
-            	<div>100</div>
-            	<div>100</div>
-            	<div>100</div>
-            	<div>100</div>
-            	<div>100</div>
-            	<div>100</div>
-            	<div>100</div>
-            	<div>100</div>
-            </div>
-            <div className='unit-element'>
-                <img className='icon-fire' alt='ailment' src={fire} />
-                <img className='icon-ice' alt='ailment' src={ice} />
-                <img className='icon-lightning' alt='ailment' src={lightning} />
-                <img className='icon-water' alt='ailment' src={water} />
-                <img className='icon-wind' alt='ailment' src={wind} />
-                <img className='icon-earth' alt='ailment' src={earth} />
-                <img className='icon-light' alt='ailment' src={light} />
-                <img className='icon-dark' alt='ailment' src={dark} />
-            	<div>100</div>
-            	<div>100</div>
-            	<div>100</div>
-            	<div>100</div>
-            	<div>100</div>
-            	<div>100</div>
-            	<div>100</div>
-            	<div>100</div>   
-            </div>
+        <div>
+            {
+                unit_2 !== undefined ? (
+                    <div className='unit-info-container'>
+                        <div className='unit-name'>{`${capitalizeFirstLetter(unit_2.name)}`}</div>
+                        <div className='unit-stat'>
+                            <ul><b>HP: {calcStat(unit_2.hp)}</b></ul>
+                            <ul><b>MP: {calcStat(unit_2.mp)}</b></ul>
+                            <ul><b>ATK: {calcStat(unit_2.atk)}</b></ul>
+                            <ul><b>MAG: {calcStat(unit_2.mag)}</b></ul>
+                            <ul><b>DEF: {calcStat(unit_2.def)}</b></ul>
+                            <ul><b>SPR: {calcStat(unit_2.spr)}</b></ul>
+                        </div>
+                        <div className='unit-img'>
+                            <img 
+                                alt='unit img' 
+                                // src={imgLightning} 
+                                src={[getUnitImg(unit_2.name)]} 
+                                />
+                        </div>
+                        <div className='unit-weapon-type'>
+                            <ul><b>{`TDW: ${unit_2.tdw}%   ATK: +100`}</b></ul>
+                            <ul><b>{`TDH: ${unit_2.tdh}%   ATK: +Add later: Calc with Eq`}</b></ul>
+                        </div>
+                        <div className='unit-killer'>Killers</div>
+                        <div className='unit-ailment'>
+                            <img className='icon-poison' alt='ailment' src={poison} />
+                            <img className='icon-blind' alt='ailment' src={blind} />
+                            <img className='icon-sleep' alt='ailment' src={sleep} />
+                            <img className='icon-silence' alt='ailment' src={silence} />
+                            <img className='icon-paralysis' alt='ailment' src={paralysis} />
+                            <img className='icon-confusion' alt='ailment' src={confusion} />
+                            <img className='icon-disease' alt='ailment' src={disease} />
+                            <img className='icon-petrification' alt='ailment' src={petrification} />
+                            <div>{unit_2.resist_ailment[0]}</div>
+                            <div>{unit_2.resist_ailment[1]}</div>
+                            <div>{unit_2.resist_ailment[2]}</div>
+                            <div>{unit_2.resist_ailment[3]}</div>
+                            <div>{unit_2.resist_ailment[4]}</div>
+                            <div>{unit_2.resist_ailment[5]}</div>
+                            <div>{unit_2.resist_ailment[6]}</div>
+                            <div>{unit_2.resist_ailment[7]}</div>
+                        </div>
+                        <div className='unit-element'>
+                            <img className='icon-fire' alt='ailment' src={fire} />
+                            <img className='icon-ice' alt='ailment' src={ice} />
+                            <img className='icon-lightning' alt='ailment' src={lightning} />
+                            <img className='icon-water' alt='ailment' src={water} />
+                            <img className='icon-wind' alt='ailment' src={wind} />
+                            <img className='icon-earth' alt='ailment' src={earth} />
+                            <img className='icon-light' alt='ailment' src={light} />
+                            <img className='icon-dark' alt='ailment' src={dark} />
+                            <div>{unit_2.resist_element[0]}</div>
+                            <div>{unit_2.resist_element[1]}</div>
+                            <div>{unit_2.resist_element[2]}</div>
+                            <div>{unit_2.resist_element[3]}</div>
+                            <div>{unit_2.resist_element[4]}</div>
+                            <div>{unit_2.resist_element[5]}</div>
+                            <div>{unit_2.resist_element[6]}</div>
+                            <div>{unit_2.resist_element[7]}</div>   
+                        </div>
+                    </div>
+                ) : 
+                (
+                    <div className='unit-info-container'>
+                        <div className='unit-name'>{`${unit.unitName}`}</div>
+                        <div className='unit-stat'>
+                            {/* {
+                                `HP: 5000 
+                                MP: 900 
+                                ATK: 3000 
+                                MAG: 3000 
+                                DEF: 1000 
+                                SPR: 1000`
+                            } */}
+                            <ul><b>HP: {unit.hp}</b></ul>
+                            <ul><b>MP: {unit.mp}</b></ul>
+                            <ul><b>ATK: {unit.atk}</b></ul>
+                            <ul><b>MAG: {unit.mag}</b></ul>
+                            <ul><b>DEF: {unit.def}</b></ul>
+                            <ul><b>SPR: {unit.spr}</b></ul>
+                        </div>
+                        <div className='unit-img'>
+                            <img alt='unit img' src={imgLightning} />
+                        </div>
+                        <div className='unit-weapon-type'>
+                            <ul><b>TDW: 100% ATK: +100</b></ul>
+                            <ul><b>TDH: 0% ATK: +0</b></ul>
+                        </div>
+                        <div className='unit-killer'>Killers</div>
+                        <div className='unit-ailment'>
+                            <img className='icon-poison' alt='ailment' src={poison} />
+                            <img className='icon-blind' alt='ailment' src={blind} />
+                            <img className='icon-sleep' alt='ailment' src={sleep} />
+                            <img className='icon-silence' alt='ailment' src={silence} />
+                            <img className='icon-paralysis' alt='ailment' src={paralysis} />
+                            <img className='icon-confusion' alt='ailment' src={confusion} />
+                            <img className='icon-disease' alt='ailment' src={disease} />
+                            <img className='icon-petrification' alt='ailment' src={petrification} />
+                            <div>100</div>
+                            <div>100</div>
+                            <div>100</div>
+                            <div>100</div>
+                            <div>100</div>
+                            <div>100</div>
+                            <div>100</div>
+                            <div>100</div>
+                        </div>
+                        <div className='unit-element'>
+                            <img className='icon-fire' alt='ailment' src={fire} />
+                            <img className='icon-ice' alt='ailment' src={ice} />
+                            <img className='icon-lightning' alt='ailment' src={lightning} />
+                            <img className='icon-water' alt='ailment' src={water} />
+                            <img className='icon-wind' alt='ailment' src={wind} />
+                            <img className='icon-earth' alt='ailment' src={earth} />
+                            <img className='icon-light' alt='ailment' src={light} />
+                            <img className='icon-dark' alt='ailment' src={dark} />
+                            <div>100</div>
+                            <div>100</div>
+                            <div>100</div>
+                            <div>100</div>
+                            <div>100</div>
+                            <div>100</div>
+                            <div>100</div>
+                            <div>100</div>   
+                        </div>
+                    </div>
+                )
+            }
         </div>
     );
 }
