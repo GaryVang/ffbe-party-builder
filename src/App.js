@@ -218,7 +218,7 @@ class App extends Component {
   //resets unit to default state
   //In the future, pass unit number as parameter ex: unit_x, where x=number(1-5).
   resetUnit = () => {
-    this.setState({['unit_1']: this.initState}); //
+    this.setState({['unit_2']: this.initUnitState}); //
   };
 
   //8:fire,ice,lightning,water,wind,earth,light,dark
@@ -354,31 +354,31 @@ class App extends Component {
         }
       })})
       
-      fetch('http://localhost:3000/loadDefaultUnit')
-        .then(response => response.json())
-        // .then(result => {console.log('result', result)})
-        // .then(result => {console.log('result: ', result.name)})
-        .then(result => { this.setState(initState => ({ 
-          unit_1: {
-              ...initState.unit_1,
-            name: result.name,
-            hp: result.stats.hp,
-            mp: result.stats.mp,
-            atk: result.stats.atk,
-            def: result.stats.def,
-            mag: result.stats.mag,
-            spr: result.stats.spr,
-            //resistance_ailment:
-            // resistance_elemental: this.setResistanceElemental(result.stats.resistance_elemental),
-            //resistance_enfeeblement:
-            //killer
-            evasion_magic: result.evasion_magic,
-            evasion_physical: result.evasion_physical,
-            regen_mp: result.regen_mp,
-            conditional: result.conditional
-          }
-        }))
-      })
+      // fetch('http://localhost:3000/loadDefaultUnit')
+      //   .then(response => response.json())
+      //   // .then(result => {console.log('result', result)})
+      //   // .then(result => {console.log('result: ', result.name)})
+      //   .then(result => { this.setState(initState => ({ 
+      //     unit_1: {
+      //         ...initState.unit_1,
+      //       name: result.name,
+      //       hp: result.stats.hp,
+      //       mp: result.stats.mp,
+      //       atk: result.stats.atk,
+      //       def: result.stats.def,
+      //       mag: result.stats.mag,
+      //       spr: result.stats.spr,
+      //       //resistance_ailment:
+      //       // resistance_elemental: this.setResistanceElemental(result.stats.resistance_elemental),
+      //       //resistance_enfeeblement:
+      //       //killer
+      //       evasion_magic: result.evasion_magic,
+      //       evasion_physical: result.evasion_physical,
+      //       regen_mp: result.regen_mp,
+      //       conditional: result.conditional
+      //     }
+      //   }))
+      // })
         // .then(console.log('name: ', this.state.unit_1.name))
 
 //--------------original unitList fetch
@@ -449,7 +449,7 @@ class App extends Component {
           >
         </UnitSearch>
         <UnitInfo 
-          unit={this.state.user} 
+          // unit={this.state.user} 
           unit_2={this.state.unit_2}
         >
         </UnitInfo>
