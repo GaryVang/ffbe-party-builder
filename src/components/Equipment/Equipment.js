@@ -29,6 +29,9 @@ const Equipment = () => {
 
    //State
     const [lHand, setLHand] = useState({});
+    // useEffect(() => { //test: see if parent state is updated
+    //     props.onChangeUpdateParent(1Hand);
+    // }, [lHand]);
     const [rHand, setRHand] = useState({});
     const [head, setHead] = useState({});
     const [body, setBody] = useState({});

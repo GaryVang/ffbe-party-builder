@@ -118,11 +118,28 @@ class App extends Component {
         evasion_magic: 0, //softcap 100, multiple sources do NOT stack
         conditional: {},
       },
+      lHand: {}, //Fill in with properties after state update tests
+      rHand: {},
+      head: {},
+      body: {},
+      acc1: {},
+      acc2: {},
       unitList: {},
     }
     this.initState = this.state.unit_1;
     this.initUnitState = this.state.unit_2;
   }
+
+   //Hook States specifically only for equipment
+  //  const [lHand, setLHand] = useState({});
+  //  const [rHand, setRHand] = useState({});
+  //  const [head, setHead] = useState({});
+  //  const [body, setBody] = useState({});
+  //  const [acc1, setAcc1] = useState({});
+  //  const [acc2, setAcc2] = useState({});
+
+  //  //Currently selected equipment slot
+  //  const[activeSlot, setActiveSlot] = useState('');
 
   // onDropdownSelect = () => {
   //   this.setState({ });
@@ -135,15 +152,7 @@ class App extends Component {
   //   })
   // }
 
-  // testGetRequest = () => {
-  //   fetch("http://localhost:3000/testUnit", {
-  //     method: "post",
-  //     headers: { "Content-Type": "application/json" },
-  //     body: JSON.stringify({
-  //       unit_id: this.state.user.unit_id
-  //     })
-  //   });
-  // }
+  
 
   //Researved for search field
   onUnitSelection = (unitName) => {
