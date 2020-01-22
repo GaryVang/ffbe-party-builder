@@ -20,7 +20,6 @@ import imgLightning from './unit-lightning.png';
 import imgEsther from './unit-esther.png';
 import imgOlive from './unit-olive.png';
 
-
 function capitalizeFirstLetter(str){
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -41,7 +40,7 @@ function getUnitImg(str){
     return imgLightning;
 }
 
-const UnitInfo = ({ unit, unit_2}) => {
+const UnitInfo = ({ unit, unit_2 }) => {
     // console.log('Unit: ', unit.hp);
     return (
         <div>

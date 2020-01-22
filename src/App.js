@@ -124,10 +124,30 @@ class App extends Component {
       body: {},
       acc1: {},
       acc2: {},
+      eqCompare: {}, // For comparisons
+      totalEqStats: {}, 
       unitList: {},
     }
     this.initState = this.state.unit_1;
     this.initUnitState = this.state.unit_2;
+    this.setEq = this.setEq.bind(this);
+  }
+
+  async setEq(slot, equipment) { //remove async and await when testing finishes
+    await this.setState({[slot]: equipment});
+    console.log(`${slot}`, this.state[slot]);
+  }
+
+  //Use for equipment comparisons
+  handleEqComparison(slot, equipment) {
+
+  }
+
+  calcTotalEqStats = () => {
+    let total = {};
+
+    this.setState({totalEqStats: total});
+    console.log('total: ', this.state.totalEqStats);
   }
 
    //Hook States specifically only for equipment
@@ -230,6 +250,7 @@ class App extends Component {
     this.setState({['unit_2']: this.initUnitState}); //
   };
 
+  //change the function's name to something more meaningful
   //8:fire,ice,lightning,water,wind,earth,light,dark
   setResistElement = (obj) => {
     // console.log('obj ', obj);
@@ -462,7 +483,7 @@ class App extends Component {
           unit_2={this.state.unit_2}
         >
         </UnitInfo>
-        <Equipment></Equipment>
+        <Equipment setEq = {this.setEq}></Equipment>
         {/* <Materia></Materia>
         <Esper></Esper> */}
         {/* <h1>Name: {this.state.user.unitName}</h1> */}

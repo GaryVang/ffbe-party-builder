@@ -8,7 +8,7 @@ import axios from 'axios';
 
 const DB_URL = 'http://localhost:3000/loadEq';
 
-const Equipment = () => {
+const Equipment = ({ setEq }) => {
     
     const [data, setData] = useState({equipmentList: {}, isFetching: false});
     useEffect(() => {
@@ -29,14 +29,34 @@ const Equipment = () => {
 
    //State
     const [lHand, setLHand] = useState({});
-    // useEffect(() => { //test: see if parent state is updated
-    //     props.onChangeUpdateParent(1Hand);
-    // }, [lHand]);
+    useEffect(() => { //test: see if parent state is updated
+        setEq('lHand', lHand);
+    }, [lHand]);
+
     const [rHand, setRHand] = useState({});
+    useEffect(() => {
+        setEq('rHand', rHand);
+    }, [rHand]);
+
     const [head, setHead] = useState({});
+    useEffect(() => {
+        setEq('head', head);
+    }, [head]);
+
     const [body, setBody] = useState({});
+    useEffect(() => {
+        setEq('body', body);
+    }, [body]);
+
     const [acc1, setAcc1] = useState({});
+    useEffect(() => {
+        setEq('acc1', acc1);
+    }, [acc1]);
+
     const [acc2, setAcc2] = useState({});
+    useEffect(() => {
+        setEq('acc2', acc2);
+    }, [acc2]);
 
     //Currently selected equipment slot
     const[activeSlot, setActiveSlot] = useState('');

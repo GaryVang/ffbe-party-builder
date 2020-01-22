@@ -37,8 +37,8 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection, slot }) => {
     // console.log('eqS list: ', eqList);
 
     const handleChange = equipment => e => {
-        console.log('eqS equipment: ', equipment);
-        console.log('eqS slot setter: ', slot);
+        console.log('eqSelection: ', equipment);
+        // console.log('eqS slot setter: ', slot);
 
         slot(equipment);
     };
