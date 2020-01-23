@@ -8,6 +8,8 @@ import axios from 'axios';
 
 import './App.css';
 
+const _ = require("lodash"); // Remove if remains unused
+
 class App extends Component {
   constructor() {
     super();
@@ -118,14 +120,32 @@ class App extends Component {
         evasion_magic: 0, //softcap 100, multiple sources do NOT stack
         conditional: {},
       },
-      lHand: {}, //Fill in with properties after state update tests
-      rHand: {},
-      head: {},
-      body: {},
-      acc1: {},
-      acc2: {},
+      lHand: null, //Fill in with properties after state update tests
+      rHand: null,
+      head: null,
+      body: null,
+      acc1: null,
+      acc2: null,
       eqCompare: {}, // For comparisons
-      totalEqStats: {}, 
+      totalEqStats: {
+        name: "",
+        type: "",
+        element: "",
+        stat: [0,0,0,0,0,0],
+        passive: [0,0,0,0,0,0],
+        resist_element: [0,0,0,0,0,0,0,0], //8:fire,ice,lightning,water,wind,earth,light,dark
+        resist_ailment: [0,0,0,0,0,0,0,0], //8:poison,blind,sleep,silence,paralysis,confusion,disease,petrification
+        resist_enfeeblement: [0,0,0,0,0], //5:charm,stop,berserk,break,death
+        killer:[0,0,0,0,0,0,0,0,0,0,0], //11:aquatic,beast,bird,demon,dragon,fairy,human,insect,machine,plant,stone
+        tdh: 0, //percentage
+        tdw: 0, //percentage
+        lb_damage: 0, //percentage
+        lb_fill_stone: 0, //max 12
+        lb_fill_rate: 0, //p=percentage
+        evasion_physical: 0, //softcap 100
+        evasion_magic: 0, //softcap 100, multiple sources do NOT stack
+
+      }, 
       unitList: {},
     }
     this.initState = this.state.unit_1;
@@ -143,11 +163,64 @@ class App extends Component {
 
   }
 
+  //----------------------------------Continue---------------------------------
   calcTotalEqStats = () => {
-    let total = {};
+    let total = {
+      base: [0,0,0,0,0,0],
+      passive: [0,0,0,0,0,0],
+      resist_element: [0,0,0,0,0,0,0,0], //8:fire,ice,lightning,water,wind,earth,light,dark
+      resist_ailment: [0,0,0,0,0,0,0,0], //8:poison,blind,sleep,silence,paralysis,confusion,disease,petrification
+      resist_enfeeblement: [0,0,0,0,0], //5:charm,stop,berserk,break,death
+      killer:[0,0,0,0,0,0,0,0,0,0,0], //11:aquatic,beast,bird,demon,dragon,fairy,human,insect,machine,plant,stone
+      tdh: 0, //percentage
+      tdw: 0, //percentage
+      lb_damage: 0, //percentage
+      lb_fill_stone: 0, //max 12
+      lb_fill_rate: 0, //p=percentage
+      evasion_physical: 0, //softcap 100
+      evasion_magic: 0
+    };
+    let { lHand, rHand, head, body, acc1, acc2 } = this.state;
+    let eqArr = [lHand, rHand, head, body, acc1, acc2];
 
-    this.setState({totalEqStats: total});
-    console.log('total: ', this.state.totalEqStats);
+    for (let slot of eqArr) {
+      // if(eq != null) { // js coerces
+      if(slot) {
+        for(let key in slot){
+          if(key === 'name'){
+            //do nothing
+            console.log('eq name ', key);
+          } else if(key === 'stats'){
+            for(let stat in key){
+              if(stat === 'hp'){
+                total.base[0] += key[stat];
+              } else if(stat === 'mp'){
+                total.base[1] += key[stat];
+              } else if(stat === 'atk'){
+                total.base[2] += key[stat];
+              } else if(stat === 'def'){
+                total.base[3] += key[stat];
+              } else if(stat === 'mag'){
+                total.base[4] += key[stat];
+              } else if(stat === 'spr'){
+                total.base[5] += key[stat];
+              } else if(stat === 'passive'){
+                total.passive += key[stat]; // doublecheck
+              }
+            }
+            total.base[0] += slot[key]['hp'];
+            // total.base[0] += slot.key.hp;
+
+            console.log('bracket ', slot[key]);
+            // console.log('dot ', slot.key);
+          }
+        }
+      }
+    }
+
+    console.log('total ', total);
+    // this.setState({totalEqStats: total});
+
   }
 
    //Hook States specifically only for equipment
@@ -420,6 +493,23 @@ class App extends Component {
 // //-------------------------------------
       this.getUnitList();
       this.getUnit();
+
+
+      // console.log('total: ', this.state.totalEqStats);
+      // this.state.lHand == null ?  console.log('7 lHand empty ', this.state.lHand):
+      // console.log('6 lhand not ', this.state.lHand);
+      // let unit1 = {'name': "Lightning", 'hp': 10};
+      // let unit2 = {'name': "Esther", 'hp': 15};
+
+      // console.log('merge: ', _.merge(unit1, unit2));
+
+      // let items = [
+      //   { 'lightBlue': 4, 'darkBlue': 2, 'red': 4, 'orange': 6, 'purple': 7 },
+      //   { 'lightBlue': 6, 'darkBlue': 5, 'red': 1, 'orange': 2, 'purple': 3 },
+      //   { 'lightBlue': 2, 'darkBlue': 4, 'red': 3, 'orange': 4, 'purple': 9 }
+      // ], userSelectedColors = ['lightBlue', 'darkBlue'];
+
+      // console.log('lodash ', _.sumBy(userSelectedColors, _.partial(_.sumBy, items)));
   }
 
   getUnitList = async () => {
@@ -489,6 +579,8 @@ class App extends Component {
         {/* <h1>Name: {this.state.user.unitName}</h1> */}
         {/* <h2>Test: {console.log('unit list: ', this.state.unitList)}</h2>  */}
         <button onClick={() => {this.resetUnit()}} > Reset </button>
+        <button onClick={() => {this.calcTotalEqStats()}} > Calc </button>
+
       </div>
     );
   }
