@@ -168,15 +168,15 @@ class App extends Component {
     let total = {
       base: [0,0,0,0,0,0],
       passive: [0,0,0,0,0,0],
-      resist_element: [0,0,0,0,0,0,0,0], //8:fire,ice,lightning,water,wind,earth,light,dark
       resist_ailment: [0,0,0,0,0,0,0,0], //8:poison,blind,sleep,silence,paralysis,confusion,disease,petrification
+      resist_element: [0,0,0,0,0,0,0,0], //8:fire,ice,lightning,water,wind,earth,light,dark
       resist_enfeeblement: [0,0,0,0,0], //5:charm,stop,berserk,break,death
       killer:[0,0,0,0,0,0,0,0,0,0,0], //11:aquatic,beast,bird,demon,dragon,fairy,human,insect,machine,plant,stone
       tdh: 0, //percentage
       tdw: 0, //percentage
       lb_damage: 0, //percentage
-      lb_fill_stone: 0, //max 12
       lb_fill_rate: 0, //p=percentage
+      lb_fill_stone: 0, //max 12
       evasion_physical: 0, //softcap 100
       evasion_magic: 0
     };
@@ -191,36 +191,84 @@ class App extends Component {
             //do nothing
             console.log('eq name ', key);
           } else if(key === 'stats'){
-            for(let stat in key){
+            for(let stat in slot[key]){
+              console.log('stat ', stat);
+              console.log('slot[key][stat] ', slot[key][stat]);
+              // console.log('key ', key);
               if(stat === 'hp'){
-                total.base[0] += key[stat];
+                total.base[0] += slot[key][stat];
               } else if(stat === 'mp'){
-                total.base[1] += key[stat];
+                total.base[1] += slot[key][stat];
               } else if(stat === 'atk'){
-                total.base[2] += key[stat];
+                total.base[2] += slot[key][stat];
               } else if(stat === 'def'){
-                total.base[3] += key[stat];
+                total.base[3] += slot[key][stat];
               } else if(stat === 'mag'){
-                total.base[4] += key[stat];
+                total.base[4] += slot[key][stat];
               } else if(stat === 'spr'){
-                total.base[5] += key[stat];
+                total.base[5] += slot[key][stat];
               } else if(stat === 'passive'){
-                total.passive += key[stat]; // doublecheck
-              }
+                // total.passive += slot[key][stat]; // doublecheck
+                let passiveArr = slot[key][stat];
+                total.passive = total.passive.map(function (num, index) {
+                  return num + passiveArr[index];
+                });
+              } 
             }
-            total.base[0] += slot[key]['hp'];
-            // total.base[0] += slot.key.hp;
-
-            console.log('bracket ', slot[key]);
-            // console.log('dot ', slot.key);
+          } else if(key === 'resistance_ailment'){
+            // console.log('resist_ailment ', this.setResistAilment(slot[key]));
+            let ailmentArr = this.setResistAilment(slot[key]);
+            total.resist_ailment = total.resist_ailment.map(function (num, index) {
+              return num + ailmentArr[index];
+            });
+          } else if(key === 'resistance_element'){
+            // console.log('resist_element ', this.setResistElement(slot[key]));
+            let elementArr = this.setResistElement(slot[key]);
+            total.resist_element = total.resist_element.map(function (num, index) {
+              return num + elementArr[index];
+            });
+          } else if(key === 'resistance_enfeeblement'){
+            let enfeeblementArr = this.setResistEnfeeblement(slot[key]);
+            total.resist_enfeeblement = total.resist_enfeeblement.map(function (num, index) {
+              return num + enfeeblementArr[index];
+            });
+          } else if(key === 'killer'){
+            let killerArr = this.setKiller(slot[key]);
+            total.killer = total.killer.map(function (num, index) {
+              return num + killerArr[index];
+            });
+          } else if(key === 'tdh'){ //Next
+            total.tdh += slot[key];
+          } else if(key === 'tdw'){
+            total.tdw += slot[key];
+          } else if(key === 'lb_damage'){
+            total.lb_damage += slot[key];
+          } else if(key === 'lb_fill_rate'){
+            total.lb_fill_rate += slot[key];
+          } else if(key === 'lb_fill_stone'){
+            total.lb_fill_stone += slot[key];
+          } else if(key === 'evasion_magic'){
+            total.evasion_magic += slot[key];
+          } else if(key === 'evasion_physical'){
+            total.evasion_physical += slot[key];
+          } else if(key === 'regen_hp'){
+            total.regen_hp += slot[key];
+          } else if(key === 'regen_mp'){
+            total.regen_mp += slot[key];
+          } else if(key === 'conditional'){ //After tdh/w
+            //call function
           }
+        
+
+          console.log('bracket ', slot[key]);
+          // console.log('dot ', slot.key);
         }
       }
     }
 
     console.log('total ', total);
     // this.setState({totalEqStats: total});
-
+    return total;
   }
 
    //Hook States specifically only for equipment
@@ -571,6 +619,7 @@ class App extends Component {
         <UnitInfo 
           // unit={this.state.user} 
           unit_2={this.state.unit_2}
+          equipment={this.calcTotalEqStats()}
         >
         </UnitInfo>
         <Equipment setEq = {this.setEq}></Equipment>

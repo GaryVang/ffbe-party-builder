@@ -24,8 +24,10 @@ function capitalizeFirstLetter(str){
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function calcStat(arr){ //placeholder for when equipment is taken into account
-    return arr[0]+arr[1];
+//Confirm whether to round up or down
+function calcStat(unitBase, unitPassive, eqBase, eqPassive){ 
+    return Math.ceil( (unitBase[0]+unitBase[1]) * (eqPassive+100)/100 + eqBase + 
+            (unitBase[0]+unitBase[1]) * (unitPassive)/100 );
 }
 
 function getUnitImg(str){
@@ -40,8 +42,9 @@ function getUnitImg(str){
     return imgLightning;
 }
 
-const UnitInfo = ({ unit, unit_2 }) => {
-    // console.log('Unit: ', unit.hp);
+const UnitInfo = ({ unit, unit_2, equipment }) => {
+    console.log('unitInfo: ', unit_2);
+    // console.log('unit info ', equipment);
     return (
         <div>
             {
@@ -49,12 +52,12 @@ const UnitInfo = ({ unit, unit_2 }) => {
                     <div className='unit-info-container'>
                         <div className='unit-name'>{`${capitalizeFirstLetter(unit_2.name)}`}</div>
                         <div className='unit-stat'>
-                            <ul><b>HP: {calcStat(unit_2.hp)}</b></ul>
-                            <ul><b>MP: {calcStat(unit_2.mp)}</b></ul>
-                            <ul><b>ATK: {calcStat(unit_2.atk)}</b></ul>
-                            <ul><b>MAG: {calcStat(unit_2.mag)}</b></ul>
-                            <ul><b>DEF: {calcStat(unit_2.def)}</b></ul>
-                            <ul><b>SPR: {calcStat(unit_2.spr)}</b></ul>
+                            <ul><b>HP: {calcStat(unit_2.hp, unit_2.passive[0], equipment.base[0], equipment.passive[0])}</b></ul>
+                            <ul><b>MP: {calcStat(unit_2.mp, unit_2.passive[1], equipment.base[1], equipment.passive[1])}</b></ul>
+                            <ul><b>ATK: {calcStat(unit_2.atk, unit_2.passive[2], equipment.base[2], equipment.passive[2])}</b></ul>
+                            <ul><b>MAG: {calcStat(unit_2.mag, unit_2.passive[3], equipment.base[3], equipment.passive[3])}</b></ul>
+                            <ul><b>DEF: {calcStat(unit_2.def, unit_2.passive[4], equipment.base[4], equipment.passive[4])}</b></ul>
+                            <ul><b>SPR: {calcStat(unit_2.spr, unit_2.passive[5], equipment.base[5], equipment.passive[5])}</b></ul>
                         </div>
                         <div className='unit-img'>
                             <img 
@@ -77,14 +80,14 @@ const UnitInfo = ({ unit, unit_2 }) => {
                             <img className='icon-confusion' alt='ailment' src={confusion} />
                             <img className='icon-disease' alt='ailment' src={disease} />
                             <img className='icon-petrification' alt='ailment' src={petrification} />
-                            <div>{unit_2.resist_ailment[0]}</div>
-                            <div>{unit_2.resist_ailment[1]}</div>
-                            <div>{unit_2.resist_ailment[2]}</div>
-                            <div>{unit_2.resist_ailment[3]}</div>
-                            <div>{unit_2.resist_ailment[4]}</div>
-                            <div>{unit_2.resist_ailment[5]}</div>
-                            <div>{unit_2.resist_ailment[6]}</div>
-                            <div>{unit_2.resist_ailment[7]}</div>
+                            <div>{unit_2.resist_ailment[0] + equipment.resist_ailment[0]}</div>
+                            <div>{unit_2.resist_ailment[1] + equipment.resist_ailment[1]}</div>
+                            <div>{unit_2.resist_ailment[2] + equipment.resist_ailment[2]}</div>
+                            <div>{unit_2.resist_ailment[3] + equipment.resist_ailment[3]}</div>
+                            <div>{unit_2.resist_ailment[4] + equipment.resist_ailment[4]}</div>
+                            <div>{unit_2.resist_ailment[5] + equipment.resist_ailment[5]}</div>
+                            <div>{unit_2.resist_ailment[6] + equipment.resist_ailment[6]}</div>
+                            <div>{unit_2.resist_ailment[7] + equipment.resist_ailment[7]}</div>
                         </div>
                         <div className='unit-element'>
                             <img className='icon-fire' alt='ailment' src={fire} />
@@ -95,14 +98,14 @@ const UnitInfo = ({ unit, unit_2 }) => {
                             <img className='icon-earth' alt='ailment' src={earth} />
                             <img className='icon-light' alt='ailment' src={light} />
                             <img className='icon-dark' alt='ailment' src={dark} />
-                            <div>{unit_2.resist_element[0]}</div>
-                            <div>{unit_2.resist_element[1]}</div>
-                            <div>{unit_2.resist_element[2]}</div>
-                            <div>{unit_2.resist_element[3]}</div>
-                            <div>{unit_2.resist_element[4]}</div>
-                            <div>{unit_2.resist_element[5]}</div>
-                            <div>{unit_2.resist_element[6]}</div>
-                            <div>{unit_2.resist_element[7]}</div>   
+                            <div>{unit_2.resist_element[0] + equipment.resist_element[0]}</div>
+                            <div>{unit_2.resist_element[1] + equipment.resist_element[1]}</div>
+                            <div>{unit_2.resist_element[2] + equipment.resist_element[2]}</div>
+                            <div>{unit_2.resist_element[3] + equipment.resist_element[3]}</div>
+                            <div>{unit_2.resist_element[4] + equipment.resist_element[4]}</div>
+                            <div>{unit_2.resist_element[5] + equipment.resist_element[5]}</div>
+                            <div>{unit_2.resist_element[6] + equipment.resist_element[6]}</div>
+                            <div>{unit_2.resist_element[7] + equipment.resist_element[7]}</div>   
                         </div>
                     </div>
                 ) : 
