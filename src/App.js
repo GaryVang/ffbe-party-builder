@@ -164,7 +164,10 @@ class App extends Component {
   }
 
   //----------------------------------Continue---------------------------------
-  calcTotalEqStats = () => {
+  calcTotalEqStats = () => { //Recieves unit's conditionals as an argument
+
+    let testValue = 0;
+
     let total = {
       base: [0,0,0,0,0,0],
       passive: [0,0,0,0,0,0],
@@ -210,6 +213,7 @@ class App extends Component {
               } else if(stat === 'passive'){
                 // total.passive += slot[key][stat]; // doublecheck
                 let passiveArr = slot[key][stat];
+                console.log('99 entered passive');
                 total.passive = total.passive.map(function (num, index) {
                   return num + passiveArr[index];
                 });
@@ -257,6 +261,8 @@ class App extends Component {
             total.regen_mp += slot[key];
           } else if(key === 'conditional'){ //After tdh/w
             //call function
+            // console.log('condition: ', slot[key]);
+            this.calcConditional(slot[key], total); //objects passed by reference
           }
         
 
@@ -266,9 +272,97 @@ class App extends Component {
       }
     }
 
-    console.log('total ', total);
+    console.log('total55 ', total);
+    console.log('testValue55 ', testValue);
     // this.setState({totalEqStats: total});
+    //calc unit conditionals, then add to total
     return total;
+  }
+
+  calcConditional = (obj, total) => {
+    let eqArr = [];
+    if(this.state.lHand){
+      eqArr.push(this.state.lHand);
+    }
+    if(this.state.rHand){ eqArr.push(this.state.rHand); }
+    if(this.state.head){ eqArr.push(this.state.head); }
+    if(this.state.body){ eqArr.push(this.state.body); }
+
+    for(let condition in obj){
+      // eqArr.some(function(element){ return element.type === condition ? true : false; });
+      if(eqArr.some(function(element){ return element.type === condition ? true : false; })){
+        // console.log(1, obj[condition]);
+        for(let key in obj[condition]){
+
+          if( key === 'hp'){
+            total.passive[0] += obj[condition][key];
+          } else if(key === 'mp'){
+            total.passive[1] += obj[condition][key];
+          } else if(key === 'atk'){
+            console.log(7, key);
+            total.passive[2] += obj[condition][key];
+          } else if(key === 'def'){
+            total.passive[3] += obj[condition][key];
+          } else if(key === 'mag'){
+            total.passive[4] += obj[condition][key];
+          } else if(key === 'spr'){
+            total.passive[5] += obj[condition][key];
+          } else if(key === 'resistance_ailment'){
+            // console.log('resist_ailment ', this.setResistAilment(slot[key]));
+            let ailmentArr = this.setResistAilment(obj[condition][key]);
+            total.resist_ailment = total.resist_ailment.map(function (num, index) {
+              return num + ailmentArr[index];
+            });
+          } else if(key === 'resistance_element'){
+            // console.log('resist_element ', this.setResistElement(slot[key]));
+            let elementArr = this.setResistElement(obj[condition][key]);
+            total.resist_element = total.resist_element.map(function (num, index) {
+              return num + elementArr[index];
+            });
+          } else if(key === 'resistance_enfeeblement'){
+            let enfeeblementArr = this.setResistEnfeeblement(obj[condition][key]);
+            total.resist_enfeeblement = total.resist_enfeeblement.map(function (num, index) {
+              return num + enfeeblementArr[index];
+            });
+          } else if(key === 'killer'){
+            let killerArr = this.setKiller(obj[condition][key]);
+            total.killer = total.killer.map(function (num, index) {
+              return num + killerArr[index];
+            });
+          } else if(key === 'tdh'){ //Next
+            total.tdh += obj[condition][key];
+          } else if(key === 'tdw'){
+            total.tdw += obj[condition][key];
+          } else if(key === 'lb_damage'){
+            total.lb_damage += obj[condition][key];
+          } else if(key === 'lb_fill_rate'){
+            total.lb_fill_rate += obj[condition][key];
+          } else if(key === 'lb_fill_stone'){
+            total.lb_fill_stone += obj[condition][key];
+          } else if(key === 'evasion_magic'){
+            total.evasion_magic += obj[condition][key];
+          } else if(key === 'evasion_physical'){
+            total.evasion_physical += obj[condition][key];
+          } else if(key === 'regen_hp'){
+            total.regen_hp += obj[condition][key];
+          } else if(key === 'regen_mp'){
+            total.regen_mp += obj[condition][key];
+          } //Add check for tmr/stmr
+        }
+      }
+    
+      // if(condition === lHand.type){
+      //   console.log('lHand');
+      // } else if(condition === rHand.type){
+      //   console.log('rHand');
+      // } else if(condition === head.type){
+      //   console.log('head');
+      // } else if(condition === body.type){
+      //   console.log('body');
+      // }
+    }
+    console.log('con total: ', total);
+    // return xyz;
   }
 
    //Hook States specifically only for equipment
