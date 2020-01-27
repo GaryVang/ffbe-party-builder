@@ -120,12 +120,12 @@ class App extends Component {
         evasion_magic: 0, //softcap 100, multiple sources do NOT stack
         conditional: {},
       },
-      lHand: null, //Fill in with properties after state update tests
-      rHand: null,
-      head: null,
-      body: null,
-      acc1: null,
-      acc2: null,
+      lHand: {}, //Fill in with properties after state update tests
+      rHand: {},
+      head: {},
+      body: {},
+      acc1: {},
+      acc2: {},
       eqCompare: {}, // For comparisons
       totalEqStats: {
         name: "",
@@ -186,9 +186,13 @@ class App extends Component {
     let { lHand, rHand, head, body, acc1, acc2 } = this.state;
     let eqArr = [lHand, rHand, head, body, acc1, acc2];
 
+
+    // Object.keys(this.state.head).length > 0 && obj.constructor === Object
     for (let slot of eqArr) {
       // if(eq != null) { // js coerces
-      if(slot) {
+      // if(slot) {
+      if(Object.keys(slot).length > 0 && slot.constructor === Object) {
+        // console.log('slot is not empty');
         for(let key in slot){
           if(key === 'name'){
             //do nothing
@@ -272,6 +276,9 @@ class App extends Component {
       }
     }
 
+    console.log('22 ', this.state.unit_2.conditional)
+    this.calcConditional(this.state.unit_2.conditional, total);
+
     console.log('total55 ', total);
     console.log('testValue55 ', testValue);
     // this.setState({totalEqStats: total});
@@ -280,89 +287,209 @@ class App extends Component {
   }
 
   calcConditional = (obj, total) => {
+    // let unit ={};
+    console.log('obj ', obj);
+
     let eqArr = [];
-    if(this.state.lHand){
+    if(Object.keys(this.state.lHand).length > 0 && this.state.lHand.constructor === Object){
+      console.log(333);
       eqArr.push(this.state.lHand);
     }
-    if(this.state.rHand){ eqArr.push(this.state.rHand); }
-    if(this.state.head){ eqArr.push(this.state.head); }
-    if(this.state.body){ eqArr.push(this.state.body); }
+    if(Object.keys(this.state.rHand).length > 0 && this.state.rHand.constructor === Object){
+      eqArr.push(this.state.rHand);
+    }
+    if(Object.keys(this.state.head).length > 0 && this.state.head.constructor === Object){
+      eqArr.push(this.state.head);
+    }
+    if(Object.keys(this.state.body).length > 0 && this.state.body.constructor === Object){
+      eqArr.push(this.state.body);
+    }
+
+
+    // if(this.state.lHand){
+    //   eqArr.push(this.state.lHand);
+    // }
+    // if(this.state.rHand){ eqArr.push(this.state.rHand); }
+    // if(this.state.head){ eqArr.push(this.state.head); }
+    // if(this.state.body){ eqArr.push(this.state.body); }
+
+
+    let tmrFlag = false;
+    let tmrArr = [...eqArr];
+    if(Object.keys(this.state.acc1).length > 0 && this.state.acc1.constructor === Object){
+      tmrArr.push(this.state.acc1);
+    }
+    if(Object.keys(this.state.acc2).length > 0 && this.state.acc2.constructor === Object){
+      tmrArr.push(this.state.acc2);
+    }
+      // if(this.state.acc1){ console.log('acc1 true'); tmrArr.push(this.state.acc1); }
+      // if(this.state.acc2){ console.log('acc2 true'); tmrArr.push(this.state.acc2); }
 
     for(let condition in obj){
       // eqArr.some(function(element){ return element.type === condition ? true : false; });
+      //Checks for equipment conditions
       if(eqArr.some(function(element){ return element.type === condition ? true : false; })){
         // console.log(1, obj[condition]);
         for(let key in obj[condition]){
+          this.addStats(obj[condition], key, total);
 
-          if( key === 'hp'){
-            total.passive[0] += obj[condition][key];
-          } else if(key === 'mp'){
-            total.passive[1] += obj[condition][key];
-          } else if(key === 'atk'){
-            console.log(7, key);
-            total.passive[2] += obj[condition][key];
-          } else if(key === 'def'){
-            total.passive[3] += obj[condition][key];
-          } else if(key === 'mag'){
-            total.passive[4] += obj[condition][key];
-          } else if(key === 'spr'){
-            total.passive[5] += obj[condition][key];
-          } else if(key === 'resistance_ailment'){
-            // console.log('resist_ailment ', this.setResistAilment(slot[key]));
-            let ailmentArr = this.setResistAilment(obj[condition][key]);
-            total.resist_ailment = total.resist_ailment.map(function (num, index) {
-              return num + ailmentArr[index];
-            });
-          } else if(key === 'resistance_element'){
-            // console.log('resist_element ', this.setResistElement(slot[key]));
-            let elementArr = this.setResistElement(obj[condition][key]);
-            total.resist_element = total.resist_element.map(function (num, index) {
-              return num + elementArr[index];
-            });
-          } else if(key === 'resistance_enfeeblement'){
-            let enfeeblementArr = this.setResistEnfeeblement(obj[condition][key]);
-            total.resist_enfeeblement = total.resist_enfeeblement.map(function (num, index) {
-              return num + enfeeblementArr[index];
-            });
-          } else if(key === 'killer'){
-            let killerArr = this.setKiller(obj[condition][key]);
-            total.killer = total.killer.map(function (num, index) {
-              return num + killerArr[index];
-            });
-          } else if(key === 'tdh'){ //Next
-            total.tdh += obj[condition][key];
-          } else if(key === 'tdw'){
-            total.tdw += obj[condition][key];
-          } else if(key === 'lb_damage'){
-            total.lb_damage += obj[condition][key];
-          } else if(key === 'lb_fill_rate'){
-            total.lb_fill_rate += obj[condition][key];
-          } else if(key === 'lb_fill_stone'){
-            total.lb_fill_stone += obj[condition][key];
-          } else if(key === 'evasion_magic'){
-            total.evasion_magic += obj[condition][key];
-          } else if(key === 'evasion_physical'){
-            total.evasion_physical += obj[condition][key];
-          } else if(key === 'regen_hp'){
-            total.regen_hp += obj[condition][key];
-          } else if(key === 'regen_mp'){
-            total.regen_mp += obj[condition][key];
-          } //Add check for tmr/stmr
+          // if( key === 'hp'){
+          //   total.passive[0] += obj[condition][key];
+          // } else if(key === 'mp'){
+          //   total.passive[1] += obj[condition][key];
+          // } else if(key === 'atk'){
+          //   console.log(7, key);
+          //   total.passive[2] += obj[condition][key];
+          // } else if(key === 'def'){
+          //   total.passive[3] += obj[condition][key];
+          // } else if(key === 'mag'){
+          //   total.passive[4] += obj[condition][key];
+          // } else if(key === 'spr'){
+          //   total.passive[5] += obj[condition][key];
+          // } else if(key === 'resistance_ailment'){
+          //   // console.log('resist_ailment ', this.setResistAilment(slot[key]));
+          //   let ailmentArr = this.setResistAilment(obj[condition][key]);
+          //   total.resist_ailment = total.resist_ailment.map(function (num, index) {
+          //     return num + ailmentArr[index];
+          //   });
+          // } else if(key === 'resistance_element'){
+          //   // console.log('resist_element ', this.setResistElement(slot[key]));
+          //   let elementArr = this.setResistElement(obj[condition][key]);
+          //   total.resist_element = total.resist_element.map(function (num, index) {
+          //     return num + elementArr[index];
+          //   });
+          // } else if(key === 'resistance_enfeeblement'){
+          //   let enfeeblementArr = this.setResistEnfeeblement(obj[condition][key]);
+          //   total.resist_enfeeblement = total.resist_enfeeblement.map(function (num, index) {
+          //     return num + enfeeblementArr[index];
+          //   });
+          // } else if(key === 'killer'){
+          //   let killerArr = this.setKiller(obj[condition][key]);
+          //   total.killer = total.killer.map(function (num, index) {
+          //     return num + killerArr[index];
+          //   });
+          // } else if(key === 'tdh'){ //Next
+          //   total.tdh += obj[condition][key];
+          // } else if(key === 'tdw'){
+          //   total.tdw += obj[condition][key];
+          // } else if(key === 'lb_damage'){
+          //   total.lb_damage += obj[condition][key];
+          // } else if(key === 'lb_fill_rate'){
+          //   total.lb_fill_rate += obj[condition][key];
+          // } else if(key === 'lb_fill_stone'){
+          //   total.lb_fill_stone += obj[condition][key];
+          // } else if(key === 'evasion_magic'){
+          //   total.evasion_magic += obj[condition][key];
+          // } else if(key === 'evasion_physical'){
+          //   total.evasion_physical += obj[condition][key];
+          // } else if(key === 'regen_hp'){
+          //   total.regen_hp += obj[condition][key];
+          // } else if(key === 'regen_mp'){
+          //   total.regen_mp += obj[condition][key];
+          // } 
+
+          
         }
+      } else if (condition === 'tmr'){
+        console.log('tmrArr: ', tmrArr);
+        console.log(obj[condition]['name']);
+        // console.log(tmrArr.some(function(element){ return element.name === obj[condition]['name'] ? true : false; }));
+        if(tmrArr.some(function(element){ return element.name === obj[condition]['name'] ? true : false; })){
+          tmrFlag = true;
+          console.log('xxtmr: ', obj[condition]);
+          
+          for(let key in obj[condition]){
+            console.log(key);
+            console.log(obj[condition][key]);
+            this.addStats(obj[condition], key, total);
+          }
+        }
+      } else if (tmrFlag === false && condition === 'stmr'){
+        if(tmrArr.some(function(element){ return element.name === obj[condition]['name'] ? true : false; })){
+          tmrFlag = true;
+          console.log('xxtmr: ', obj[condition]);
+          
+          for(let key in obj[condition]){
+            console.log(key);
+            console.log(obj[condition][key]);
+            this.addStats(obj[condition], key, total);
+          }
+        }
+        
+        
+        // for(let key in obj[condition]){
+        //   // console.log('key ', key);
+        //   this.addStats(obj[condition], key, total);
+        // }
       }
-    
-      // if(condition === lHand.type){
-      //   console.log('lHand');
-      // } else if(condition === rHand.type){
-      //   console.log('rHand');
-      // } else if(condition === head.type){
-      //   console.log('head');
-      // } else if(condition === body.type){
-      //   console.log('body');
+ 
+      // if(unit.conditional.tmr )
+      // if(tmrArr.some(function(element){ return element.name === condition ? true : false; })){
+
       // }
     }
     console.log('con total: ', total);
-    // return xyz;
+  }
+
+
+  addStats = (obj, key, total) => {
+    if( key === 'hp'){
+      total.passive[0] += obj[key];
+    } else if(key === 'mp'){
+      total.passive[1] += obj[key];
+    } else if(key === 'atk'){
+      console.log(7, key);
+      console.log(8, obj[key]);
+      console.log(9, total.passive[2]);
+      total.passive[2] += obj[key];
+      console.log(10, total.passive[2]);
+    } else if(key === 'def'){
+      total.passive[3] += obj[key];
+    } else if(key === 'mag'){
+      total.passive[4] += obj[key];
+    } else if(key === 'spr'){
+      total.passive[5] += obj[key];
+    } else if(key === 'resistance_ailment'){
+      // console.log('resist_ailment ', this.setResistAilment(slot[key]));
+      let ailmentArr = this.setResistAilment(obj[key]);
+      total.resist_ailment = total.resist_ailment.map(function (num, index) {
+        return num + ailmentArr[index];
+      });
+    } else if(key === 'resistance_element'){
+      // console.log('resist_element ', this.setResistElement(slot[key]));
+      let elementArr = this.setResistElement(obj[key]);
+      total.resist_element = total.resist_element.map(function (num, index) {
+        return num + elementArr[index];
+      });
+    } else if(key === 'resistance_enfeeblement'){
+      let enfeeblementArr = this.setResistEnfeeblement(obj[key]);
+      total.resist_enfeeblement = total.resist_enfeeblement.map(function (num, index) {
+        return num + enfeeblementArr[index];
+      });
+    } else if(key === 'killer'){
+      let killerArr = this.setKiller(obj[key]);
+      total.killer = total.killer.map(function (num, index) {
+        return num + killerArr[index];
+      });
+    } else if(key === 'tdh'){ //Next
+      total.tdh += obj[key];
+    } else if(key === 'tdw'){
+      total.tdw += obj[key];
+    } else if(key === 'lb_damage'){
+      total.lb_damage += obj[key];
+    } else if(key === 'lb_fill_rate'){
+      total.lb_fill_rate += obj[key];
+    } else if(key === 'lb_fill_stone'){
+      total.lb_fill_stone += obj[key];
+    } else if(key === 'evasion_magic'){
+      total.evasion_magic += obj[key];
+    } else if(key === 'evasion_physical'){
+      total.evasion_physical += obj[key];
+    } else if(key === 'regen_hp'){
+      total.regen_hp += obj[key];
+    } else if(key === 'regen_mp'){
+      total.regen_mp += obj[key];
+    }
   }
 
    //Hook States specifically only for equipment
@@ -700,6 +827,7 @@ class App extends Component {
   
   render() {
     console.log('Render: App');
+    console.log('lhand: ', this.state.lHand);
 
     return (
       <div className="App">
