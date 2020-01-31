@@ -33,13 +33,9 @@ import accessory from './EquipmentIcon/equipment-accessory.png';
 // While still updating
 const EquipmentSelection = ({ eqList, setDisplayEqSelection, slot }) => {
 
-    // console.log('eqS slot: ', slot);
-    // console.log('eqS list: ', eqList);
-
     const handleChange = equipment => e => {
         console.log('eqSelection: ', equipment);
         // console.log('eqS slot setter: ', slot);
-
         slot(equipment);
     };
 

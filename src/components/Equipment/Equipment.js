@@ -17,7 +17,7 @@ const Equipment = ({ setEq }) => {
                 setData({equipmentList: data.equipmentList, isFetching: true});
                 const res = await axios.get(DB_URL);
                 setData({equipmentList: res.data, isFetching: false});
-                console.log('Hook: ', res.data);
+                // console.log('Hook: ', res.data);
                 // console.log('equipment: ', data.equipment);
             } catch (e) {
                 console.log(e);

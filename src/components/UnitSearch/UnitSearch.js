@@ -2,8 +2,6 @@ import React from "react";
 import './UnitSearch.css';
 
   const SearchList = ({ items, onUnitSelection, resetSearchBar }) => {
-    // console.log('10: ', items);
-    // console.log('11: ', onUnitSelection);
     return ( //changed ul > div
         <div className='search-list-container'>
           {
@@ -35,30 +33,9 @@ class UnitSearch extends React.Component {
       this.resetSearchBar = this.resetSearchBar.bind(this);
     }
 
-  // const SearchList = ({ items }) => {
-  //   return (
-  //     <ul>
-  //       {
-  //         items.map((item, i) => <li>{item}</li>) 
-  //       }
-  //     </ul>
-  //   )
-  // }
+  // onUnitSelect = (unitName) => { // Triggers when an item on searchlist is clicked
 
-  // createList = ({ items }) => {
-  //   console.log('SearchList: ', items);
-  //   return (
-  //     <ul>
-  //       {
-  //         items.map((item, i) => <li>{item}</li>) 
-  //       }
-  //     </ul>
-  //   )
-  // } 
-
-  onUnitSelect = (unitName) => { // Triggers when an item on searchlist is clicked
-
-  };
+  // };
 
   filterUnitList = () => {
     const { unitList } = this.props;
@@ -73,7 +50,6 @@ class UnitSearch extends React.Component {
 
       if(value !== '')
       {
-        
         for (var key in unitList) {
           // skip loop if the property is from prototype
           if (!unitList.hasOwnProperty(key)) continue;
@@ -99,50 +75,14 @@ class UnitSearch extends React.Component {
                     this.setState({
                       filteredList: tmpArray
                     })
-  
-                    //closest to working
-                    // this.setState({
-                    //   filteredList: [...this.state.filteredList, obj[prop]]
-                    // }, function(){
-                    //   console.log('2 obj:', obj[prop]);
-                    //   console.log('3 obj:', obj[prop]);
-                    //   console.log('push: ', this.state.filteredList);
-                    // })
-
-                    // this.setState( prevState=> ({
-                    //   filteredList: [...this.state.filteredList, obj[prop]]
-                    // }, function(){
-                    //   console.log('push: ', this.state.filteredList);
-                    // }));
-
-                    // this.setState(state => {
-                    //   const filteredList = state.filteredList.concat(state.obj[prop]);
-
-                    //   return {
-                    //     filteredList,
-                        
-                    //   };
-                    // });
-
                   }
-                    // console.log('inside if: ', filteredList);
-                    // console.log('obj[prop]: ', obj[prop]);
-                    // console.log('value: ', value);
-                    // console.log('typeof obj[prop]: ', typeof obj[prop]);
-                    // console.log('typeof value: ', value);
                 }
-                  // alert(obj[prop]);
           }
         }
       }
 
     });
-    // console.log('inside filter');
-    // console.log('unitList prop: ', unitList);
-
-
     console.log('filterUnitList: ', filteredList);
-    // createList(filteredList);
   };
 
   resetSearchBar(event) {
@@ -150,30 +90,18 @@ class UnitSearch extends React.Component {
     this.setState({value: ''}, function(){
       this.filterUnitList();
     });
-    // this.refs.someName.value = '';
   }
 
   handleChange(event) {
     console.log('input changed');
-    // console.log('handleChange 1 value: ', this.state.value);
-    // this.setState({value: event.target.value});
-    // this.setState({value: event.target.value}, this.filterUnitList());
     this.setState({value: event.target.value}, function(){
-      // console.log('inside: ', this.state.value);
       this.filterUnitList();
-      // SearchList(this.state.filteredList);
     });
-    // console.log('input changed end: ', this.state.value);
-    // console.log('handleChange eventvalue: ', event.target.value);
-
-    // this.filterUnitList();
   }
 
 
   //SearchList is being rendered before state is set
   render(){
-    // console.log('props', this.props.onUnitSelection);
-    // console.log('filtered: ', this.state.filteredList);
     return (
       <div>
         <div className="unit-search-container">

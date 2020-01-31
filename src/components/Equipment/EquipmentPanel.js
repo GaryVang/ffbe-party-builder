@@ -37,60 +37,8 @@ import hat from './EquipmentIcon/Armor/equipment-hat.png';
 import helm from './EquipmentIcon/Armor/equipment-helm.png';
 import accessory from './EquipmentIcon/equipment-accessory.png';
 
-// import {useEffect, useState} from "react";
-// import axios from 'axios';
-
-// const DB_URL = 'http://localhost:3000/testLoadEq';
-
-
-// fetch('http://localhost:3000/testUnit')
-//       // .then(res => {console.log('result', res)})
-//       .then(response => response.json())
-//       // .then(result => {console.log('result', result)})
-//       .then(result => {this.setState({
-//         user: {
-//           unitName: result.name,
-//           hp: result.hp,
-//           mp: result.mp,
-//           atk: result.atk,
-//           mag: result.mag,
-//           def: result.def,
-//           spr: result.spr, 
-//         }
-//       })})
-
-// function EqTestReactHooks() {
-//     const [data, setData] = useState({equipment: {}, isFetching: false});
-
-//     useEffect(() => {
-//         const fetchEquipment = async () => {
-//             try {
-//                 setData({equipment: data.equipment, isFetching: true});
-//                 const res = await axios.get(DB_URL);
-//                 setData({equipment: res.data, isFetching: false});
-//                 // console.log('Hook: ', res.data.name);
-//                 // console.log('equipment: ', data.equipment);
-//             } catch (e) {
-//                 console.log(e)
-//                 setData({equipment: data.equipment, isFetching: false});
-//             }
-//         };
-//         fetchEquipment();
-//     },[]);
-
-//     return (
-//         <div data={data.equipment} 
-//                 isFetching={data.isFetching}> 7 
-//                 {/* {console.log('hello', data.equipment.name)} */}
-//         </div>
-//     )
-// }
-
-
 //removed 'key' from prop due to warning
 const EquipmentPanel = ({ info, onClick }) => { // Maybe rename file to something more meaningful
-    // EqTestReactHooks();
-
     //Determines how to display equipoment based on its type
     function displaySwitch() { 
         let eqType = '';
@@ -236,6 +184,3 @@ const EquipmentPanel = ({ info, onClick }) => { // Maybe rename file to somethin
 }
 
 export default EquipmentPanel;
-
-//<div className='eq-img'>
-//https://gamepedia.cursecdn.com/exvius_gamepedia_en/0/08/Icon-Omega_Weapon_%28FFXIII%29.png?version=bad7d1545f58a722eaa2826ff978e82e

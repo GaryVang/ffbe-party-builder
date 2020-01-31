@@ -43,7 +43,7 @@ function getUnitImg(str){
 }
 
 const UnitInfo = ({ unit, unit_2, equipment }) => {
-    console.log('unitInfo: ', unit_2);
+    console.log('Render: UnitInfo: ', unit_2);
     // console.log('unit info ', equipment);
     return (
         <div>
