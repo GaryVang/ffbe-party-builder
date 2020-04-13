@@ -101,8 +101,8 @@ class UnitSearch extends React.Component {
   //SearchList is being rendered before state is set
   render() {
     return (
-      <div>
-        <div className="unit-search-container">
+      <div className="unit-search-container">
+        <div className="unit-search-wrapper">
           <input
             className="unit-search-box"
             type="text"
@@ -112,13 +112,15 @@ class UnitSearch extends React.Component {
             onChange={this.handleChange}
             // ref='someName' //was using to reset text field, prob unnecessary
           />
-          <SearchList
+          <SearchList 
             items={this.state.filteredList}
             onUnitSelection={this.props.onUnitSelection}
             resetSearchBar={this.resetSearchBar}
           ></SearchList>
         </div>
         <button className="button-browse">Browse</button>
+        <button className="button-unequip-all">Unequip All</button>
+        {/* <button className="button-optimize">Optimize</button> */}
       </div>
     );
   }

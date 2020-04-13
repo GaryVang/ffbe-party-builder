@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import UnitSearch from './components/UnitSearch/UnitSearch';
 import UnitInfo from './components/UnitInfo/UnitInfo';
 import Equipment from './components/Equipment/Equipment';
+import Materia from './components/Materia/Materia';
 
 import axios from 'axios';
 
@@ -576,8 +577,8 @@ class App extends Component {
         >
         </UnitInfo>
         <Equipment setEq = {this.setEq}></Equipment>
-        {/* <Materia></Materia>
-        <Esper></Esper> */}
+        <Materia></Materia>
+        {/* <Esper></Esper> */}
         <button onClick={() => {this.resetUnit()}} > Reset </button>
         <button onClick={() => {this.calcTotalEqStats()}} > Calc </button>
       </div>
