@@ -11,8 +11,12 @@ const Materia = ({  }) => {
 
 
     return (
-        <div>
-            <button>Materia</button>
+        <div className="materia-container">
+            <div className="materia-container-header"><span>Materia</span></div>
+            <MateriaPanel />
+            <MateriaPanel />
+            <MateriaPanel />
+            <MateriaPanel />
         </div>
     );
 

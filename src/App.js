@@ -563,7 +563,7 @@ class App extends Component {
     console.log('Render: App');
     return (
       <div className="App">
-        <h1>FFBE Unit Builder</h1>
+        <h1 className="app-header">FFBE Unit Builder</h1>
         <UnitSearch 
           unitList={this.state.unitList} 
           onUnitSelection={this.onUnitSelection}
@@ -577,6 +577,9 @@ class App extends Component {
         >
         </UnitInfo>
         <Equipment setEq = {this.setEq}></Equipment>
+        {/* <div className="materia-seperator">
+          <h1 className="materia-seperator-text">Materia</h1>
+        </div> */}
         <Materia></Materia>
         {/* <Esper></Esper> */}
         <button onClick={() => {this.resetUnit()}} > Reset </button>
