@@ -263,12 +263,11 @@
 
 .new-unit-stat-resist-ailment-img {
     width: 100%;
-    /* width: 10px; */
-    height: 50%;
-    /* width: 100px; */
+
+    /* height: 30%; */
+
     
-    /* width: 5%; */
-    /* width: 30px; */
+
     display: inline-flex;
     flex-wrap: nowrap;
     /* object-fit: contain; */
