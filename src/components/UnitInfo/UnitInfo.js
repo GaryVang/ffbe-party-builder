@@ -57,52 +57,63 @@ const UnitInfo = ({ unit, unit_2, equipment }) => {
 
         <div className="new-unit-stat-general-hp-wrapper">
           <div className="new-unit-stat-hp">HP:</div>
-          <div className="new-unit-stat-hp-total">5235</div>
-          <div className="new-unit-stat-hp-change">+53</div>
+          <div className="new-unit-stat-hp-total">25235</div>
+          <div className="new-unit-stat-hp-change">+1553</div>
+
+          <div>400</div>
+          <div>+100</div>
         </div>
 
         <div className="new-unit-stat-general-mp-wrapper">
           <div className="new-unit-stat-mp">MP:</div>
           <div className="new-unit-stat-mp-total">0</div>
           <div className="new-unit-stat-mp-change">+53</div>
+
+          <div>400</div>
+          <div>+75</div>
         </div>
 
         <div className="new-unit-stat-general-atk-wrapper">
           <div className="new-unit-stat-atk">ATK:</div>
           <div className="new-unit-stat-atk-total">5235</div>
           <div className="new-unit-stat-atk-change">+53</div>
+
+          <div>400</div>
+          <div>+75</div>
         </div>
 
         <div className="new-unit-stat-general-def-wrapper">
           <div className="new-unit-stat-def">DEF:</div>
           <div className="new-unit-stat-def-total">5235</div>
           <div className="new-unit-stat-def-change">+53</div>
+
+          <div>400</div>
+          <div>+75</div>
         </div>
 
         <div className="new-unit-stat-general-mag-wrapper">
           <div className="new-unit-stat-mag">MAG:</div>
           <div className="new-unit-stat-mag-total">5235</div>
           <div className="new-unit-stat-mag-change">+53</div>
+
+          <div>400</div>
+          <div>+75</div>
         </div>
 
         <div className="new-unit-stat-general-spr-wrapper">
           <div className="new-unit-stat-spr">SPR:</div>
           <div className="new-unit-stat-spr-total">5235</div>
           <div className="new-unit-stat-spr-change">+53</div>
+
+          <div>400</div>
+          <div>+75</div>
         </div>
       </div>
-      <div className="new-unit-stat-td-container">
-        <div className="new-unit-stat-td-header">TDH|TDW</div>
-        <div className="new-unit-stat-td-atk">
-          ATK: <span className="new-unit-stat-td-atk-total">100</span>
-        </div>
-        <div className="new-unit-stat-td-def">DEF: 20</div>
-        <div className="new-unit-stat-td-mag">MAG: 30</div>
-        <div className="new-unit-stat-td-spr">SPR: 0</div>
-      </div>
+      <div className="new-unit-stat-esper-container">Esper</div>
+        
       <div className="new-unit-stat-resist">
-        <div className="new-unit-stat-resist-ailment">
-          <div className="new-unit-stat-resist-ailment-img">
+
+          <div className="new-unit-stat-resist-ailment-wrapper">
             <img src={poison} />
             <img src={blind} />
             <img src={sleep} />
@@ -111,10 +122,19 @@ const UnitInfo = ({ unit, unit_2, equipment }) => {
             <img src={confusion} />
             <img src={disease} />
             <img src={petrification} />
+
+            <div>0</div>
+            <div>100</div>
+            <div>200</div>
+            <div>75</div>
+            <div>3</div>
+            <div>23</div>
+            <div>500</div>
+            <div>2</div>
           </div> 
-        </div>
-        <div className="new-unit-stat-resist-element">
-          <div className="new-unit-stat-resist-element-img">
+
+        {/* <div className="new-unit-stat-resist-element"> */}
+          <div className="new-unit-stat-resist-element-wrapper">
             <img src={fire} />
             <img src={ice} />
             <img src={lightning} />
@@ -123,11 +143,49 @@ const UnitInfo = ({ unit, unit_2, equipment }) => {
             <img src={earth} />
             <img src={light} />
             <img src={dark} />
+
+            <div>0</div>
+            <div>100</div>
+            <div>200</div>
+            <div>75</div>
+            <div>3</div>
+            <div>23</div>
+            <div>500</div>
+            <div>2</div>
+          </div>
+
+      </div>
+      
+      <div className="new-unit-stat-br-container">
+        <div className="new-unit-stat-br-td-container">
+          <div className="new-unit-stat-br-td-header">
+            <div>TDH</div>
+            <div>|</div>
+            <div>TDW</div>
+          </div>
+          <div className="new-unit-stat-br-td-stat">
+            <div className="new-unit-stat-br-td-stat-type">ATK:</div>
+            <div className="new-unit-stat-br-td-stat-total">100</div>
+            <div className="new-unit-stat-br-td-stat-change">+50</div>
+           
+          </div>
+      
+        </div>
+        <div className="new-unit-stat-br-killer-container">
+          <div className="new-unit-stat-br-killer-header">
+            <div>Killer:</div>
+            <div>Physical</div>
+            <div>Magic</div>
+          </div>
+          <div className="new-unit-stat-br-killer">
+            <div className="new-unit-stat-br-killer-type">Beast:</div>
+            <div className="new-unit-stat-br-killer-physical">125</div>
+            <div className="new-unit-stat-br-killer-physical-change">+125</div>
+            <div className="new-unit-stat-br-killer-magic">125</div>
+            <div className="new-unit-stat-br-killer-magic-change">+125</div>
           </div>
         </div>
       </div>
-      <div className="new-unit-stat-killer"></div>
-
 
     </div>
 

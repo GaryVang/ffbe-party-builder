@@ -17,6 +17,9 @@
   text-align: center;
   border-bottom-style: solid;
   font-size: 15px;
+
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
 
 .materia-seperator{

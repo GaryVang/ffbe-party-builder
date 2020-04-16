@@ -162,7 +162,7 @@ const Equipment = ({ setEq }) => {
   console.log("Render: Eq");
 
   return (
-    <div>
+    <div className="equipment-top-container">
       <div className="equipment-container">
         <EquipmentPanel info={rHand} onClick={() => setActiveSlot("rHand")} />
         <EquipmentPanel info={lHand} onClick={() => setActiveSlot("lHand")} />

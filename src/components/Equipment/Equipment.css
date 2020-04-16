@@ -1,12 +1,30 @@
-.equipment-container {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    /* flex: 1 1; */
+.equipment-top-container {
+    display: flex;
 }
 
-/* .equipment-container > * {
+.equipment-container {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    /* height: 20.5vh; */
+    /* height: 22.5vh; */
+    /* width: 95vw; */
+    /* border-top: 1px solid lightblue; */
+}
+
+.equipment-container > EquipmentPanel {
     flex: 1 1;
+}
+
+
+/* --------------------Old (works)---------------- */
+/* .equipment-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
 } */
+
+
 
 .equipment-selection-container {
     position: absolute;

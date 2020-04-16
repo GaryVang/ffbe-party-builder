@@ -37,6 +37,8 @@ import hat from "./EquipmentIcon/Armor/equipment-hat.png";
 import helm from "./EquipmentIcon/Armor/equipment-helm.png";
 import accessory from "./EquipmentIcon/equipment-accessory.png";
 
+import materia from "../Materia/MateriaIcon/materia-general.png"; // Remove when finish
+
 //removed 'key' from prop due to warning
 const EquipmentPanel = ({ info, onClick }) => {
   // Maybe rename file to something more meaningful
@@ -235,8 +237,25 @@ const EquipmentPanel = ({ info, onClick }) => {
   console.log("Render: EqPanel");
 
   return (
-    <div>
-      {Object.keys(info).length !== 0 ? (
+    <div className="equipment-panel-container">
+      <div className="equipment-panel-slot">L. Hand</div>
+      <div className="equipment-panel-selection-area">
+        <div className="equipment-panel-name">Equipment</div>
+        <img className="equipment-panel-type" src={dagger}></img>
+        <img className="equipment-panel-img" src={materia} alt="equipment" />
+        <div className="equipment-panel-desc" />
+      </div>
+      {/* <div className="equipment-panel-name">Equipment</div>
+      <img className="equipment-panel-type" src={dagger}></img>
+      <img className="equipment-panel-img" src={materia} alt="equipment" />
+      <div className="equipment-panel-desc" /> */}
+      
+      
+
+
+
+
+      {/* {Object.keys(info).length !== 0 ? (
         displaySwitch()
       ) : (
         <div className="equipment-panel-container" onClick={onClick}>
@@ -246,13 +265,11 @@ const EquipmentPanel = ({ info, onClick }) => {
           <div className="eq-img">
             <img src="" alt="eq" />
           </div>
-          {/* <div className='eq-element'>
-                            <img src={earth} alt='element' />
-                        </div> */}
+
           <div className="eq-handle">1H</div>
           <div className="eq-enhancement"></div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
