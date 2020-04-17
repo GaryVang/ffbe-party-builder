@@ -62,4 +62,8 @@
 .eq-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* justify-content: space-between; */
+    align-content: flex-end;
+    justify-content: flex-end;
+    justify-items: center;
 }

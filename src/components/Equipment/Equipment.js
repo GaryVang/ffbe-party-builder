@@ -164,7 +164,33 @@ const Equipment = ({ setEq }) => {
   return (
     <div className="equipment-top-container">
       <div className="equipment-container">
-        <EquipmentPanel info={rHand} onClick={() => setActiveSlot("rHand")} />
+        <div className="equipment-slot-lhand">
+          <div className="equipment-slot-name">L. Hand</div>
+          <EquipmentPanel info={rHand} onClick={() => setActiveSlot("rHand")} />
+        </div>
+        <div className="equipment-slot-rhand">
+          <div className="equipment-slot-name">R. Hand</div>
+          <EquipmentPanel info={rHand} onClick={() => setActiveSlot("rHand")} />
+        </div>
+        <div className="equipment-slot-head">
+          <div className="equipment-slot-name">Head</div>
+          <EquipmentPanel info={rHand} onClick={() => setActiveSlot("rHand")} />
+        </div>
+        <div className="equipment-slot-body">
+          <div className="equipment-slot-name">Body</div>
+          <EquipmentPanel info={rHand} onClick={() => setActiveSlot("rHand")} />
+        </div>
+        <div className="equipment-slot-acc1">
+          <div className="equipment-slot-name">Acc 1</div>
+          <EquipmentPanel info={rHand} onClick={() => setActiveSlot("rHand")} />
+        </div>
+        <div className="equipment-slot-acc2">
+          <div className="equipment-slot-name">Acc 2</div>
+          <EquipmentPanel info={rHand} onClick={() => setActiveSlot("rHand")} />
+        </div>
+
+
+        {/* <EquipmentPanel info={rHand} onClick={() => setActiveSlot("rHand")} />
         <EquipmentPanel info={lHand} onClick={() => setActiveSlot("lHand")} />
         <EquipmentPanel info={head} onClick={() => setActiveSlot("head")} />
         <EquipmentPanel info={body} onClick={() => setActiveSlot("body")} />
@@ -175,7 +201,7 @@ const Equipment = ({ setEq }) => {
         <EquipmentPanel
           info={acc2}
           onClick={() => setActiveSlot("accessory 2")}
-        />
+        /> */}
       </div>
       <div className="equipment-selection-container">
         {activeSlot ? renderSwitch(activeSlot) : null}

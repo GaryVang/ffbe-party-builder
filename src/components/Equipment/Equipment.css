@@ -13,10 +13,24 @@
     /* border-top: 1px solid lightblue; */
 }
 
-.equipment-container > EquipmentPanel {
-    flex: 1 1;
+
+.equipment-container > div {
+    /* flex: 1 1; */
 }
 
+.equipment-container > div  {
+    /* width: 100%; */
+    /* width: 45vw; */
+    text-align: left;
+}
+
+
+.equipment-container > div > div:nth-child(1) {
+    padding-left: 5px;
+    color: white;
+    font-size: 7px;
+    display: flex;
+}
 
 /* --------------------Old (works)---------------- */
 /* .equipment-container {
@@ -29,7 +43,8 @@
 .equipment-selection-container {
     position: absolute;
     left: 0px;
-    top: 35vh;
+    /* top: 35vh; */
     z-index: 1;
     background-color: grey;
+    /* opacity: .5; */
 }

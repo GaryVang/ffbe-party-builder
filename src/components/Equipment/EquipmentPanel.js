@@ -238,8 +238,8 @@ const EquipmentPanel = ({ info, onClick }) => {
 
   return (
     <div className="equipment-panel-container">
-      <div className="equipment-panel-slot">L. Hand</div>
-      <div className="equipment-panel-selection-area">
+      {/* <div className="equipment-panel-slot">L. Hand</div> */}
+      <div className="equipment-panel-selection-area" onClick={onClick}>
         <div className="equipment-panel-name">Equipment</div>
         <img className="equipment-panel-type" src={dagger}></img>
         <img className="equipment-panel-img" src={materia} alt="equipment" />
