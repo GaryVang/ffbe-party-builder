@@ -45,13 +45,13 @@ function getUnitImg(str) {
   return imgLightning;
 }
 
-const UnitInfo = ({ unit, unit_2, equipment }) => {
+const UnitInfo = ({ unit_1, unit_2, equipment }) => {
   console.log("Render: UnitInfo: ", unit_2);
   // console.log('unit info ', equipment);
 
   return (
     <div className="new-unit-info-container">
-      <div className="new-unit-name">Unit Name</div>
+      <div className="new-unit-name">{unit_1.name}</div>
       <button className="new-unit-more-info">+</button>
       <div className="new-unit-stat-general-container">
 
@@ -114,14 +114,14 @@ const UnitInfo = ({ unit, unit_2, equipment }) => {
       <div className="new-unit-stat-resist">
 
           <div className="new-unit-stat-resist-ailment-wrapper">
-            <img src={poison} />
-            <img src={blind} />
-            <img src={sleep} />
-            <img src={silence} />
-            <img src={paralysis} />
-            <img src={confusion} />
-            <img src={disease} />
-            <img src={petrification} />
+            <img src={poison} alt=""/>
+            <img src={blind} alt=""/>
+            <img src={sleep} alt=""/>
+            <img src={silence} alt=""/>
+            <img src={paralysis} alt=""/>
+            <img src={confusion} alt=""/>
+            <img src={disease} alt=""/>
+            <img src={petrification} alt=""/>
 
             <div>0</div>
             <div>100</div>
@@ -135,14 +135,14 @@ const UnitInfo = ({ unit, unit_2, equipment }) => {
 
         {/* <div className="new-unit-stat-resist-element"> */}
           <div className="new-unit-stat-resist-element-wrapper">
-            <img src={fire} />
-            <img src={ice} />
-            <img src={lightning} />
-            <img src={water} />
-            <img src={wind} />
-            <img src={earth} />
-            <img src={light} />
-            <img src={dark} />
+            <img src={fire} alt=""/>
+            <img src={ice} alt=""/>
+            <img src={lightning} alt=""/>
+            <img src={water} alt=""/>
+            <img src={wind} alt=""/>
+            <img src={earth} alt=""/>
+            <img src={light} alt=""/>
+            <img src={dark} alt=""/>
 
             <div>0</div>
             <div>100</div>

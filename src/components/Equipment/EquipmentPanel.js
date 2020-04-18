@@ -235,16 +235,38 @@ const EquipmentPanel = ({ info, onClick }) => {
   }
 
   console.log("Render: EqPanel");
+  // console.log(typeof info);
+  // console.log(info);
 
   return (
     <div className="equipment-panel-container">
       {/* <div className="equipment-panel-slot">L. Hand</div> */}
-      <div className="equipment-panel-selection-area" onClick={onClick}>
+
+      {(Object.keys(info).length === 0 && info.constructor === Object) ? (
+        <div className="equipment-panel-selection-area" onClick={onClick}>
+          <div className="equipment-panel-name">Equipment</div>
+          <img className="equipment-panel-type" src={dagger}></img>
+          <img className="equipment-panel-img" src={materia} alt="equipment" />
+          <div className="equipment-panel-desc" />
+        </div>
+      ) : (
+
+        <div className="equipment-panel-selection-area" onClick={onClick}>
+          <div className="equipment-panel-name">{info.name}</div>
+          <img className="equipment-panel-type" src={dagger}></img>
+          <img className="equipment-panel-img" src={materia} alt="equipment" />
+          <div className="equipment-panel-desc" />
+        </div>
+      )}
+
+
+      {/* <div className="equipment-panel-selection-area" onClick={onClick}>
         <div className="equipment-panel-name">Equipment</div>
         <img className="equipment-panel-type" src={dagger}></img>
         <img className="equipment-panel-img" src={materia} alt="equipment" />
         <div className="equipment-panel-desc" />
-      </div>
+      </div> */}
+      
       {/* <div className="equipment-panel-name">Equipment</div>
       <img className="equipment-panel-type" src={dagger}></img>
       <img className="equipment-panel-img" src={materia} alt="equipment" />

@@ -11,12 +11,14 @@ const SearchList = ({ items, onUnitSelection, resetSearchBar }) => {
           className="search-list-item"
           // onClick={onUnitSelection.bind(this, item)}>{item}
           onClick={e => {
-            onUnitSelection(item, e);
+            // onUnitSelection(item, e);
+            onUnitSelection(item.sub_id, e);
             resetSearchBar(e);
           }}
         >
-          {item}
+          {item.name}
         </li>
+        // console.log(1, item)
       ))}
     </div>
   );
@@ -48,37 +50,54 @@ class UnitSearch extends React.Component {
       },
       function() {
         let tmpArray = [];
-
-        if (value !== "") {
+        // console.log(10, typeof unitList);
+        if (value !== "") { // if searchbar isn't blank
           for (var key in unitList) {
+            // console.log(33, key);
             // skip loop if the property is from prototype
             if (!unitList.hasOwnProperty(key)) continue;
 
-            var obj = unitList[key];
-            for (var prop in obj) {
-              // skip loop if the property is from prototype
-              if (!obj.hasOwnProperty(prop)) continue;
-
-              if (prop === "name") {
-                //------Change to check for textfield input
-                // console.log('Name: ', obj[prop]);
-
-                if (obj[prop].toLowerCase().includes(value.toLowerCase())) {
-                  console.log("1 obj", obj[prop]);
-                  // filteredList.push(obj[prop]);
-                  // console.log('type: ', obj[prop]);
-
-                  //Doesn't rely on using prop to directly modify state
-                  //Works
-                  tmpArray.push(obj[prop]);
-                  this.setState({
-                    filteredList: tmpArray
-                  });
-                }
-              }
+            // var obj = unitList[key];
+            // console.log(111, typeof unitList[key].sub_id);
+            
+            if (unitList[key].name.toLowerCase().includes(value.toLowerCase())) {
+              // console.log(unitList[key].sub_id);
+              tmpArray.push(unitList[key]);
+              this.setState({
+                filteredList: tmpArray
+              });
+              // console.log(true);
             }
+
+
+            // Old-
+            // for (var prop in obj) {
+            //   // console.log(55, obj);
+            //   // skip loop if the property is from prototype
+            //   if (!obj.hasOwnProperty(prop)) continue;
+
+            //   if (prop === "name") {
+            //     //------Change to check for textfield input
+            //     // console.log('Name: ', obj[prop]);
+
+            //     if (obj[prop].toLowerCase().includes(value.toLowerCase())) {
+            //       console.log("1 obj", obj[prop]);
+            //       // filteredList.push(obj[prop]);
+            //       // console.log('type: ', obj[prop]);
+
+            //       //Doesn't rely on using prop to directly modify state
+            //       //Works
+            //       tmpArray.push(obj[prop]);
+            //       this.setState({
+            //         filteredList: tmpArray
+            //       });
+            //     }
+            //   }
+            // }
+
           }
         }
+        // console.log(11, tmpArray);
       }
     );
     console.log("filterUnitList: ", filteredList);

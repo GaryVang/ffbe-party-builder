@@ -156,6 +156,7 @@
     width: 90%;
     text-align: left;
     border: .1px solid red;
+    padding-left: 5px;
 }
 
 .new-unit-more-info {

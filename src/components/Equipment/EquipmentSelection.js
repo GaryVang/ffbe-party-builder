@@ -108,12 +108,17 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection, slot }) => {
       </div>
       <div className="eq-list">
         {eqList !== undefined
-          ? Object.keys(eqList).map(key => {
+          ? 
+          // Object.keys(eqList).map(key => {
+            eqList.map((key, index) => { 
+              // console.log("key: ", key);
               return (
                 <EquipmentPanel
-                  info={eqList[key]}
-                  key={key}
-                  onClick={handleChange(eqList[key])}
+                  // info={eqList[key]}
+                  info={key}
+                  key={index} // Each one should have a unique key prop
+                  // onClick={handleChange(eqList[key])}
+                  onClick={handleChange(key)}
                 />
               );
             })

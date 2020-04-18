@@ -6,25 +6,49 @@ import EquipmentSelection from "./EquipmentSelection";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const DB_URL = "http://localhost:3000/loadEq";
+// const DB_URL = "http://localhost:3000/loadEq";
+const DB_URL = "http://localhost:3000/equipment";
 
 const Equipment = ({ setEq }) => {
-  const [data, setData] = useState({ equipmentList: {}, isFetching: false });
+  // const [data, setData] = useState({ equipmentList: {}, isFetching: false });
+  // useEffect(() => {
+  //   const fetchEquipmentList = async () => {
+  //     try {
+  //       setData({ equipmentList: data.equipmentList, isFetching: true });
+  //       const res = await axios.get(DB_URL);
+  //       setData({ equipmentList: res.data, isFetching: false });
+  //       // console.log('Hook: ', res.data);
+  //       // console.log('equipment: ', data.equipment);
+  //     } catch (e) {
+  //       console.log(e);
+  //       setData({ equipmentList: data.equipmentList, isFetching: false });
+  //     }
+  //   };
+  //   fetchEquipmentList();
+  // }, []);
+
+  const [fetchComplete, setFetchComplete] = useState(false);
   useEffect(() => {
     const fetchEquipmentList = async () => {
-      try {
-        setData({ equipmentList: data.equipmentList, isFetching: true });
-        const res = await axios.get(DB_URL);
-        setData({ equipmentList: res.data, isFetching: false });
-        // console.log('Hook: ', res.data);
-        // console.log('equipment: ', data.equipment);
-      } catch (e) {
-        console.log(e);
-        setData({ equipmentList: data.equipmentList, isFetching: false });
-      }
+      const res = await axios.get(DB_URL);
+      // console.log(res);
+      setWeaponList(res.data.weapon_list);
+      setArmorList(res.data.armor_list);
+      setAccessoryList(res.data.accessory_list);
+
+
+      setFetchComplete(true);
     };
     fetchEquipmentList();
   }, []);
+
+  const [weaponList, setWeaponList] = useState([]);
+  // useEffect(() => {
+  //   console.log(weaponList);
+  // }, [weaponList]);
+  const [armorList, setArmorList] = useState([]);
+  const [accessoryList, setAccessoryList] = useState([]);
+
 
   //State
   const [lHand, setLHand] = useState({});
@@ -66,92 +90,106 @@ const Equipment = ({ setEq }) => {
 
     switch (param) {
       case "rHand":
-        filteredEqList = Object.keys(data.equipmentList)
-          .map(key => data.equipmentList[key].info)
-          .filter(
-            x =>
-              x.type !== "accessory" &&
-              x.type !== "hat" &&
-              x.type !== "helm" &&
-              x.type !== "clothes" &&
-              x.type !== "light armor" &&
-              x.type !== "heavy armor" &&
-              x.type !== "robe"
-          );
+        // filteredEqList = Object.keys(data.equipmentList)
+        //   .map(key => data.equipmentList[key].info)
+        //   .filter(
+        //     x =>
+        //       x.type !== "accessory" &&
+        //       x.type !== "hat" &&
+        //       x.type !== "helm" &&
+        //       x.type !== "clothes" &&
+        //       x.type !== "light armor" &&
+        //       x.type !== "heavy armor" &&
+        //       x.type !== "robe"
+        //   );
         return (
           <EquipmentSelection
-            eqList={filteredEqList}
+            // eqList={filteredEqList}
+            eqList={weaponList}
             setDisplayEqSelection={setActiveSlot}
             slot={setRHand}
           />
         );
       case "lHand":
-        filteredEqList = Object.keys(data.equipmentList)
-          .map(key => data.equipmentList[key].info)
-          .filter(
-            x =>
-              x.type !== "accessory" &&
-              x.type !== "hat" &&
-              x.type !== "helm" &&
-              x.type !== "clothes" &&
-              x.type !== "light armor" &&
-              x.type !== "heavy armor" &&
-              x.type !== "robe"
-          );
+        // filteredEqList = Object.keys(data.equipmentList)
+        //   .map(key => data.equipmentList[key].info)
+        //   .filter(
+        //     x =>
+        //       x.type !== "accessory" &&
+        //       x.type !== "hat" &&
+        //       x.type !== "helm" &&
+        //       x.type !== "clothes" &&
+        //       x.type !== "light armor" &&
+        //       x.type !== "heavy armor" &&
+        //       x.type !== "robe"
+        //   );
         return (
           <EquipmentSelection
-            eqList={filteredEqList}
+            // eqList={filteredEqList}
+            eqList={weaponList}
             setDisplayEqSelection={setActiveSlot}
             slot={setLHand}
           />
         );
       case "head":
-        filteredEqList = Object.keys(data.equipmentList)
-          .map(key => data.equipmentList[key].info)
-          .filter(x => x.type === "hat" || x.type === "helm");
+        // filteredEqList = Object.keys(data.equipmentList)
+        //   .map(key => data.equipmentList[key].info)
+        //   .filter(x => x.type === "hat" || x.type === "helm");
+        filteredEqList = armorList.filter(obj => 
+          obj.type === 40 ||
+          obj.type === 41 );
         return (
           <EquipmentSelection
             eqList={filteredEqList}
+            // eqList={armorList}
             setDisplayEqSelection={setActiveSlot}
             slot={setHead}
           />
         );
       case "body":
-        filteredEqList = Object.keys(data.equipmentList)
-          .map(key => data.equipmentList[key].info)
-          .filter(
-            x =>
-              x.type === "clothes" ||
-              x.type === "light armor" ||
-              x.type === "heavy armor" ||
-              x.type === "robe"
-          );
+        // filteredEqList = Object.keys(data.equipmentList)
+        //   .map(key => data.equipmentList[key].info)
+        //   .filter(
+        //     x =>
+        //       x.type === "clothes" ||
+        //       x.type === "light armor" ||
+        //       x.type === "heavy armor" ||
+        //       x.type === "robe"
+        //   );
+          filteredEqList = armorList.filter(obj => 
+            obj.type === 50 ||
+            obj.type === 51 ||
+            obj.type === 52 ||
+            obj.type === 53);
         return (
           <EquipmentSelection
             eqList={filteredEqList}
+            // eqList={armorList}
             setDisplayEqSelection={setActiveSlot}
             slot={setBody}
           />
         );
       case "accessory 1":
-        filteredEqList = Object.keys(data.equipmentList)
-          .map(key => data.equipmentList[key].info)
-          .filter(x => x.type === "accessory");
+        // filteredEqList = Object.keys(data.equipmentList)
+        //   .map(key => data.equipmentList[key].info)
+        //   .filter(x => x.type === "accessory");
         return (
           <EquipmentSelection
-            eqList={filteredEqList}
+            // eqList={filteredEqList}
+            eqList={accessoryList}
             setDisplayEqSelection={setActiveSlot}
             slot={setAcc1}
           />
         );
       default:
         // accessory 2
-        filteredEqList = Object.keys(data.equipmentList)
-          .map(key => data.equipmentList[key].info)
-          .filter(x => x.type === "accessory");
+        // filteredEqList = Object.keys(data.equipmentList)
+        //   .map(key => data.equipmentList[key].info)
+        //   .filter(x => x.type === "accessory");
         return (
           <EquipmentSelection
-            eqList={filteredEqList}
+            // eqList={filteredEqList}
+            eqList={accessoryList}
             setDisplayEqSelection={setActiveSlot}
             slot={setAcc2}
           />
@@ -166,7 +204,7 @@ const Equipment = ({ setEq }) => {
       <div className="equipment-container">
         <div className="equipment-slot-lhand">
           <div className="equipment-slot-name">L. Hand</div>
-          <EquipmentPanel info={rHand} onClick={() => setActiveSlot("rHand")} />
+          <EquipmentPanel info={lHand} onClick={() => setActiveSlot("lHand")} />
         </div>
         <div className="equipment-slot-rhand">
           <div className="equipment-slot-name">R. Hand</div>
@@ -174,19 +212,19 @@ const Equipment = ({ setEq }) => {
         </div>
         <div className="equipment-slot-head">
           <div className="equipment-slot-name">Head</div>
-          <EquipmentPanel info={rHand} onClick={() => setActiveSlot("rHand")} />
+          <EquipmentPanel info={head} onClick={() => setActiveSlot("head")} />
         </div>
         <div className="equipment-slot-body">
           <div className="equipment-slot-name">Body</div>
-          <EquipmentPanel info={rHand} onClick={() => setActiveSlot("rHand")} />
+          <EquipmentPanel info={body} onClick={() => setActiveSlot("body")} />
         </div>
         <div className="equipment-slot-acc1">
           <div className="equipment-slot-name">Acc 1</div>
-          <EquipmentPanel info={rHand} onClick={() => setActiveSlot("rHand")} />
+          <EquipmentPanel info={acc1} onClick={() => setActiveSlot("accessory 1")} />
         </div>
         <div className="equipment-slot-acc2">
           <div className="equipment-slot-name">Acc 2</div>
-          <EquipmentPanel info={rHand} onClick={() => setActiveSlot("rHand")} />
+          <EquipmentPanel info={acc2} onClick={() => setActiveSlot("accessory 2")} />
         </div>
 
 

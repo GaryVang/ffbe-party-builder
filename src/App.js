@@ -14,76 +14,34 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      // unit_1: {
-      //   name: "",
-      //   hp: [],
-      //   mp: [],
-      //   atk: [],
-      //   def: [],
-      //   mag: [],
-      //   spr: [],
-      //   weapon:[],
-      //   armor:[],
-      //   //8:fire,ice,lightning,water,wind,earth,light,dark
-      //   resist_element: [0,0,0,0,0,0,0,0],
-      //   //8:poison,blind,sleep,silence,paralysis,confusion,disease,petrification
-      //   resist_ailment: [0,0,0,0,0,0,0,0],
-      //   //5:charm,stop,berserk,break,death
-      //   resist_enfeeblement: [0,0,0,0,0],
-      //   //11:aquatic,beast,bird,demon,dragon,fairy,human,insect,machine,plant,stone
-      //   killer:[0,0,0,0,0,0,0,0,0,0,0],
-      //   hp_base: 0,
-      //   mp_base: 0,
-      //   atk_base: 0,
-      //   def_base: 0,
-      //   mag_base: 0,
-      //   spr_base: 0,
-      //   hp_p: 0, //p=percentage
-      //   mp_p: 0,
-      //   atk_p: 0,
-      //   def_p: 0,
-      //   mag_p: 0,
-      //   spr_p: 0,
-      //   resist_element_fire: 0,
-      //   resist_element_ice: 0,
-      //   resist_element_lightning: 0,
-      //   resist_element_water: 0,
-      //   resist_element_wind: 0,
-      //   resist_element_earth: 0,
-      //   resist_element_light: 0,
-      //   resist_element_dark: 0,
-      //   resist_ailment_poison: 0,
-      //   resist_ailment_blind: 0,
-      //   resist_ailment_sleep: 0,
-      //   resist_ailment_silence: 0,
-      //   resist_ailment_paralysis: 0,
-      //   resist_ailment_confusion: 0,
-      //   resist_ailment_disease: 0,
-      //   resist_ailment_petrification: 0,
-      //   resistance_enfeeblement_charm: 0,
-      //   resistance_enfeeblement_stop: 0,
-      //   resistance_enfeeblement_berserk: 0,
-      //   resistance_enfeeblement_break: 0,
-      //   killer_aquatic: 0, //percentage
-      //   killer_beast: 0,
-      //   killer_bird: 0,
-      //   killer_demon: 0,
-      //   killer_dragon: 0,
-      //   killer_fairy: 0,
-      //   killer_human: 0,
-      //   killer_insect: 0,
-      //   killer_machine: 0,
-      //   killer_plant: 0,
-      //   killer_stone: 0,
-      //   tdh: 0, //percentage
-      //   tdw: 0, //percentage
-      //   lb_damage: 0, //percentage
-      //   lb_fill_stone: 0, //max 12
-      //   lb_fill_p: 0, //p=percentage
-      //   evasion_physical: 0, //softcap 100
-      //   evasion_magic: 0, //softcap 100, multiple sources do NOT stack
-      //   conditional: {},
-      // },
+      unit_1: {
+        name: "Unit Name",
+        hp: [0,0,0],
+        mp: [0,0,0],
+        atk: [0,0,0],
+        def: [0,0,0],
+        mag: [0,0,0],
+        spr: [0,0,0],
+        equipment: [], // A combination of weapon + armor + 60 for accessory, delete if unused
+        weapon:[],
+        armor:[],
+        //8:fire,ice,lightning,water,wind,earth,light,dark
+        resist_element: [0,0,0,0,0,0,0,0],
+        //8:poison,blind,sleep,silence,paralysis,confusion,disease,petrification
+        resist_ailment: [0,0,0,0,0,0,0,0],
+        //5:charm,stop,berserk,break,death
+        resist_enfeeblement: [0,0,0,0,0],
+        //11:aquatic,beast,bird,demon,dragon,fairy,human,insect,machine,plant,stone
+        killer:[0,0,0,0,0,0,0,0,0,0,0],    
+        tdh: 0, //percentage
+        tdw: 0, //percentage
+        lb_damage: 0, //percentage
+        lb_fill_stone: 0, //max 12
+        lb_fill_p: 0, //p=percentage
+        evasion_physical: 0, //softcap 100
+        evasion_magic: 0, //softcap 100, multiple sources do NOT stack
+        conditional: {},
+      },
       unit_2: {
         name: "Blank",
         hp: [0,0,0], //[base, pot, door]
@@ -108,6 +66,8 @@ class App extends Component {
         lb_fill_rate: 0, //p=percentage
         evasion_physical: 0, //softcap 100
         evasion_magic: 0, //softcap 100, multiple sources do NOT stack
+        physical_resist: 0,
+        magical_resist: 0,
         conditional: {},
       },
       lHand: {}, //Fill in with properties after state update tests
@@ -350,49 +310,97 @@ class App extends Component {
     }
   }
 
+
   //Researved for search field
-  onUnitSelection = (unitName) => {
-    fetch("http://localhost:3000/loadUnit", {
-        method: "post",
-        headers: { 
-          "Accept": "application/json",
-          "Content-Type": "application/json" },
-        body: JSON.stringify({
-          unitName: unitName,
-          // password: this.state.signInPassword
-        })
-      })
-      .then(response => response.json())
-      .then(res => {this.setState(initUnitState => ({
-        unit_2: {
-          ...initUnitState.unit_2,
-          name: res.name,
-          hp: res.stats.hp,
-          mp: res.stats.mp,
-          atk: res.stats.atk,
-          def: res.stats.def,
-          mag: res.stats.mag,
-          spr: res.stats.spr,
-          passive: res.stats.passive,
-          weapon: res.weapon,
-          armor: res.armor,
-          resist_element: this.calcResistElement(res.resistance_element),
-          resist_ailment: this.calcResistAilment(res.resistance_ailment),
-          resist_enfeeblement: this.calcResistEnfeeblement(res.resistance_enfeeblement),
-          killer: this.calcKiller(res.killer),
-          tdh: res.tdh,
-          tdw: res.tdw,
-          lb_damage: res.lb_damage,
-          lb_fill_rate: res.lb_fill_rate,
-          lb_fill_stone: res.lb_fill_stone,
-          evasion_magic: res.evasion_magic,
-          evasion_physical: res.evasion_physical,
-          regen_hp: res.regen_hp,
-          regen_mp: res.regen_mp,
-          conditional: res.conditional
-        }
-      }))})
-  };
+  // onUnitSelection = (unitName) => {
+  //   fetch("http://localhost:3000/loadUnit", {
+  //       method: "post",
+  //       headers: { 
+  //         "Accept": "application/json",
+  //         "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         unitName: unitName,
+  //         // password: this.state.signInPassword
+  //       })
+  //     })
+  //     .then(response => response.json())
+  //     .then(res => {this.setState(initUnitState => ({
+  //       unit_2: {
+  //         ...initUnitState.unit_2,
+  //         name: res.name,
+  //         hp: res.stats.hp,
+  //         mp: res.stats.mp,
+  //         atk: res.stats.atk,
+  //         def: res.stats.def,
+  //         mag: res.stats.mag,
+  //         spr: res.stats.spr,
+  //         passive: res.stats.passive,
+  //         weapon: res.weapon,
+  //         armor: res.armor,
+  //         resist_element: this.calcResistElement(res.resistance_element),
+  //         resist_ailment: this.calcResistAilment(res.resistance_ailment),
+  //         resist_enfeeblement: this.calcResistEnfeeblement(res.resistance_enfeeblement),
+  //         killer: this.calcKiller(res.killer),
+  //         tdh: res.tdh,
+  //         tdw: res.tdw,
+  //         lb_damage: res.lb_damage,
+  //         lb_fill_rate: res.lb_fill_rate,
+  //         lb_fill_stone: res.lb_fill_stone,
+  //         evasion_magic: res.evasion_magic,
+  //         evasion_physical: res.evasion_physical,
+  //         regen_hp: res.regen_hp,
+  //         regen_mp: res.regen_mp,
+  //         conditional: res.conditional
+  //       }
+  //     }))})
+  // };
+
+  //---------------------------------------------New
+  // New on searchbar selection
+  onUnitSelection = (unit_id) => {
+    fetch(`http://localhost:3000/unit/${unit_id}`, {
+      method: "get",
+      headers: { 
+        "Accept": "application/json",
+        "Content-Type": "application/json" 
+      }
+    })
+    .then(response => response.json())
+    // .then(res => console.log(res.name));
+    .then(res => {this.setState(initUnitState => ({
+      unit_1: {
+        ...initUnitState.unit_1,
+        name: res.name,
+        hp: [res.hp_base, res.hp_pot, res.hp_door],
+        mp: [res.mp_base, res.mp_pot, res.mp_door],
+        atk: [res.atk_base, res.atk_pot, res.atk_door],
+        def: [res.def_base, res.def_pot, res.def_door],
+        mag: [res.mag_base, res.mag_pot, res.mag_door],
+        spr: [res.spr_base, res.spr_pot, res.spr_door],
+        // passive: res.stats.passive,
+        equipment: res.equipment_option,
+        weapon: res.equipment_option.map(x => { if(x>=1 && x<=16) return x }),
+        armor: res.equipment_option.map(x => { if(x>=30 && x<=53) return x }),
+        resist_element: [res.fire_resist, res.ice_resist, res.lightning_resist, res.water_resist, res.wind_resist, res.earth_resist, res.light_resist, res.dark_resist],
+        resist_ailment: [res.poison_resist, res.blind_resist, res.sleep_resist, res.silence_resist, res.paralyze_resist, res.confusion_resist, res.disease_resist, res.petrify_resist],
+        // resist_enfeeblement: this.calcResistEnfeeblement(res.resistance_enfeeblement),
+        // killer: this.calcKiller(res.killer),
+        // tdh: res.tdh,
+        // tdw: res.tdw,
+        // lb_damage: res.lb_damage,
+        // lb_fill_rate: res.lb_fill_rate,
+        // lb_fill_stone: res.lb_fill_stone,
+        // evasion_magic: res.evasion_magic,
+        // evasion_physical: res.evasion_physical,
+        // regen_hp: res.regen_hp,
+        // regen_mp: res.regen_mp,
+        // conditional: res.conditional
+        physical_resist: res.physical_resist,
+        magical_resist: res.magical_resist
+      }
+    }))})
+};
+
 
   //resets unit to default state
   //In the future, pass unit number as parameter ex: unit_x, where x=number(1-5).
@@ -512,10 +520,21 @@ class App extends Component {
   componentDidMount () {
       this.getUnitList();
       this.getUnit();
+      
+      this.getTest();
+  }
+
+  getTest = async () => {
+    let x = 401006805;
+    let res = await axios.get(`http://localhost:3000/unit/${x}`);
+    // let res = await axios.get('http://localhost:3000/unit');
+    let data = res.data;
+    console.log("xxxx: ", data);
   }
 
   getUnitList = async () => {
-    let res = await axios.get('http://localhost:3000/unitList');
+    // let res = await axios.get('http://localhost:3000/unitList');
+    let res = await axios.get('http://localhost:3000/unit');
     let data = res.data;
     this.setState({
       unitList: data
@@ -571,7 +590,7 @@ class App extends Component {
           >
         </UnitSearch>
         <UnitInfo 
-          // unit={this.state.user} 
+          unit_1={this.state.unit_1} 
           unit_2={this.state.unit_2}
           equipment={this.calcTotalEqStats()}
         >
