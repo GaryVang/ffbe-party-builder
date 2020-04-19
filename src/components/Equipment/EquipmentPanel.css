@@ -72,6 +72,19 @@
     flex: 1;
     /* background-color: red; */
     border: .1px solid plum;
+    display: flex;
+    /* overflow:hidden; */
+    font-size: 12px;
+    text-align: center;
+    /* align-content: center; */
+    /* justify-items: center; */
+    align-items: center;
+    /* justify-content: center; */
+    
+}
+
+.equipment-panel-desc > div {
+    width: 25%;
 }
 
 

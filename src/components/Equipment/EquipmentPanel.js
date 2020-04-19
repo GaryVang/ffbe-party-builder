@@ -234,6 +234,64 @@ const EquipmentPanel = ({ info, onClick }) => {
     }
   }
 
+  const displayTypeIcon = (type) => {
+    switch(type) {
+      case 1:
+        return dagger;
+      case 2:
+        return sword;
+      case 3: 
+        return greatsword;
+      case 4: 
+        return katana;
+      case 5:
+        return staff;
+      case 6:
+        return rod;
+      case 7:
+        return bow;
+      case 8:
+        return axe;
+      case 9:
+        return hammer;
+      case 10:
+        return spear;
+      case 11:
+        return instrument;
+      case 12:
+        return whip;
+      case 13:
+        return throwingweapon;
+      case 14:
+        return gun;
+      case 15:
+        return mace;
+      case 16:
+        return fist;
+      case 30:
+        return lightshield;
+      case 31:
+        return heavyshield;
+      case 40:
+        return hat;
+      case 41:
+        return helm;
+      case 50:
+        return clothes;
+      case 51:
+        return lightarmor;
+      case 52:
+        return heavyarmor;
+      case 53:
+        return robe;
+      case 60:
+        return accessory;
+      default:
+        console.log("Error: Default Icon Displayed!");
+        return accessory;
+    }
+  };
+
   console.log("Render: EqPanel");
   // console.log(typeof info);
   // console.log(info);
@@ -245,17 +303,32 @@ const EquipmentPanel = ({ info, onClick }) => {
       {(Object.keys(info).length === 0 && info.constructor === Object) ? (
         <div className="equipment-panel-selection-area" onClick={onClick}>
           <div className="equipment-panel-name">Equipment</div>
-          <img className="equipment-panel-type" src={dagger}></img>
+          {/* <img className="equipment-panel-type" src={dagger}></img> */}
           <img className="equipment-panel-img" src={materia} alt="equipment" />
-          <div className="equipment-panel-desc" />
+          <div className="equipment-panel-desc">
+            {/* <div>ATK: 163</div>
+            <div>DEF: 59</div>
+            <div>MAG: 170</div>
+            <div>SPR: 80</div> */}
+          </div>
         </div>
       ) : (
 
         <div className="equipment-panel-selection-area" onClick={onClick}>
           <div className="equipment-panel-name">{info.name}</div>
-          <img className="equipment-panel-type" src={dagger}></img>
+          {/* <img className="equipment-panel-type" src={dagger}></img> */}
+          <img className="equipment-panel-type" src={displayTypeIcon(info.type)}></img> 
           <img className="equipment-panel-img" src={materia} alt="equipment" />
-          <div className="equipment-panel-desc" />
+          <div className="equipment-panel-desc">
+            {(info.atk !==0) ? (<div>ATK: {info.atk}</div>) : (null)}
+            {(info.def !==0) ? (<div>DEF: {info.def}</div>) : (null)}
+            {(info.mag !==0) ? (<div>MAG: {info.mag}</div>) : (null)}
+            {(info.spr !==0) ? (<div>SPR: {info.spr}</div>) : (null)}
+            
+            {/* <div>DEF: 59</div>
+            <div>MAG: 170</div>
+            <div>SPR: 80</div> */}
+          </div>
         </div>
       )}
 

@@ -43,9 +43,9 @@ const Equipment = ({ setEq }) => {
   }, []);
 
   const [weaponList, setWeaponList] = useState([]);
-  // useEffect(() => {
-  //   console.log(weaponList);
-  // }, [weaponList]);
+  useEffect(() => {
+    console.log(weaponList);
+  }, [weaponList]);
   const [armorList, setArmorList] = useState([]);
   const [accessoryList, setAccessoryList] = useState([]);
 
@@ -90,6 +90,11 @@ const Equipment = ({ setEq }) => {
 
     switch (param) {
       case "rHand":
+        filteredEqList = armorList.filter(obj => 
+          obj.type === 30 ||
+          obj.type === 31 );
+        // const comboList = weaponList.concat(filteredEqList);
+        filteredEqList = weaponList.concat(filteredEqList);
         // filteredEqList = Object.keys(data.equipmentList)
         //   .map(key => data.equipmentList[key].info)
         //   .filter(
@@ -105,12 +110,16 @@ const Equipment = ({ setEq }) => {
         return (
           <EquipmentSelection
             // eqList={filteredEqList}
-            eqList={weaponList}
+            eqList={filteredEqList}
             setDisplayEqSelection={setActiveSlot}
             slot={setRHand}
           />
         );
       case "lHand":
+        filteredEqList = armorList.filter(obj => 
+          obj.type === 30 ||
+          obj.type === 31 );
+        filteredEqList = weaponList.concat(filteredEqList);
         // filteredEqList = Object.keys(data.equipmentList)
         //   .map(key => data.equipmentList[key].info)
         //   .filter(
@@ -125,8 +134,8 @@ const Equipment = ({ setEq }) => {
         //   );
         return (
           <EquipmentSelection
-            // eqList={filteredEqList}
-            eqList={weaponList}
+            eqList={filteredEqList}
+            // eqList={weaponList}
             setDisplayEqSelection={setActiveSlot}
             slot={setLHand}
           />
