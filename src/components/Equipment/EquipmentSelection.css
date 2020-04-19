@@ -4,6 +4,10 @@
     display: inline-block;
 
     opacity: 1;
+    
+    max-height: 60vh;
+    /* width: 20%; */
+    overflow: scroll;
 }
 
 .eq-search-box {
