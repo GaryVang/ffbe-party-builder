@@ -528,6 +528,7 @@ class App extends Component {
     let x = 401006805;
     let res = await axios.get(`http://localhost:3000/unit/${x}`);
     // let res = await axios.get('http://localhost:3000/unit');
+    // let res = await axios.get('http://localhost:3000/materia');
     let data = res.data;
     console.log("xxxx: ", data);
   }

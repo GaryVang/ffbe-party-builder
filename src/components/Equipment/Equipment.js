@@ -44,10 +44,22 @@ const Equipment = ({ setEq }) => {
 
   const [weaponList, setWeaponList] = useState([]);
   useEffect(() => {
-    console.log(weaponList);
+    // console.log('Weapon List: ', weaponList);
   }, [weaponList]);
   const [armorList, setArmorList] = useState([]);
+  useEffect(() => {
+    // console.log(armorList);
+  }, [armorList]);
   const [accessoryList, setAccessoryList] = useState([]);
+  useEffect(() => {
+    // console.log('Accessory List: ', accessoryList);
+  }, [accessoryList]);
+
+  // Remove if migrated to materia.js
+  // const [materiaList, setMateriaList] = useState([]);
+  // useEffect(() => {
+  //   console.log(materiaList);
+  // }, [materiaList]);
 
 
   //State
