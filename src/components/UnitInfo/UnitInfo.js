@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./UnitInfo.css";
 import poison from "./AilmentIcon/ailment-poison.png";
 import blind from "./AilmentIcon/ailment-blind.png";
@@ -20,6 +20,7 @@ import imgLightning from "./unit-lightning.png";
 import imgEsther from "./unit-esther.png";
 import imgOlive from "./unit-olive.png";
 
+// Static methods
 function capitalizeFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -45,19 +46,58 @@ function getUnitImg(str) {
   return imgLightning;
 }
 
-const UnitInfo = ({ unit_1, unit_2, equipment }) => {
+const UnitInfo = ({ unit, unit_2,  lHand, rHand, head, body, acc1, acc2, comparisonSlot }) => {
   console.log("Render: UnitInfo: ", unit_2);
   // console.log('unit info ', equipment);
 
+  const [totalStat, setTotalStat] = useState(0);
+    useEffect(() => {
+    }, []);
+  const [hp, setHP] = useState(0);
+    useEffect(() => {
+      setHP(calcBaseStat(unit.hp[0], unit.hp[1], unit.hp[2]) + calcEqStat(lHand.hp, rHand.hp, head.hp, body.hp, acc1.hp, acc2.hp));
+    }, [unit, lHand, rHand, head, body, acc1, acc2]);
+  const [mp, setMP] = useState(0);
+    useEffect(() => {
+      setMP(calcBaseStat(unit.mp[0], unit.mp[1], unit.mp[2]) + calcEqStat(lHand.mp, rHand.mp, head.mp, body.mp, acc1.mp, acc2.mp));
+    }, [unit, lHand, rHand, head, body, acc1, acc2]);
+  const [atk, setATK] = useState(0);
+    useEffect(() => {
+      setATK(calcBaseStat(unit.atk[0], unit.atk[1], unit.atk[2]) + calcEqStat(lHand.atk, rHand.atk, head.atk, body.atk, acc1.atk, acc2.atk));
+    }, [unit, lHand, rHand, head, body, acc1, acc2]);
+  const [def, setDEF] = useState(0);
+    useEffect(() => {
+      setDEF(calcBaseStat(unit.def[0], unit.def[1], unit.def[2]) + calcEqStat(lHand.def, rHand.def, head.def, body.def, acc1.def, acc2.def));
+    }, [unit, lHand, rHand, head, body, acc1, acc2]);
+  const [mag, setMAG] = useState(0);
+    useEffect(() => {
+      setMAG(calcBaseStat(unit.mag[0], unit.mag[1], unit.mag[2]) + calcEqStat(lHand.mag, rHand.mag, head.mag, body.mag, acc1.mag, acc2.mag));
+    }, [unit, lHand, rHand, head, body, acc1, acc2]);
+  const [spr, setSPR] = useState(0);
+    useEffect(() => {
+      setSPR(calcBaseStat(unit.spr[0], unit.spr[1], unit.spr[2]) + calcEqStat(lHand.spr, rHand.spr, head.spr, body.spr, acc1.spr, acc2.spr));
+    }, [unit, lHand, rHand, head, body, acc1, acc2]);
+
+  const calcBaseStat = (base, pot, door) => {
+    return Math.ceil(base + pot + door);
+  };
+
+  const calcEqStat = (lHand, rHand, head, body, acc1, acc2) => {
+    return Math.ceil(lHand + rHand + head + body + acc1 + acc2);
+  };
+
+  console.log('33333: ', rHand);
+
   return (
     <div className="new-unit-info-container">
-      <div className="new-unit-name">{unit_1.name}</div>
+      <div className="new-unit-name">{unit.name}</div>
       <button className="new-unit-more-info">+</button>
       <div className="new-unit-stat-general-container">
 
         <div className="new-unit-stat-general-hp-wrapper">
           <div className="new-unit-stat-hp">HP:</div>
-          <div className="new-unit-stat-hp-total">25235</div>
+          {/* <div className="new-unit-stat-hp-total">25235</div> */}
+          <div className="new-unit-stat-hp-total">{hp}</div>
           <div className="new-unit-stat-hp-change">+1553</div>
 
           <div>400</div>
@@ -66,7 +106,7 @@ const UnitInfo = ({ unit_1, unit_2, equipment }) => {
 
         <div className="new-unit-stat-general-mp-wrapper">
           <div className="new-unit-stat-mp">MP:</div>
-          <div className="new-unit-stat-mp-total">0</div>
+          <div className="new-unit-stat-mp-total">{mp}</div>
           <div className="new-unit-stat-mp-change">+53</div>
 
           <div>400</div>
@@ -75,7 +115,7 @@ const UnitInfo = ({ unit_1, unit_2, equipment }) => {
 
         <div className="new-unit-stat-general-atk-wrapper">
           <div className="new-unit-stat-atk">ATK:</div>
-          <div className="new-unit-stat-atk-total">5235</div>
+          <div className="new-unit-stat-atk-total">{atk}</div>
           <div className="new-unit-stat-atk-change">+53</div>
 
           <div>400</div>
@@ -84,7 +124,7 @@ const UnitInfo = ({ unit_1, unit_2, equipment }) => {
 
         <div className="new-unit-stat-general-def-wrapper">
           <div className="new-unit-stat-def">DEF:</div>
-          <div className="new-unit-stat-def-total">5235</div>
+          <div className="new-unit-stat-def-total">{def}</div>
           <div className="new-unit-stat-def-change">+53</div>
 
           <div>400</div>
@@ -93,7 +133,7 @@ const UnitInfo = ({ unit_1, unit_2, equipment }) => {
 
         <div className="new-unit-stat-general-mag-wrapper">
           <div className="new-unit-stat-mag">MAG:</div>
-          <div className="new-unit-stat-mag-total">5235</div>
+          <div className="new-unit-stat-mag-total">{mag}</div>
           <div className="new-unit-stat-mag-change">+53</div>
 
           <div>400</div>
@@ -102,7 +142,7 @@ const UnitInfo = ({ unit_1, unit_2, equipment }) => {
 
         <div className="new-unit-stat-general-spr-wrapper">
           <div className="new-unit-stat-spr">SPR:</div>
-          <div className="new-unit-stat-spr-total">5235</div>
+          <div className="new-unit-stat-spr-total">{spr}</div>
           <div className="new-unit-stat-spr-change">+53</div>
 
           <div>400</div>
@@ -123,14 +163,14 @@ const UnitInfo = ({ unit_1, unit_2, equipment }) => {
             <img src={disease} alt=""/>
             <img src={petrification} alt=""/>
 
-            <div>0</div>
-            <div>100</div>
-            <div>200</div>
-            <div>75</div>
-            <div>3</div>
-            <div>23</div>
-            <div>500</div>
-            <div>2</div>
+            <div>{unit.resist_ailment[0]}</div>
+            <div>{unit.resist_ailment[1]}</div>
+            <div>{unit.resist_ailment[2]}</div>
+            <div>{unit.resist_ailment[3]}</div>
+            <div>{unit.resist_ailment[4]}</div>
+            <div>{unit.resist_ailment[5]}</div>
+            <div>{unit.resist_ailment[6]}</div>
+            <div>{unit.resist_ailment[7]}</div>
           </div> 
 
         {/* <div className="new-unit-stat-resist-element"> */}
@@ -144,14 +184,14 @@ const UnitInfo = ({ unit_1, unit_2, equipment }) => {
             <img src={light} alt=""/>
             <img src={dark} alt=""/>
 
-            <div>0</div>
-            <div>100</div>
-            <div>200</div>
-            <div>75</div>
-            <div>3</div>
-            <div>23</div>
-            <div>500</div>
-            <div>2</div>
+            <div>{unit.resist_element[0]}</div>
+            <div>{unit.resist_element[1]}</div>
+            <div>{unit.resist_element[2]}</div>
+            <div>{unit.resist_element[3]}</div>
+            <div>{unit.resist_element[4]}</div>
+            <div>{unit.resist_element[5]}</div>
+            <div>{unit.resist_element[6]}</div>
+            <div>{unit.resist_element[7]}</div>
           </div>
 
       </div>

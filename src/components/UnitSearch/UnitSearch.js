@@ -8,6 +8,7 @@ const SearchList = ({ items, onUnitSelection, resetSearchBar }) => {
       {// items.map((item, i) => <li onClick={myFunction.bind(this, item)}>{item}</li>)
       items.map((item, i) => (
         <li
+          key={i} // Each one should have a unique key prop
           className="search-list-item"
           // onClick={onUnitSelection.bind(this, item)}>{item}
           onClick={e => {

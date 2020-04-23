@@ -20,13 +20,13 @@ class App extends Component {
         sex_id: -1,
         sub_id: 0,
         roles: [],
-        hp: [0,0,0],
+        hp: [0,0,0], // Base, Pot, Door
         mp: [0,0,0],
         atk: [0,0,0],
         def: [0,0,0],
         mag: [0,0,0],
         spr: [0,0,0],
-        equip_option: [], // A combination of weapon + armor + 60 for accessory, delete if unused
+        equipment_option: [], // A combination of weapon + armor + 60 for accessory, delete if unused
         weapon_option:[],
         armor_option:[],
         //8:fire,ice,lightning,water,wind,earth,light,dark
@@ -37,14 +37,6 @@ class App extends Component {
         resist_enfeeblement: [0,0,0,0,0],
         //11:aquatic,beast,bird,demon,dragon,fairy,human,insect,machine,plant,stone
         killer:[0,0,0,0,0,0,0,0,0,0,0],    
-        // tdh: 0, //percentage
-        // tdw: 0, //percentage
-        // lb_damage: 0, //percentage
-        // lb_fill_stone: 0, //max 12
-        // lb_fill_p: 0, //p=percentage
-        // evasion_physical: 0, //softcap 100
-        // evasion_magic: 0, //softcap 100, multiple sources do NOT stack
-        // conditional: {},
         magical_resist: 0,
         physical_resist: 0,
         skills: [],
@@ -78,13 +70,121 @@ class App extends Component {
         magical_resist: 0,
         conditional: {},
       },
-      lHand: {}, //Fill in with properties after state update tests
-      rHand: {},
-      head: {},
-      body: {},
-      acc1: {},
-      acc2: {},
-      eqCompare: {}, // For comparisons
+      lHand: {
+        name: "Godly",
+        rarity: 0,
+        eq_id: 0,
+        type: 0,
+        hp: 0,
+        mp: 0,
+        atk: 0,
+        def: 0,
+        mag: 0,
+        spr: 0,
+        resist_element: [0,0,0,0,0,0,0,0],
+        resist_ailment: [0,0,0,0,0,0,0,0],
+        is_twohanded: false,
+        accuracy: 0,
+        lower_limit: 0,
+        upper_limit: 0,
+        element_inflict: null,
+        status_inflict: null,
+        sex_requirements: null,
+        unit_requirements: null,
+        skills: null,
+      }, 
+      rHand: {
+        name: "Equipment",
+        rarity: 0,
+        eq_id: 0,
+        type: 0,
+        hp: 0,
+        mp: 0,
+        atk: 0,
+        def: 0,
+        mag: 0,
+        spr: 0,
+        resist_element: [0,0,0,0,0,0,0,0],
+        resist_ailment: [0,0,0,0,0,0,0,0],
+        is_twohanded: false,
+        accuracy: 0,
+        lower_limit: 0,
+        upper_limit: 0,
+        element_inflict: null,
+        status_inflict: null,
+        sex_requirements: null,
+        unit_requirements: null,
+        skills: null,
+      },
+      head: {
+        name: "Equipment",
+        rarity: 0,
+        eq_id: 0,
+        type: 0,
+        hp: 0,
+        mp: 0,
+        atk: 0,
+        def: 0,
+        mag: 0,
+        spr: 0,
+        resist_element: [0,0,0,0,0,0,0,0],
+        resist_ailment: [0,0,0,0,0,0,0,0],
+        sex_requirements: null,
+        unit_requirements: null,
+        skills: null,
+      },
+      body: {
+        name: "Equipment",
+        rarity: 0,
+        eq_id: 0,
+        type: 0,
+        hp: 0,
+        mp: 0,
+        atk: 0,
+        def: 0,
+        mag: 0,
+        spr: 0,
+        resist_element: [0,0,0,0,0,0,0,0],
+        resist_ailment: [0,0,0,0,0,0,0,0],
+        sex_requirements: null,
+        unit_requirements: null,
+        skills: null,
+      },
+      acc1: {
+        name: "Equipment",
+        rarity: 0,
+        eq_id: 0,
+        type: 0,
+        hp: 0,
+        mp: 0,
+        atk: 0,
+        def: 0,
+        mag: 0,
+        spr: 0,
+        resist_element: [0,0,0,0,0,0,0,0],
+        resist_ailment: [0,0,0,0,0,0,0,0],
+        sex_requirements: null,
+        unit_requirements: null,
+        skills: null,
+      },
+      acc2: {
+        name: "Equipment",
+        rarity: 0,
+        eq_id: 0,
+        type: 0,
+        hp: 0,
+        mp: 0,
+        atk: 0,
+        def: 0,
+        mag: 0,
+        spr: 0,
+        resist_element: [0,0,0,0,0,0,0,0],
+        resist_ailment: [0,0,0,0,0,0,0,0],
+        sex_requirements: null,
+        unit_requirements: null,
+        skills: null,
+      },
+      comparisonSlot: {},
       // totalEqStats: {
       //   name: "",
       //   type: "",
@@ -105,12 +205,13 @@ class App extends Component {
       // }, 
       unitList: {},
     }
-    this.initUnitState = this.state.unit_2;
+    this.initUnitState = this.state.unit_1;
     this.setEq = this.setEq.bind(this);
   }
 
   async setEq(slot, equipment) { //remove async and await when testing finishes
     await this.setState({[slot]: equipment});
+    // console.log(5);
     // console.log(`${slot}`, this.state[slot]);
   }
 
@@ -418,7 +519,7 @@ class App extends Component {
   //resets unit to default state
   //In the future, pass unit number as parameter ex: unit_x, where x=number(1-5).
   resetUnit = () => {
-    this.setState({['unit_2']: this.initUnitState}); //
+    this.setState({['unit_1']: this.initUnitState}); //
   };
 
   //change the function's name to something more meaningful
@@ -538,14 +639,15 @@ class App extends Component {
   }
 
   getTest = async () => {
-    // let x = 401006805; // Esther
+    // let x = 401006805; // Esther 5*
+    let x = 401006807; // Esther 7*
     // let x = 100012505; // MS Nichol
-    let x = 215000605;
+    // let x = 215000605;
     let res = await axios.get(`http://localhost:3000/unit/${x}`);
     // let res = await axios.get('http://localhost:3000/unit');
     // let res = await axios.get('http://localhost:3000/materia');
     let data = res.data;
-    console.log("xxxx: ", data);
+    console.log("Test Pull: ", data);
   }
 
   getUnitList = async () => {
@@ -606,12 +708,25 @@ class App extends Component {
           >
         </UnitSearch>
         <UnitInfo 
-          unit_1={this.state.unit_1} 
+          unit={this.state.unit_1} 
           unit_2={this.state.unit_2}
-          equipment={this.calcTotalEqStats()}
-        >
-        </UnitInfo>
-        <Equipment setEq = {this.setEq}></Equipment>
+          // equipment={this.calcTotalEqStats()}
+          lHand={this.state.lHand}
+          rHand={this.state.rHand}
+          head={this.state.head}
+          body={this.state.body}
+          acc1={this.state.acc1}
+          acc2={this.state.acc2}
+          comparisonSlot={this.state.comparisonSlot}
+        />
+     
+
+        <Equipment 
+          setEq = {this.setEq}
+          unit_weapon_option = {this.state.unit_1.weapon_option}
+          unit_armor_option = {this.state.unit_1.armor_option}
+          unit_equipment_option = {this.state.unit_1.equipment_option}
+        />
         {/* <div className="materia-seperator">
           <h1 className="materia-seperator-text">Materia</h1>
         </div> */}
