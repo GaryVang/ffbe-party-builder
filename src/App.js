@@ -16,15 +16,19 @@ class App extends Component {
     this.state = {
       unit_1: {
         name: "Unit Name",
+        // unit_id: 0,
+        sex_id: -1,
+        sub_id: 0,
+        roles: [],
         hp: [0,0,0],
         mp: [0,0,0],
         atk: [0,0,0],
         def: [0,0,0],
         mag: [0,0,0],
         spr: [0,0,0],
-        equipment: [], // A combination of weapon + armor + 60 for accessory, delete if unused
-        weapon:[],
-        armor:[],
+        equip_option: [], // A combination of weapon + armor + 60 for accessory, delete if unused
+        weapon_option:[],
+        armor_option:[],
         //8:fire,ice,lightning,water,wind,earth,light,dark
         resist_element: [0,0,0,0,0,0,0,0],
         //8:poison,blind,sleep,silence,paralysis,confusion,disease,petrification
@@ -33,14 +37,18 @@ class App extends Component {
         resist_enfeeblement: [0,0,0,0,0],
         //11:aquatic,beast,bird,demon,dragon,fairy,human,insect,machine,plant,stone
         killer:[0,0,0,0,0,0,0,0,0,0,0],    
-        tdh: 0, //percentage
-        tdw: 0, //percentage
-        lb_damage: 0, //percentage
-        lb_fill_stone: 0, //max 12
-        lb_fill_p: 0, //p=percentage
-        evasion_physical: 0, //softcap 100
-        evasion_magic: 0, //softcap 100, multiple sources do NOT stack
-        conditional: {},
+        // tdh: 0, //percentage
+        // tdw: 0, //percentage
+        // lb_damage: 0, //percentage
+        // lb_fill_stone: 0, //max 12
+        // lb_fill_p: 0, //p=percentage
+        // evasion_physical: 0, //softcap 100
+        // evasion_magic: 0, //softcap 100, multiple sources do NOT stack
+        // conditional: {},
+        magical_resist: 0,
+        physical_resist: 0,
+        skills: [],
+        latent_skills: [],
       },
       unit_2: {
         name: "Blank",
@@ -371,6 +379,9 @@ class App extends Component {
       unit_1: {
         ...initUnitState.unit_1,
         name: res.name,
+        sub_id: res.sub_id,
+        roles: res.roles,
+        sex_id: res.sex_id,
         hp: [res.hp_base, res.hp_pot, res.hp_door],
         mp: [res.mp_base, res.mp_pot, res.mp_door],
         atk: [res.atk_base, res.atk_pot, res.atk_door],
@@ -378,9 +389,9 @@ class App extends Component {
         mag: [res.mag_base, res.mag_pot, res.mag_door],
         spr: [res.spr_base, res.spr_pot, res.spr_door],
         // passive: res.stats.passive,
-        equipment: res.equipment_option,
-        weapon: res.equipment_option.map(x => { if(x>=1 && x<=16) return x }),
-        armor: res.equipment_option.map(x => { if(x>=30 && x<=53) return x }),
+        equipment_option: res.equip,
+        weapon_option: res.equip.map(x => { if(x>=1 && x<=16) return x }),
+        armor_option: res.equip.map(x => { if(x>=30 && x<=53) return x }),
         resist_element: [res.fire_resist, res.ice_resist, res.lightning_resist, res.water_resist, res.wind_resist, res.earth_resist, res.light_resist, res.dark_resist],
         resist_ailment: [res.poison_resist, res.blind_resist, res.sleep_resist, res.silence_resist, res.paralyze_resist, res.confusion_resist, res.disease_resist, res.petrify_resist],
         // resist_enfeeblement: this.calcResistEnfeeblement(res.resistance_enfeeblement),
@@ -396,7 +407,9 @@ class App extends Component {
         // regen_mp: res.regen_mp,
         // conditional: res.conditional
         physical_resist: res.physical_resist,
-        magical_resist: res.magical_resist
+        magical_resist: res.magical_resist,
+        skills: res.skills,
+        latent_skills: res.latent_skills
       }
     }))})
 };
