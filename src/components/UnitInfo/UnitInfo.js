@@ -21,33 +21,33 @@ import imgEsther from "./unit-esther.png";
 import imgOlive from "./unit-olive.png";
 
 // Static methods
-function capitalizeFirstLetter(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
+// function capitalizeFirstLetter(str) {
+//   return str.charAt(0).toUpperCase() + str.slice(1);
+// }
 
 //Confirm whether to round up or down
-function calcStat(unitBase, unitPassive, eqBase, eqPassive) {
-  return Math.ceil(
-    ((unitBase[0] + unitBase[1]) * (eqPassive + 100)) / 100 +
-      eqBase +
-      ((unitBase[0] + unitBase[1]) * unitPassive) / 100
-  );
-}
+// function calcStat(unitBase, unitPassive, eqBase, eqPassive) {
+//   return Math.ceil(
+//     ((unitBase[0] + unitBase[1]) * (eqPassive + 100)) / 100 +
+//       eqBase +
+//       ((unitBase[0] + unitBase[1]) * unitPassive) / 100
+//   );
+// }
 
-function getUnitImg(str) {
-  if (str === "lightning") {
-    return imgLightning;
-  } else if (str === "esther") {
-    return imgEsther;
-  } else if (str === "olvie") {
-    return imgOlive;
-  }
-  //default
-  return imgLightning;
-}
+// function getUnitImg(str) {
+//   if (str === "lightning") {
+//     return imgLightning;
+//   } else if (str === "esther") {
+//     return imgEsther;
+//   } else if (str === "olvie") {
+//     return imgOlive;
+//   }
+//   //default
+//   return imgLightning;
+// }
 
-const UnitInfo = ({ unit, unit_2,  lHand, rHand, head, body, acc1, acc2, comparisonSlot }) => {
-  console.log("Render: UnitInfo: ", unit_2);
+const UnitInfo = ({ unit, lHand, rHand, head, body, acc1, acc2, comparisonSlot }) => {
+  console.log("Render: UnitInfo");
   // console.log('unit info ', equipment);
 
   const [totalStat, setTotalStat] = useState(0);
@@ -86,7 +86,7 @@ const UnitInfo = ({ unit, unit_2,  lHand, rHand, head, body, acc1, acc2, compari
     return Math.ceil(lHand + rHand + head + body + acc1 + acc2);
   };
 
-  console.log('33333: ', rHand);
+  // console.log('33333: ', rHand);
 
   return (
     <div className="new-unit-info-container">

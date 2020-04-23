@@ -8,7 +8,7 @@ import "./Materia.css";
 
 
 const Materia = ({  }) => {
-
+    console.log("Render: Materia");
 
     return (
         <div className="materia-container">

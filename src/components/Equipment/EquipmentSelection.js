@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useState, useRef } from "react";
 import "./EquipmentSelection.css";
 import EquipmentPanel from "./EquipmentPanel";
 
@@ -31,11 +32,17 @@ import accessory from "./EquipmentIcon/equipment-accessory.png";
 //To-do:
 // Make render trigger only when EqSelection is closed (i.e. when 'x' button is clicked)
 // While still updating
-const EquipmentSelection = ({ eqList, setDisplayEqSelection, slot }) => {
+const EquipmentSelection = ({ eqList, setDisplayEqSelection, setEq, activeSlot }) => {
+  
+  // const [curEquipment, setCurEquipment] = useState({}); // Reserved for comparisonSlot
+
+
   const handleChange = equipment => e => {
     console.log("eqSelection: ", equipment);
     // console.log('eqS slot setter: ', slot);
-    slot(equipment);
+    // slot(equipment);
+
+    setEq(activeSlot, equipment);
   };
 
   console.log("Render: EqSelection");
@@ -56,7 +63,7 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection, slot }) => {
       <button
         className="button-close"
         onClick={() => {
-          setDisplayEqSelection(false);
+          setDisplayEqSelection({flag:false});
         }}
       >
         X

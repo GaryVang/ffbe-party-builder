@@ -43,196 +43,196 @@ import materia from "../Materia/MateriaIcon/materia-general.png"; // Remove when
 const EquipmentPanel = ({ info, onClick }) => {
   // Maybe rename file to something more meaningful
   //Determines how to display equipoment based on its type
-  function displaySwitch() {
-    let eqType = "";
-    let eqIcon = "";
+  // function displaySwitch() {
+  //   let eqType = "";
+  //   let eqIcon = "";
 
-    if (info.type === "accessory") {
-      eqType = "accessory";
-      eqIcon = accessory;
-    } else if (info.type === "hat") {
-      eqType = "armor";
-      eqIcon = hat;
-    } else if (info.type === "helm") {
-      eqType = "armor";
-      eqIcon = helm;
-    } else if (info.type === "clothes") {
-      eqType = "armor";
-      eqIcon = clothes;
-    } else if (info.type === "light armor") {
-      eqType = "armor";
-      eqIcon = lightarmor;
-    } else if (info.type === "heavy armor") {
-      eqType = "armor";
-      eqIcon = heavyarmor;
-    } else if (info.type === "robe") {
-      eqType = "armor";
-      eqIcon = robe;
-    } else if (info.type === "light shield") {
-      eqType = "armor";
-      eqIcon = lightshield;
-    } else if (info.type === "heavy shield") {
-      eqType = "armor";
-      eqIcon = heavyshield;
-    } else if (info.type === "dagger") {
-      eqType = "weapon";
-      eqIcon = dagger;
-    } else if (info.type === "sword") {
-      eqType = "weapon";
-      eqIcon = sword;
-    } else if (info.type === "great sword") {
-      eqType = "weapon";
-      eqIcon = greatsword;
-    } else if (info.type === "katana") {
-      eqType = "weapon";
-      eqIcon = katana;
-    } else if (info.type === "staff") {
-      eqType = "weapon";
-      eqIcon = staff;
-    } else if (info.type === "rod") {
-      eqType = "weapon";
-      eqIcon = rod;
-    } else if (info.type === "bow") {
-      eqType = "weapon";
-      eqIcon = bow;
-    } else if (info.type === "axe") {
-      eqType = "weapon";
-      eqIcon = axe;
-    } else if (info.type === "hammer") {
-      eqType = "weapon";
-      eqIcon = hammer;
-    } else if (info.type === "spear") {
-      eqType = "weapon";
-      eqIcon = spear;
-    } else if (info.type === "instrument") {
-      eqType = "weapon";
-      eqIcon = instrument;
-    } else if (info.type === "whip") {
-      eqType = "weapon";
-      eqIcon = whip;
-    } else if (info.type === "throwing weapon") {
-      eqType = "weapon";
-      eqIcon = throwingweapon;
-    } else if (info.type === "gun") {
-      eqType = "weapon";
-      eqIcon = gun;
-    } else if (info.type === "mace") {
-      eqType = "mace";
-      eqIcon = mace;
-    } else {
-      eqType = "weapon";
-      eqIcon = fist;
-    }
-    // else if (info.type === 'fist') { eqType = 'weapon'; eqIcon = fist; }
+  //   if (info.type === "accessory") {
+  //     eqType = "accessory";
+  //     eqIcon = accessory;
+  //   } else if (info.type === "hat") {
+  //     eqType = "armor";
+  //     eqIcon = hat;
+  //   } else if (info.type === "helm") {
+  //     eqType = "armor";
+  //     eqIcon = helm;
+  //   } else if (info.type === "clothes") {
+  //     eqType = "armor";
+  //     eqIcon = clothes;
+  //   } else if (info.type === "light armor") {
+  //     eqType = "armor";
+  //     eqIcon = lightarmor;
+  //   } else if (info.type === "heavy armor") {
+  //     eqType = "armor";
+  //     eqIcon = heavyarmor;
+  //   } else if (info.type === "robe") {
+  //     eqType = "armor";
+  //     eqIcon = robe;
+  //   } else if (info.type === "light shield") {
+  //     eqType = "armor";
+  //     eqIcon = lightshield;
+  //   } else if (info.type === "heavy shield") {
+  //     eqType = "armor";
+  //     eqIcon = heavyshield;
+  //   } else if (info.type === "dagger") {
+  //     eqType = "weapon";
+  //     eqIcon = dagger;
+  //   } else if (info.type === "sword") {
+  //     eqType = "weapon";
+  //     eqIcon = sword;
+  //   } else if (info.type === "great sword") {
+  //     eqType = "weapon";
+  //     eqIcon = greatsword;
+  //   } else if (info.type === "katana") {
+  //     eqType = "weapon";
+  //     eqIcon = katana;
+  //   } else if (info.type === "staff") {
+  //     eqType = "weapon";
+  //     eqIcon = staff;
+  //   } else if (info.type === "rod") {
+  //     eqType = "weapon";
+  //     eqIcon = rod;
+  //   } else if (info.type === "bow") {
+  //     eqType = "weapon";
+  //     eqIcon = bow;
+  //   } else if (info.type === "axe") {
+  //     eqType = "weapon";
+  //     eqIcon = axe;
+  //   } else if (info.type === "hammer") {
+  //     eqType = "weapon";
+  //     eqIcon = hammer;
+  //   } else if (info.type === "spear") {
+  //     eqType = "weapon";
+  //     eqIcon = spear;
+  //   } else if (info.type === "instrument") {
+  //     eqType = "weapon";
+  //     eqIcon = instrument;
+  //   } else if (info.type === "whip") {
+  //     eqType = "weapon";
+  //     eqIcon = whip;
+  //   } else if (info.type === "throwing weapon") {
+  //     eqType = "weapon";
+  //     eqIcon = throwingweapon;
+  //   } else if (info.type === "gun") {
+  //     eqType = "weapon";
+  //     eqIcon = gun;
+  //   } else if (info.type === "mace") {
+  //     eqType = "mace";
+  //     eqIcon = mace;
+  //   } else {
+  //     eqType = "weapon";
+  //     eqIcon = fist;
+  //   }
+  //   // else if (info.type === 'fist') { eqType = 'weapon'; eqIcon = fist; }
 
-    if (info.type === "accessory") {
-      eqType = "accessory";
-    } else if (
-      info.type === "light shield" ||
-      info.type === "heavy shield" ||
-      info.type === "hat" ||
-      info.type === "helm" ||
-      info.type === "clothes" ||
-      info.type === "light armor" ||
-      info.type === "heavy armor" ||
-      info.type === "robe"
-    ) {
-      eqType = "armor";
-    } else {
-      eqType = "weapon";
-    }
+  //   if (info.type === "accessory") {
+  //     eqType = "accessory";
+  //   } else if (
+  //     info.type === "light shield" ||
+  //     info.type === "heavy shield" ||
+  //     info.type === "hat" ||
+  //     info.type === "helm" ||
+  //     info.type === "clothes" ||
+  //     info.type === "light armor" ||
+  //     info.type === "heavy armor" ||
+  //     info.type === "robe"
+  //   ) {
+  //     eqType = "armor";
+  //   } else {
+  //     eqType = "weapon";
+  //   }
 
-    switch (eqType) {
-      case "weapon":
-        let weaponElement = "";
-        if (info.element === "nonelemental") {
-          //Design something for nonelemental
-          weaponElement = fire;
-        } else if (info.element === "fire") {
-          weaponElement = fire;
-        } else if (info.element === "ice") {
-          weaponElement = ice;
-        } else if (info.element === "lightning") {
-          weaponElement = lightning;
-        } else if (info.element === "water") {
-          weaponElement = water;
-        } else if (info.element === "wind") {
-          weaponElement = wind;
-        } else if (info.element === "earth") {
-          weaponElement = earth;
-        } else if (info.element === "light") {
-          weaponElement = light;
-        } else {
-          weaponElement = dark;
-        }
+  //   switch (eqType) {
+  //     case "weapon":
+  //       let weaponElement = "";
+  //       if (info.element === "nonelemental") {
+  //         //Design something for nonelemental
+  //         weaponElement = fire;
+  //       } else if (info.element === "fire") {
+  //         weaponElement = fire;
+  //       } else if (info.element === "ice") {
+  //         weaponElement = ice;
+  //       } else if (info.element === "lightning") {
+  //         weaponElement = lightning;
+  //       } else if (info.element === "water") {
+  //         weaponElement = water;
+  //       } else if (info.element === "wind") {
+  //         weaponElement = wind;
+  //       } else if (info.element === "earth") {
+  //         weaponElement = earth;
+  //       } else if (info.element === "light") {
+  //         weaponElement = light;
+  //       } else {
+  //         weaponElement = dark;
+  //       }
 
-        return (
-          <div className="equipment-panel-container" onClick={onClick}>
-            <div className="eq-name"> {info.name} </div>
-            <div className="eq-class">
-              <img src={eqIcon} alt="type" />
-            </div>
-            <div className="eq-stat"></div>
-            <div className="eq-img">
-              <img
-                src="https://gamepedia.cursecdn.com/exvius_gamepedia_en/0/08/Icon-Omega_Weapon_%28FFXIII%29.png?version=bad7d1545f58a722eaa2826ff978e82e"
-                alt="failed"
-              />
-            </div>
-            {info.element !== "nonelemental" ? ( //Checks to see if weapon has an element
-              <div className="eq-element">
-                <img src={weaponElement} alt="e" />
-              </div>
-            ) : null}
-            <div className="eq-handle">1H</div>
-            <div className="eq-enhancement"></div>
-          </div>
-        );
-      case "armor":
-        return (
-          <div className="equipment-panel-container" onClick={onClick}>
-            <div className="eq-name">{info.name}</div>
-            <div className="eq-class">
-              <img src={eqIcon} alt="type" />
-            </div>
-            <div className="eq-stat"></div>
-            <div className="eq-img">
-              <img
-                src="https://gamepedia.cursecdn.com/exvius_gamepedia_en/0/08/Icon-Omega_Weapon_%28FFXIII%29.png?version=bad7d1545f58a722eaa2826ff978e82e"
-                alt="failed"
-              />
-            </div>
-            {/* <div className='eq-element'>
-                                <img src={ earth } alt='element' />
-                            </div> */}
-            <div className="eq-handle">1H</div>
-            <div className="eq-enhancement"></div>
-          </div>
-        );
-      default:
-        //accessory
-        return (
-          <div className="equipment-panel-container" onClick={onClick}>
-            <div className="eq-name"> {info.name} </div>
-            <div className="eq-class">
-              <img src={eqIcon} alt="type" />
-            </div>
-            <div className="eq-stat"></div>
-            <div className="eq-img">
-              <img
-                src="https://gamepedia.cursecdn.com/exvius_gamepedia_en/0/08/Icon-Omega_Weapon_%28FFXIII%29.png?version=bad7d1545f58a722eaa2826ff978e82e"
-                alt="failed"
-              />
-            </div>
-            {/* <div className='eq-element'>
-                                <img src={ earth } alt='element' />
-                            </div> */}
-            <div className="eq-handle">1H</div>
-            <div className="eq-enhancement"></div>
-          </div>
-        );
-    }
-  }
+  //       return (
+  //         <div className="equipment-panel-container" onClick={onClick}>
+  //           <div className="eq-name"> {info.name} </div>
+  //           <div className="eq-class">
+  //             <img src={eqIcon} alt="type" />
+  //           </div>
+  //           <div className="eq-stat"></div>
+  //           <div className="eq-img">
+  //             <img
+  //               src="https://gamepedia.cursecdn.com/exvius_gamepedia_en/0/08/Icon-Omega_Weapon_%28FFXIII%29.png?version=bad7d1545f58a722eaa2826ff978e82e"
+  //               alt="failed"
+  //             />
+  //           </div>
+  //           {info.element !== "nonelemental" ? ( //Checks to see if weapon has an element
+  //             <div className="eq-element">
+  //               <img src={weaponElement} alt="e" />
+  //             </div>
+  //           ) : null}
+  //           <div className="eq-handle">1H</div>
+  //           <div className="eq-enhancement"></div>
+  //         </div>
+  //       );
+  //     case "armor":
+  //       return (
+  //         <div className="equipment-panel-container" onClick={onClick}>
+  //           <div className="eq-name">{info.name}</div>
+  //           <div className="eq-class">
+  //             <img src={eqIcon} alt="type" />
+  //           </div>
+  //           <div className="eq-stat"></div>
+  //           <div className="eq-img">
+  //             <img
+  //               src="https://gamepedia.cursecdn.com/exvius_gamepedia_en/0/08/Icon-Omega_Weapon_%28FFXIII%29.png?version=bad7d1545f58a722eaa2826ff978e82e"
+  //               alt="failed"
+  //             />
+  //           </div>
+  //           {/* <div className='eq-element'>
+  //                               <img src={ earth } alt='element' />
+  //                           </div> */}
+  //           <div className="eq-handle">1H</div>
+  //           <div className="eq-enhancement"></div>
+  //         </div>
+  //       );
+  //     default:
+  //       //accessory
+  //       return (
+  //         <div className="equipment-panel-container" onClick={onClick}>
+  //           <div className="eq-name"> {info.name} </div>
+  //           <div className="eq-class">
+  //             <img src={eqIcon} alt="type" />
+  //           </div>
+  //           <div className="eq-stat"></div>
+  //           <div className="eq-img">
+  //             <img
+  //               src="https://gamepedia.cursecdn.com/exvius_gamepedia_en/0/08/Icon-Omega_Weapon_%28FFXIII%29.png?version=bad7d1545f58a722eaa2826ff978e82e"
+  //               alt="failed"
+  //             />
+  //           </div>
+  //           {/* <div className='eq-element'>
+  //                               <img src={ earth } alt='element' />
+  //                           </div> */}
+  //           <div className="eq-handle">1H</div>
+  //           <div className="eq-enhancement"></div>
+  //         </div>
+  //       );
+  //   }
+  // }
 
   const displayTypeIcon = (type) => {
     switch(type) {
@@ -287,12 +287,12 @@ const EquipmentPanel = ({ info, onClick }) => {
       case 60:
         return accessory;
       default:
-        console.log("Error: Default Icon Displayed!");
+        // console.log("Error: Default Icon Displayed!");
         return accessory;
     }
   };
 
-  console.log("Render: EqPanel");
+  console.log("Render: EqPanel ");
   // console.log(typeof info);
   // console.log(info);
 
@@ -317,7 +317,7 @@ const EquipmentPanel = ({ info, onClick }) => {
         <div className="equipment-panel-selection-area" onClick={onClick}>
           <div className="equipment-panel-name">{info.name}</div>
           {/* <img className="equipment-panel-type" src={dagger}></img> */}
-          <img className="equipment-panel-type" src={displayTypeIcon(info.type)}></img> 
+          <img className="equipment-panel-type" src={displayTypeIcon(info.type)} alt="type"></img> 
           <img className="equipment-panel-img" src={materia} alt="equipment" />
           <div className="equipment-panel-desc">
             {(info.atk !==0) ? (<div>ATK: {info.atk}</div>) : (null)}

@@ -2,12 +2,12 @@
   text-align: center;
 }
 
-@font-face {
+/* @font-face {
   font-family: 'FINALFANTASY LOGO FONT';
   font-style: normal;
   font-weight: normal;
   src: local('FINALFANTASY LOGO FONT'), url('finalf.ttf') format('truetype');
-}
+} */
 
 /* h1 { */
 .app-header{
