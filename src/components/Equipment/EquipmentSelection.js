@@ -32,20 +32,39 @@ import accessory from "./EquipmentIcon/equipment-accessory.png";
 //To-do:
 // Make render trigger only when EqSelection is closed (i.e. when 'x' button is clicked)
 // While still updating
-const EquipmentSelection = ({ eqList, setDisplayEqSelection, setEq, activeSlot }) => {
+const EquipmentSelection = ({ eqList, setDisplayEqSelection, setEq, setComparisonEq, activeSlot }) => {
   
-  // const [curEquipment, setCurEquipment] = useState({}); // Reserved for comparisonSlot
+  // const [selectedEquipment, setSelectedEquipment] = useState(false); // Reserved for comparisonSlot
 
+  let selectedEquipment;
 
   const handleChange = equipment => e => {
-    console.log("eqSelection: ", equipment);
-    // console.log('eqS slot setter: ', slot);
-    // slot(equipment);
+    // console.log("eqSelection: ", equipment);
+    selectedEquipment = equipment;
 
-    setEq(activeSlot, equipment);
+    // setSelectedEquipment(equipment);
+    // setEq("comparisonSlot", selectedEquipment);
+    setComparisonEq(activeSlot, selectedEquipment);
   };
 
+  const handleClose = e => {
+    setDisplayEqSelection({flag:false});
+    if(selectedEquipment) {
+      setEq(activeSlot, selectedEquipment);
+      setComparisonEq(null, null);
+    }
+  }
+
   console.log("Render: EqSelection");
+
+  // const areEqual = (prevProps, nextProps) => {
+  //   if(prevProps.eqList === nextProps.eqList){
+  //     return true;
+  //   }
+  //   return false;
+  // };
+
+  
 
   return (
     <div className="eq-select-container">
@@ -62,9 +81,11 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection, setEq, activeSlot }
       <button className="button-filter">Filter</button>
       <button
         className="button-close"
-        onClick={() => {
-          setDisplayEqSelection({flag:false});
-        }}
+        onClick={
+          // setDisplayEqSelection({flag:false});
+          // setEq(activeSlot, selectedEquipment);
+          handleClose
+        }
       >
         X
       </button>
@@ -135,4 +156,5 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection, setEq, activeSlot }
   );
 };
 
+// export default React.memo(EquipmentSelection);
 export default EquipmentSelection;

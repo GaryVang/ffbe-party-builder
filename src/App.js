@@ -184,17 +184,34 @@ class App extends Component {
         unit_requirements: null,
         skills: null,
       },
-      comparisonSlot: {},
+      comparisonSlot: null,
+      comparisonEq: null,
       unitList: {},
     }
     this.initUnitState = this.state.unit_1;
+    this.initWeaponState = this.state.lHand;
+    this.initArmorState = this.state.body;
+    this.initAccessoryState = this.state.acc1;
     this.setEq = this.setEq.bind(this);
+    this.setComparisonEq = this.setComparisonEq.bind(this);
   }
 
   async setEq(slot, equipment) { //remove async and await when testing finishes
     await this.setState({[slot]: equipment});
+    
+    // if(slot === "comparisonSlot"){
+    //   await this.setState({[slot]: equipment});
+    // } else {
+    //   await this.setState({[slot]: equipment});
+    //   await this.setState({comparisonSlot: null});
+    // }
     // console.log(5);
     // console.log(`${slot}`, this.state[slot]);
+  }
+
+  setComparisonEq(activeSlot, equipment) {
+    this.setState({comparisonSlot: activeSlot});
+    this.setState({comparisonEq: equipment});
   }
 
   //Save for equipment comparisons
@@ -691,6 +708,7 @@ class App extends Component {
         />
         <Equipment 
           setEq = {this.setEq}
+          setComparisonEq = {this.setComparisonEq}
           // unit_weapon_option = {this.state.unit_1.weapon_option}
           // unit_armor_option = {this.state.unit_1.armor_option}
           unit_equipment_option = {this.state.unit_1.equipment_option}

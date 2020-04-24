@@ -12,6 +12,7 @@ const DB_URL = "http://localhost:3000/equipment";
 const Equipment = ({
   // Consider removing weapon_option and armor_option if equipment_option suffices
   setEq,
+  setComparisonEq,
   // unit_weapon_option,
   // unit_armor_option,
   unit_equipment_option,
@@ -55,7 +56,7 @@ const Equipment = ({
   });
 
   function renderSwitch(param) {
-    console.log(55555);
+    // console.log(55555);
     let filteredEqList = [];
 
     switch (param) {
@@ -81,6 +82,7 @@ const Equipment = ({
             eqList={filteredEqList}
             setDisplayEqSelection={setDisplayEqSelection}
             setEq={setEq}
+            setComparisonEq={setComparisonEq}
             activeSlot={displayEqSelection.activeSlot}
           />
         );
@@ -106,6 +108,7 @@ const Equipment = ({
             eqList={filteredEqList}
             setDisplayEqSelection={setDisplayEqSelection}
             setEq={setEq}
+            setComparisonEq={setComparisonEq}
             activeSlot={displayEqSelection.activeSlot}
           />
         );
@@ -122,6 +125,7 @@ const Equipment = ({
             eqList={filteredEqList}
             setDisplayEqSelection={setDisplayEqSelection}
             setEq={setEq}
+            setComparisonEq={setComparisonEq}
             activeSlot={displayEqSelection.activeSlot}
           />
         );
@@ -137,6 +141,7 @@ const Equipment = ({
             eqList={filteredEqList}
             setDisplayEqSelection={setDisplayEqSelection}
             setEq={setEq}
+            setComparisonEq={setComparisonEq}
             activeSlot={displayEqSelection.activeSlot}
           />
         );
@@ -146,6 +151,7 @@ const Equipment = ({
             eqList={accessoryList}
             setDisplayEqSelection={setDisplayEqSelection}
             setEq={setEq}
+            setComparisonEq={setComparisonEq}
             activeSlot={displayEqSelection.activeSlot}
           />
         );
@@ -156,6 +162,7 @@ const Equipment = ({
             eqList={accessoryList}
             setDisplayEqSelection={setDisplayEqSelection}
             setEq={setEq}
+            setComparisonEq={setComparisonEq}
             activeSlot={displayEqSelection.activeSlot}
           />
         );
@@ -232,4 +239,5 @@ const Equipment = ({
   );
 };
 
-export default Equipment;
+export default React.memo (Equipment);
+// export default Equipment;
