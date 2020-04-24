@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState, useRef } from "react";
 import "./EquipmentSelection.css";
 import EquipmentPanel from "./EquipmentPanel";
+import MateriaPanel from "../Materia/MateriaPanel";
 
 import dagger from "./EquipmentIcon/Weapon/equipment-dagger.png";
 import sword from "./EquipmentIcon/Weapon/equipment-sword.png";
@@ -64,32 +65,10 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection, setEq, setCompariso
   //   return false;
   // };
 
-  
 
-  return (
-    <div className="eq-select-container">
-      <input
-        className="eq-search-box"
-        type="text"
-        placeholder="Ex: tdw, atk, 1h, fire"
-        // onKeyUp={filterUnitList()}
-        // value = {} //Specifies initial value
-        // onChange={} //Specifies action
-      />
-
-      <button className="button-sort">Sort</button>
-      <button className="button-filter">Filter</button>
-      <button
-        className="button-close"
-        onClick={
-          // setDisplayEqSelection({flag:false});
-          // setEq(activeSlot, selectedEquipment);
-          handleClose
-        }
-      >
-        X
-      </button>
-
+  const renderEqOrMateria = () => {
+    if(activeSlot === "lHand" || activeSlot === "rHand" || activeSlot === "head" || activeSlot === "body" || activeSlot === "acc1" || activeSlot === "acc2"){
+      return (<div>
       <div className="eq-filter-icons"></div>
       <div className="eq-icon-container">
         <div className="eq-icon-weapon">
@@ -152,6 +131,131 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection, setEq, setCompariso
             })
           : null}
       </div>
+      </div>)
+    } else if (activeSlot === "materia1" || activeSlot === "materia2" || activeSlot === "materia3" || activeSlot === "materia4"){
+      
+      return (<div>
+        <div className="eq-list">
+                {eqList !== undefined
+                  ? 
+                  // Object.keys(eqList).map(key => {
+                    eqList.map((key, index) => { 
+                      // console.log("key: ", key);
+                      return (
+                        <MateriaPanel
+                          // info={eqList[key]}
+                          info={key}
+                          key={index} // Each one should have a unique key prop
+                          // onClick={handleChange(eqList[key])}
+                          onClick={handleChange(key)}
+                        />
+                      );
+                    })
+                  : null}
+              </div>
+
+      </div>)
+      
+      
+    }
+  };
+
+
+
+  
+
+  return (
+    <div className="eq-select-container">
+      <input
+        className="eq-search-box"
+        type="text"
+        placeholder="Ex: tdw, atk, 1h, fire"
+        // onKeyUp={filterUnitList()}
+        // value = {} //Specifies initial value
+        // onChange={} //Specifies action
+      />
+
+      <button className="button-sort">Sort</button>
+      <button className="button-filter">Filter</button>
+      <button
+        className="button-close"
+        onClick={
+          // setDisplayEqSelection({flag:false});
+          // setEq(activeSlot, selectedEquipment);
+          handleClose
+        }
+      >
+        X
+      </button>
+
+      {
+        renderEqOrMateria()
+
+      }
+      {/* <div className="eq-filter-icons"></div>
+      <div className="eq-icon-container">
+        <div className="eq-icon-weapon">
+          <img className="icon-dagger" alt="dagger" src={dagger} />
+          <img className="icon-sword" alt="sword" src={sword} />
+          <img className="icon-greatsword" alt="greatsword" src={greatsword} />
+          <img className="icon-katana" alt="katana" src={katana} />
+          <img className="icon-staff" alt="staff" src={staff} />
+          <img className="icon-rod" alt="rod" src={rod} />
+          <img className="icon-bow" alt="bow" src={bow} />
+          <img className="icon-axe" alt="axe" src={axe} />
+          <img className="icon-hammer" alt="hammer" src={hammer} />
+          <img className="icon-spear" alt="spear" src={spear} />
+          <img className="icon-instrument" alt="instrument" src={instrument} />
+          <img className="icon-whip" alt="whip" src={whip} />
+          <img
+            className="icon-throwingweapon"
+            alt="throwingweapon"
+            src={throwingweapon}
+          />
+          <img className="icon-gun" alt="gun" src={gun} />
+          <img className="icon-mace" alt="mace" src={mace} />
+          <img className="icon-fist" alt="fist" src={fist} />
+        </div>
+        <div className="eq-icon-armor">
+          <img
+            className="icon-lightshield"
+            alt="lightshield"
+            src={lightshield}
+          />
+          <img
+            className="icon-heavyshield"
+            alt="heavyshield"
+            src={heavyshield}
+          />
+          <img className="icon-clothes" alt="clothes" src={clothes} />
+          <img className="icon-lightarmor" alt="lightarmor" src={lightarmor} />
+          <img className="icon-heavyarmor" alt="heavyarmor" src={heavyarmor} />
+          <img className="icon-robe" alt="robe" src={robe} />
+          <img className="icon-hat" alt="hat" src={hat} />
+          <img className="icon-helm" alt="helm" src={helm} />
+        </div>
+        <img className="icon-accessory" alt="accessory" src={accessory} />
+      </div>
+      <div className="eq-list">
+        {eqList !== undefined
+          ? 
+          // Object.keys(eqList).map(key => {
+            eqList.map((key, index) => { 
+              // console.log("key: ", key);
+              return (
+                <EquipmentPanel
+                  // info={eqList[key]}
+                  info={key}
+                  key={index} // Each one should have a unique key prop
+                  // onClick={handleChange(eqList[key])}
+                  onClick={handleChange(key)}
+                />
+              );
+            })
+          : null}
+      </div> */}
+
+
     </div>
   );
 };

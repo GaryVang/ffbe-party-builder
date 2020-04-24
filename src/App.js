@@ -186,6 +186,10 @@ class App extends Component {
       },
       comparisonSlot: null,
       comparisonEq: null,
+      materia1: null,
+      materia2: null,
+      materia3: null,
+      materia4: null,
       unitList: {},
     }
     this.initUnitState = this.state.unit_1;
@@ -722,7 +726,15 @@ class App extends Component {
         {/* <div className="materia-seperator">
           <h1 className="materia-seperator-text">Materia</h1>
         </div> */}
-        <Materia></Materia>
+        <Materia
+          setEq = {this.setEq}
+          setComparisonEq = {this.setComparisonEq}
+          mat1={this.state.materia1}
+          mat2={this.state.materia2}
+          mat3={this.state.materia3}
+          mat4={this.state.materia4}
+        
+        />
         <button onClick={() => {this.resetUnit()}} > Reset </button>
         {/* <button onClick={() => {this.calcTotalEqStats()}} > Calc </button> */}
       </div>

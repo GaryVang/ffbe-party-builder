@@ -20,6 +20,8 @@
     text-align: left;
     /* margin-left: 5px; */
     padding-left: 5px;
+    white-space: nowrap;
+    overflow: scroll;
 }
 
 /* .materia-panel-bot-wrapper {
@@ -40,4 +42,9 @@
     flex: 1;
     /* background-color: red; */
     border: .1px solid plum;
+    display: flex;
+    font-size: 10px;
+    text-align: left;
+    overflow: scroll;
+    padding-left: 2px;
 }

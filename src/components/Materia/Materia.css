@@ -44,5 +44,12 @@
     left:100%;
 }
 
-
+.materia-selection-container {
+    position: absolute;
+    left: 0px;
+    z-index: 1;
+    background-color: skyblue;
+    width: 100%;
+    top: 40.3vh;
+}
 

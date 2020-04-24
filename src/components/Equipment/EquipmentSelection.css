@@ -1,5 +1,5 @@
 .eq-select-container {
-    
+    width: 100%;
     /* position: relative; */
     display: inline-block;
 
@@ -70,4 +70,5 @@
     align-content: flex-end;
     justify-content: flex-end;
     justify-items: center;
+    width: 100%;
 }

@@ -49,7 +49,7 @@
     /* overflow: hidden; */
     white-space: nowrap;
     /* overflow: scroll; */
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .equipment-panel-type{
