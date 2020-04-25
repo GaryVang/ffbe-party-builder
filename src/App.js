@@ -30,9 +30,9 @@ class App extends Component {
         weapon_option:[],
         armor_option:[],
         //8:fire,ice,lightning,water,wind,earth,light,dark
-        resist_element: [0,0,0,0,0,0,0,0],
+        element_resist: [0,0,0,0,0,0,0,0],
         //8:poison,blind,sleep,silence,paralysis,confusion,disease,petrification
-        resist_ailment: [0,0,0,0,0,0,0,0],
+        status_resist: [0,0,0,0,0,0,0,0],
         //5:charm,stop,berserk,break,death
         // resist_enfeeblement: [0,0,0,0,0],
         //11:aquatic,beast,bird,demon,dragon,fairy,human,insect,machine,plant,stone
@@ -55,8 +55,8 @@ class App extends Component {
       //   weapon:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], //16:dagger,sword,greatsword,katana,staff,rod,bow,axe,hammer,spear,instrument,whip,throwingweapon,gun,mace,fist
       //   armor:[0,0,0,0,0,0,0,0], //8:lightshield,heavyshield,hat,helm,clothes,lightarmor,heavyarmor,robe
       //   //-----------------------------
-      //   resist_element: [0,0,0,0,0,0,0,0], //8:fire,ice,lightning,water,wind,earth,light,dark
-      //   resist_ailment: [0,0,0,0,0,0,0,0], //8:poison,blind,sleep,silence,paralysis,confusion,disease,petrification
+      //   element_resist: [0,0,0,0,0,0,0,0], //8:fire,ice,lightning,water,wind,earth,light,dark
+      //   status_resist: [0,0,0,0,0,0,0,0], //8:poison,blind,sleep,silence,paralysis,confusion,disease,petrification
       //   resist_enfeeblement: [0,0,0,0,0], //5:charm,stop,berserk,break,death
       //   killer:[0,0,0,0,0,0,0,0,0,0,0], //11:aquatic,beast,bird,demon,dragon,fairy,human,insect,machine,plant,stone
       //   tdh: 0, //percentage
@@ -81,8 +81,8 @@ class App extends Component {
         def: 0,
         mag: 0,
         spr: 0,
-        resist_element: [0,0,0,0,0,0,0,0],
-        resist_ailment: [0,0,0,0,0,0,0,0],
+        // element_resist: [0,0,0,0,0,0,0,0],
+        // status_resist: [0,0,0,0,0,0,0,0],
         is_twohanded: false,
         accuracy: 0,
         lower_limit: 0,
@@ -92,6 +92,22 @@ class App extends Component {
         sex_requirements: null,
         unit_requirements: null,
         skills: null,
+        fire_resist: 0,
+        ice_resist: 0,
+        lightning_resist: 0,
+        water_resist: 0,
+        wind_resist: 0,
+        earth_resist: 0,
+        light_resist: 0,
+        dark_resist: 0,
+        poison_resist: 0,
+        blind_resist: 0,
+        sleep_resist: 0,
+        silence_resist: 0,
+        paralyze_resist: 0,
+        confusion_resist: 0,
+        disease_resist: 0,
+        petrify_resist: 0,
       }, 
       rHand: {
         name: "Phaser",
@@ -104,8 +120,8 @@ class App extends Component {
         def: 0,
         mag: 0,
         spr: 0,
-        resist_element: [0,0,0,0,0,0,0,0],
-        resist_ailment: [0,0,0,0,0,0,0,0],
+        // element_resist: [0,0,0,0,0,0,0,0],
+        // status_resist: [0,0,0,0,0,0,0,0],
         is_twohanded: false,
         accuracy: 0,
         lower_limit: 0,
@@ -115,6 +131,22 @@ class App extends Component {
         sex_requirements: null,
         unit_requirements: null,
         skills: null,
+        fire_resist: 0,
+        ice_resist: 0,
+        lightning_resist: 0,
+        water_resist: 0,
+        wind_resist: 0,
+        earth_resist: 0,
+        light_resist: 0,
+        dark_resist: 0,
+        poison_resist: 0,
+        blind_resist: 0,
+        sleep_resist: 0,
+        silence_resist: 0,
+        paralyze_resist: 0,
+        confusion_resist: 0,
+        disease_resist: 0,
+        petrify_resist: 0,
       },
       head: {
         name: "Baseball Cap",
@@ -127,11 +159,27 @@ class App extends Component {
         def: 0,
         mag: 0,
         spr: 0,
-        resist_element: [0,0,0,0,0,0,0,0],
-        resist_ailment: [0,0,0,0,0,0,0,0],
+        // element_resist: [0,0,0,0,0,0,0,0],
+        // status_resist: [0,0,0,0,0,0,0,0],
         sex_requirements: null,
         unit_requirements: null,
         skills: null,
+        fire_resist: 0,
+        ice_resist: 0,
+        lightning_resist: 0,
+        water_resist: 0,
+        wind_resist: 0,
+        earth_resist: 0,
+        light_resist: 0,
+        dark_resist: 0,
+        poison_resist: 0,
+        blind_resist: 0,
+        sleep_resist: 0,
+        silence_resist: 0,
+        paralyze_resist: 0,
+        confusion_resist: 0,
+        disease_resist: 0,
+        petrify_resist: 0,
       },
       body: {
         name: "Shorts",
@@ -144,11 +192,27 @@ class App extends Component {
         def: 0,
         mag: 0,
         spr: 0,
-        resist_element: [0,0,0,0,0,0,0,0],
-        resist_ailment: [0,0,0,0,0,0,0,0],
+        // element_resist: [0,0,0,0,0,0,0,0],
+        // status_resist: [0,0,0,0,0,0,0,0],
         sex_requirements: null,
         unit_requirements: null,
         skills: null,
+        fire_resist: 0,
+        ice_resist: 0,
+        lightning_resist: 0,
+        water_resist: 0,
+        wind_resist: 0,
+        earth_resist: 0,
+        light_resist: 0,
+        dark_resist: 0,
+        poison_resist: 0,
+        blind_resist: 0,
+        sleep_resist: 0,
+        silence_resist: 0,
+        paralyze_resist: 0,
+        confusion_resist: 0,
+        disease_resist: 0,
+        petrify_resist: 0,
       },
       acc1: {
         name: "Slingshot",
@@ -161,11 +225,27 @@ class App extends Component {
         def: 0,
         mag: 0,
         spr: 0,
-        resist_element: [0,0,0,0,0,0,0,0],
-        resist_ailment: [0,0,0,0,0,0,0,0],
+        // element_resist: [0,0,0,0,0,0,0,0],
+        // status_resist: [0,0,0,0,0,0,0,0],
         sex_requirements: null,
         unit_requirements: null,
         skills: null,
+        fire_resist: 0,
+        ice_resist: 0,
+        lightning_resist: 0,
+        water_resist: 0,
+        wind_resist: 0,
+        earth_resist: 0,
+        light_resist: 0,
+        dark_resist: 0,
+        poison_resist: 0,
+        blind_resist: 0,
+        sleep_resist: 0,
+        silence_resist: 0,
+        paralyze_resist: 0,
+        confusion_resist: 0,
+        disease_resist: 0,
+        petrify_resist: 0,
       },
       acc2: {
         name: "Utility Belt",
@@ -178,11 +258,27 @@ class App extends Component {
         def: 0,
         mag: 0,
         spr: 0,
-        resist_element: [0,0,0,0,0,0,0,0],
-        resist_ailment: [0,0,0,0,0,0,0,0],
+        // element_resist: [0,0,0,0,0,0,0,0],
+        // status_resist: [0,0,0,0,0,0,0,0],
         sex_requirements: null,
         unit_requirements: null,
         skills: null,
+        fire_resist: 0,
+        ice_resist: 0,
+        lightning_resist: 0,
+        water_resist: 0,
+        wind_resist: 0,
+        earth_resist: 0,
+        light_resist: 0,
+        dark_resist: 0,
+        poison_resist: 0,
+        blind_resist: 0,
+        sleep_resist: 0,
+        silence_resist: 0,
+        paralyze_resist: 0,
+        confusion_resist: 0,
+        disease_resist: 0,
+        petrify_resist: 0,
       },
       comparisonSlot: null,
       comparisonEq: null,
@@ -227,8 +323,8 @@ class App extends Component {
   //   let total = { //temp state
   //     base: [0,0,0,0,0,0],
   //     passive: [0,0,0,0,0,0],
-  //     resist_ailment: [0,0,0,0,0,0,0,0], //8:poison,blind,sleep,silence,paralysis,confusion,disease,petrification
-  //     resist_element: [0,0,0,0,0,0,0,0], //8:fire,ice,lightning,water,wind,earth,light,dark
+  //     status_resist: [0,0,0,0,0,0,0,0], //8:poison,blind,sleep,silence,paralysis,confusion,disease,petrification
+  //     element_resist: [0,0,0,0,0,0,0,0], //8:fire,ice,lightning,water,wind,earth,light,dark
   //     resist_enfeeblement: [0,0,0,0,0], //5:charm,stop,berserk,break,death
   //     killer:[0,0,0,0,0,0,0,0,0,0,0], //11:aquatic,beast,bird,demon,dragon,fairy,human,insect,machine,plant,stone
   //     tdh: 0, 
@@ -271,12 +367,12 @@ class App extends Component {
   //           }
   //         } else if(key === 'resistance_ailment'){
   //           let ailmentArr = this.calcResistAilment(slot[key]);
-  //           total.resist_ailment = total.resist_ailment.map(function (num, index) {
+  //           total.status_resist = total.status_resist.map(function (num, index) {
   //             return num + ailmentArr[index];
   //           });
   //         } else if(key === 'resistance_element'){
   //           let elementArr = this.calcResistElement(slot[key]);
-  //           total.resist_element = total.resist_element.map(function (num, index) {
+  //           total.element_resist = total.element_resist.map(function (num, index) {
   //             return num + elementArr[index];
   //           });
   //         } else if(key === 'resistance_enfeeblement'){
@@ -383,12 +479,12 @@ class App extends Component {
   //     total.passive[5] += obj[key];
   //   } else if(key === 'resistance_ailment'){
   //     let ailmentArr = this.calcResistAilment(obj[key]);
-  //     total.resist_ailment = total.resist_ailment.map(function (num, index) {
+  //     total.status_resist = total.status_resist.map(function (num, index) {
   //       return num + ailmentArr[index];
   //     });
   //   } else if(key === 'resistance_element'){
   //     let elementArr = this.calcResistElement(obj[key]);
-  //     total.resist_element = total.resist_element.map(function (num, index) {
+  //     total.element_resist = total.element_resist.map(function (num, index) {
   //       return num + elementArr[index];
   //     });
   //   } else if(key === 'resistance_enfeeblement'){
@@ -449,8 +545,8 @@ class App extends Component {
   //         passive: res.stats.passive,
   //         weapon: res.weapon,
   //         armor: res.armor,
-  //         resist_element: this.calcResistElement(res.resistance_element),
-  //         resist_ailment: this.calcResistAilment(res.resistance_ailment),
+  //         element_resist: this.calcResistElement(res.resistance_element),
+  //         status_resist: this.calcResistAilment(res.resistance_ailment),
   //         resist_enfeeblement: this.calcResistEnfeeblement(res.resistance_enfeeblement),
   //         killer: this.calcKiller(res.killer),
   //         tdh: res.tdh,
@@ -497,8 +593,8 @@ class App extends Component {
         weapon_option: res.equip.filter(x =>  x>=1 && x<=16),
         // armor_option: res.equip.map(x => { if(x>=30 && x<=53) return x }),
         armor_option: res.equip.filter(x => x>=30 && x<=53),
-        resist_element: [res.fire_resist, res.ice_resist, res.lightning_resist, res.water_resist, res.wind_resist, res.earth_resist, res.light_resist, res.dark_resist],
-        resist_ailment: [res.poison_resist, res.blind_resist, res.sleep_resist, res.silence_resist, res.paralyze_resist, res.confusion_resist, res.disease_resist, res.petrify_resist],
+        element_resist: [res.fire_resist, res.ice_resist, res.lightning_resist, res.water_resist, res.wind_resist, res.earth_resist, res.light_resist, res.dark_resist],
+        status_resist: [res.poison_resist, res.blind_resist, res.sleep_resist, res.silence_resist, res.paralyze_resist, res.confusion_resist, res.disease_resist, res.petrify_resist],
         physical_resist: res.physical_resist,
         magical_resist: res.magical_resist,
         skills: res.skills,
@@ -628,7 +724,7 @@ class App extends Component {
       this.getUnitList();
       // this.getUnit();
       
-      // this.getTest();
+      this.getTest();
   }
 
   getTest = async () => {
@@ -670,8 +766,8 @@ class App extends Component {
   //       passive: data.stats.passive,
   //       weapon: data.weapon,
   //       armor: data.armor,
-  //       resist_element: this.calcResistElement(data.resistance_element),
-  //       resist_ailment: this.calcResistAilment(data.resistance_ailment),
+  //       element_resist: this.calcResistElement(data.resistance_element),
+  //       status_resist: this.calcResistAilment(data.resistance_ailment),
   //       resist_enfeeblement: this.calcResistEnfeeblement(data.resistance_enfeeblement),
   //       killer: this.calcKiller(data.killer),
   //       tdh: data.tdh,
@@ -708,6 +804,10 @@ class App extends Component {
           body={this.state.body}
           acc1={this.state.acc1}
           acc2={this.state.acc2}
+          materia1={this.state.materia1}
+          materia2={this.state.materia2}
+          materia3={this.state.materia3}
+          materia4={this.state.materia4}
           comparisonSlot={this.state.comparisonSlot}
         />
         <Equipment 

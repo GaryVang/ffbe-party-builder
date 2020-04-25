@@ -320,6 +320,8 @@ const EquipmentPanel = ({ info, onClick }) => {
           <img className="equipment-panel-type" src={displayTypeIcon(info.type)} alt="type"></img> 
           <img className="equipment-panel-img" src={materia} alt="equipment" />
           <div className="equipment-panel-desc">
+            {(info.hp !==0) ? (<div>HP: {info.hp}</div>) : (null)}
+            {(info.mp !==0) ? (<div>MP: {info.mp}</div>) : (null)}
             {(info.atk !==0) ? (<div>ATK: {info.atk}</div>) : (null)}
             {(info.def !==0) ? (<div>DEF: {info.def}</div>) : (null)}
             {(info.mag !==0) ? (<div>MAG: {info.mag}</div>) : (null)}

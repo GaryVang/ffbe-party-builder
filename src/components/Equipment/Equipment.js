@@ -37,17 +37,17 @@ const Equipment = ({
   }, []);
 
   const [weaponList, setWeaponList] = useState([]);
-  // useEffect(() => {
-  //   console.log("Weapon List: ", weaponList);
-  // }, [weaponList]);
+  useEffect(() => {
+    console.log("Weapon List: ", weaponList);
+  }, [weaponList]);
   const [armorList, setArmorList] = useState([]);
-  // useEffect(() => {
-  //   console.log('Armor List: ', armorList);
-  // }, [armorList]);
+  useEffect(() => {
+    console.log('Armor List: ', armorList);
+  }, [armorList]);
   const [accessoryList, setAccessoryList] = useState([]);
-  // useEffect(() => {
-  //   console.log('Accessory List: ', accessoryList);
-  // }, [accessoryList]);
+  useEffect(() => {
+    console.log('Accessory List: ', accessoryList);
+  }, [accessoryList]);
 
 
   const [displayEqSelection, setDisplayEqSelection] = useState({
