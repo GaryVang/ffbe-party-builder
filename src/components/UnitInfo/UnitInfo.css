@@ -251,6 +251,7 @@
 .new-unit-stat-esper-container {
     width: 30%;
     border: .1px solid lightblue;
+    text-align: center;
 }
 
 .new-unit-stat-br-container {

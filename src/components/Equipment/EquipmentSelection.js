@@ -33,13 +33,26 @@ import accessory from "./EquipmentIcon/equipment-accessory.png";
 //To-do:
 // Make render trigger only when EqSelection is closed (i.e. when 'x' button is clicked)
 // While still updating
-const EquipmentSelection = ({ eqList, setDisplayEqSelection, setEq, setComparisonEq, activeSlot }) => {
-  
+const EquipmentSelection = ({
+  eqList,
+  setDisplayEqSelection,
+  setEq,
+  setComparisonEq,
+  activeSlot,
+}) => {
   // const [selectedEquipment, setSelectedEquipment] = useState(false); // Reserved for comparisonSlot
 
-  let selectedEquipment;
+  // Force rerender
+  // const [, updateState] = React.useState();
+  // const forceUpdate = React.useCallback(() => updateState({}), []);
 
-  const handleChange = equipment => e => {
+  const [filterFlag, setFilterFlag] = useState(false);
+
+
+  let selectedEquipment;
+  // let filterFlag = false;
+
+  const handleChange = (equipment) => (e) => {
     // console.log("eqSelection: ", equipment);
     selectedEquipment = equipment;
 
@@ -48,125 +61,172 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection, setEq, setCompariso
     setComparisonEq(activeSlot, selectedEquipment);
   };
 
-  const handleClose = e => {
-    setDisplayEqSelection({flag:false});
-    if(selectedEquipment) {
+  const handleClose = (e) => {
+    setDisplayEqSelection({ flag: false });
+    if (selectedEquipment) {
       setEq(activeSlot, selectedEquipment);
       setComparisonEq(null, null);
     }
-  }
+  };
 
   console.log("Render: EqSelection");
 
-  // const areEqual = (prevProps, nextProps) => {
-  //   if(prevProps.eqList === nextProps.eqList){
-  //     return true;
-  //   }
-  //   return false;
-  // };
-
-
   const renderEqOrMateria = () => {
-    if(activeSlot === "lHand" || activeSlot === "rHand" || activeSlot === "head" || activeSlot === "body" || activeSlot === "acc1" || activeSlot === "acc2"){
-      return (<div>
-      <div className="eq-filter-icons"></div>
-      <div className="eq-icon-container">
-        <div className="eq-icon-weapon">
-          <img className="icon-dagger" alt="dagger" src={dagger} />
-          <img className="icon-sword" alt="sword" src={sword} />
-          <img className="icon-greatsword" alt="greatsword" src={greatsword} />
-          <img className="icon-katana" alt="katana" src={katana} />
-          <img className="icon-staff" alt="staff" src={staff} />
-          <img className="icon-rod" alt="rod" src={rod} />
-          <img className="icon-bow" alt="bow" src={bow} />
-          <img className="icon-axe" alt="axe" src={axe} />
-          <img className="icon-hammer" alt="hammer" src={hammer} />
-          <img className="icon-spear" alt="spear" src={spear} />
-          <img className="icon-instrument" alt="instrument" src={instrument} />
-          <img className="icon-whip" alt="whip" src={whip} />
-          <img
-            className="icon-throwingweapon"
-            alt="throwingweapon"
-            src={throwingweapon}
-          />
-          <img className="icon-gun" alt="gun" src={gun} />
-          <img className="icon-mace" alt="mace" src={mace} />
-          <img className="icon-fist" alt="fist" src={fist} />
-        </div>
-        <div className="eq-icon-armor">
-          <img
-            className="icon-lightshield"
-            alt="lightshield"
-            src={lightshield}
-          />
-          <img
-            className="icon-heavyshield"
-            alt="heavyshield"
-            src={heavyshield}
-          />
-          <img className="icon-clothes" alt="clothes" src={clothes} />
-          <img className="icon-lightarmor" alt="lightarmor" src={lightarmor} />
-          <img className="icon-heavyarmor" alt="heavyarmor" src={heavyarmor} />
-          <img className="icon-robe" alt="robe" src={robe} />
-          <img className="icon-hat" alt="hat" src={hat} />
-          <img className="icon-helm" alt="helm" src={helm} />
-        </div>
-        <img className="icon-accessory" alt="accessory" src={accessory} />
-      </div>
-      <div className="eq-list">
-        {eqList !== undefined
-          ? 
-          // Object.keys(eqList).map(key => {
-            eqList.map((key, index) => { 
-              // console.log("key: ", key);
-              return (
-                <EquipmentPanel
-                  // info={eqList[key]}
-                  info={key}
-                  key={index} // Each one should have a unique key prop
-                  // onClick={handleChange(eqList[key])}
-                  onClick={handleChange(key)}
-                />
-              );
-            })
-          : null}
-      </div>
-      </div>)
-    } else if (activeSlot === "materia1" || activeSlot === "materia2" || activeSlot === "materia3" || activeSlot === "materia4"){
-      
-      return (<div>
-        <div className="eq-list">
-                {eqList !== undefined
-                  ? 
-                  // Object.keys(eqList).map(key => {
-                    eqList.map((key, index) => { 
-                      // console.log("key: ", key);
-                      return (
-                        <MateriaPanel
-                          // info={eqList[key]}
-                          info={key}
-                          key={index} // Each one should have a unique key prop
-                          // onClick={handleChange(eqList[key])}
-                          onClick={handleChange(key)}
-                        />
-                      );
-                    })
-                  : null}
-              </div>
+    if (
+      activeSlot === "lHand" ||
+      activeSlot === "rHand" ||
+      activeSlot === "head" ||
+      activeSlot === "body" ||
+      activeSlot === "acc1" ||
+      activeSlot === "acc2"
+    ) {
+      return (
+        <div className="eq-select-content-container">
+          {/* <div className="eq-filter-icons"></div> */}
 
-      </div>)
-      
-      
+          {filterFlag !== false ? 
+          <div className="eq-icon-container">
+            <div className="eq-icon-weapon">
+              <img className="icon-dagger" alt="dagger" src={dagger} />
+              <img className="icon-sword" alt="sword" src={sword} />
+              <img
+                className="icon-greatsword"
+                alt="greatsword"
+                src={greatsword}
+              />
+              <img className="icon-katana" alt="katana" src={katana} />
+              <img className="icon-staff" alt="staff" src={staff} />
+              <img className="icon-rod" alt="rod" src={rod} />
+              <img className="icon-bow" alt="bow" src={bow} />
+              <img className="icon-axe" alt="axe" src={axe} />
+              <img className="icon-hammer" alt="hammer" src={hammer} />
+              <img className="icon-spear" alt="spear" src={spear} />
+              <img
+                className="icon-instrument"
+                alt="instrument"
+                src={instrument}
+              />
+              <img className="icon-whip" alt="whip" src={whip} />
+              <img
+                className="icon-throwingweapon"
+                alt="throwingweapon"
+                src={throwingweapon}
+              />
+              <img className="icon-gun" alt="gun" src={gun} />
+              <img className="icon-mace" alt="mace" src={mace} />
+              <img className="icon-fist" alt="fist" src={fist} />
+            </div>
+            <div className="eq-icon-armor">
+              <img
+                className="icon-lightshield"
+                alt="lightshield"
+                src={lightshield}
+              />
+              <img
+                className="icon-heavyshield"
+                alt="heavyshield"
+                src={heavyshield}
+              />
+              <img className="icon-clothes" alt="clothes" src={clothes} />
+              <img
+                className="icon-lightarmor"
+                alt="lightarmor"
+                src={lightarmor}
+              />
+              <img
+                className="icon-heavyarmor"
+                alt="heavyarmor"
+                src={heavyarmor}
+              />
+              <img className="icon-robe" alt="robe" src={robe} />
+              <img className="icon-hat" alt="hat" src={hat} />
+              <img className="icon-helm" alt="helm" src={helm} />
+            </div>
+            <img className="icon-accessory" alt="accessory" src={accessory} />
+          </div> : null}
+          
+          <div className="eq-list">
+            {eqList !== undefined
+              ? // Object.keys(eqList).map(key => {
+                eqList.map((key, index) => {
+                  // console.log("key: ", key);
+                  return (
+                    <EquipmentPanel
+                      // info={eqList[key]}
+                      slot={activeSlot}
+                      info={key}
+                      // key={index} // Each one should have a unique key prop
+                      key={key.eq_id} // Fix all the other map renders
+                  
+                      onClick={handleChange(key)}
+                    />
+                  );
+                })
+              : null}
+          </div>
+        </div>
+      );
+    } else if (
+      activeSlot === "materia1" ||
+      activeSlot === "materia2" ||
+      activeSlot === "materia3" ||
+      activeSlot === "materia4"
+    ) {
+      return (
+        <div className="eq-select-content-container">
+          <div className="eq-list">
+          {/* <div className="mat-list"> */}
+            {eqList !== undefined
+              ? // Object.keys(eqList).map(key => {
+                eqList.map((key, index) => {
+                  // console.log("key: ", key);
+                  return (
+                    <MateriaPanel
+                      // info={eqList[key]}
+                      slot={activeSlot}
+                      info={key}
+                      key={index} // Each one should have a unique key prop
+                      // onClick={handleChange(eqList[key])}
+                      onClick={handleChange(key)}
+                    />
+                  );
+                })
+              : null}
+          </div>
+        </div>
+      );
     }
   };
 
-
-
-  
+  const onFilterClick = () => {
+    setFilterFlag(!filterFlag);
+    // filterFlag = true;
+    // filterFlag = !filterFlag;
+    // console.log(111111111111111111, filterFlag);
+    // forceUpdate();
+    // forceUpdate();
+  }
 
   return (
     <div className="eq-select-container">
-      <input
+      <div className="eq-select-header">
+        <input
+          className="eq-search-box"
+          type="text"
+          placeholder="Ex: tdw, atk, 1h, fire"
+          // onKeyUp={filterUnitList()}
+          // value = {} //Specifies initial value
+          // onChange={} //Specifies action
+        />
+
+        <button className="button-sort">Sort</button>
+        <button className="button-filter" onClick={onFilterClick}>Filter</button>
+        <button className="button-close" onClick={handleClose}>
+          x
+        </button>
+      </div>
+
+      {/* <input
         className="eq-search-box"
         type="text"
         placeholder="Ex: tdw, atk, 1h, fire"
@@ -186,12 +246,9 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection, setEq, setCompariso
         }
       >
         X
-      </button>
+      </button> */}
 
-      {
-        renderEqOrMateria()
-
-      }
+      {renderEqOrMateria()}
       {/* <div className="eq-filter-icons"></div>
       <div className="eq-icon-container">
         <div className="eq-icon-weapon">
@@ -254,8 +311,6 @@ const EquipmentSelection = ({ eqList, setDisplayEqSelection, setEq, setCompariso
             })
           : null}
       </div> */}
-
-
     </div>
   );
 };

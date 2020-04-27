@@ -40,209 +40,18 @@ import accessory from "./EquipmentIcon/equipment-accessory.png";
 import materia from "../Materia/MateriaIcon/materia-general.png"; // Remove when finish
 
 //removed 'key' from prop due to warning
-const EquipmentPanel = ({ info, onClick }) => {
+const EquipmentPanel = ({ slot, info, onClick }) => {
   // Maybe rename file to something more meaningful
-  //Determines how to display equipoment based on its type
-  // function displaySwitch() {
-  //   let eqType = "";
-  //   let eqIcon = "";
-
-  //   if (info.type === "accessory") {
-  //     eqType = "accessory";
-  //     eqIcon = accessory;
-  //   } else if (info.type === "hat") {
-  //     eqType = "armor";
-  //     eqIcon = hat;
-  //   } else if (info.type === "helm") {
-  //     eqType = "armor";
-  //     eqIcon = helm;
-  //   } else if (info.type === "clothes") {
-  //     eqType = "armor";
-  //     eqIcon = clothes;
-  //   } else if (info.type === "light armor") {
-  //     eqType = "armor";
-  //     eqIcon = lightarmor;
-  //   } else if (info.type === "heavy armor") {
-  //     eqType = "armor";
-  //     eqIcon = heavyarmor;
-  //   } else if (info.type === "robe") {
-  //     eqType = "armor";
-  //     eqIcon = robe;
-  //   } else if (info.type === "light shield") {
-  //     eqType = "armor";
-  //     eqIcon = lightshield;
-  //   } else if (info.type === "heavy shield") {
-  //     eqType = "armor";
-  //     eqIcon = heavyshield;
-  //   } else if (info.type === "dagger") {
-  //     eqType = "weapon";
-  //     eqIcon = dagger;
-  //   } else if (info.type === "sword") {
-  //     eqType = "weapon";
-  //     eqIcon = sword;
-  //   } else if (info.type === "great sword") {
-  //     eqType = "weapon";
-  //     eqIcon = greatsword;
-  //   } else if (info.type === "katana") {
-  //     eqType = "weapon";
-  //     eqIcon = katana;
-  //   } else if (info.type === "staff") {
-  //     eqType = "weapon";
-  //     eqIcon = staff;
-  //   } else if (info.type === "rod") {
-  //     eqType = "weapon";
-  //     eqIcon = rod;
-  //   } else if (info.type === "bow") {
-  //     eqType = "weapon";
-  //     eqIcon = bow;
-  //   } else if (info.type === "axe") {
-  //     eqType = "weapon";
-  //     eqIcon = axe;
-  //   } else if (info.type === "hammer") {
-  //     eqType = "weapon";
-  //     eqIcon = hammer;
-  //   } else if (info.type === "spear") {
-  //     eqType = "weapon";
-  //     eqIcon = spear;
-  //   } else if (info.type === "instrument") {
-  //     eqType = "weapon";
-  //     eqIcon = instrument;
-  //   } else if (info.type === "whip") {
-  //     eqType = "weapon";
-  //     eqIcon = whip;
-  //   } else if (info.type === "throwing weapon") {
-  //     eqType = "weapon";
-  //     eqIcon = throwingweapon;
-  //   } else if (info.type === "gun") {
-  //     eqType = "weapon";
-  //     eqIcon = gun;
-  //   } else if (info.type === "mace") {
-  //     eqType = "mace";
-  //     eqIcon = mace;
-  //   } else {
-  //     eqType = "weapon";
-  //     eqIcon = fist;
-  //   }
-  //   // else if (info.type === 'fist') { eqType = 'weapon'; eqIcon = fist; }
-
-  //   if (info.type === "accessory") {
-  //     eqType = "accessory";
-  //   } else if (
-  //     info.type === "light shield" ||
-  //     info.type === "heavy shield" ||
-  //     info.type === "hat" ||
-  //     info.type === "helm" ||
-  //     info.type === "clothes" ||
-  //     info.type === "light armor" ||
-  //     info.type === "heavy armor" ||
-  //     info.type === "robe"
-  //   ) {
-  //     eqType = "armor";
-  //   } else {
-  //     eqType = "weapon";
-  //   }
-
-  //   switch (eqType) {
-  //     case "weapon":
-  //       let weaponElement = "";
-  //       if (info.element === "nonelemental") {
-  //         //Design something for nonelemental
-  //         weaponElement = fire;
-  //       } else if (info.element === "fire") {
-  //         weaponElement = fire;
-  //       } else if (info.element === "ice") {
-  //         weaponElement = ice;
-  //       } else if (info.element === "lightning") {
-  //         weaponElement = lightning;
-  //       } else if (info.element === "water") {
-  //         weaponElement = water;
-  //       } else if (info.element === "wind") {
-  //         weaponElement = wind;
-  //       } else if (info.element === "earth") {
-  //         weaponElement = earth;
-  //       } else if (info.element === "light") {
-  //         weaponElement = light;
-  //       } else {
-  //         weaponElement = dark;
-  //       }
-
-  //       return (
-  //         <div className="equipment-panel-container" onClick={onClick}>
-  //           <div className="eq-name"> {info.name} </div>
-  //           <div className="eq-class">
-  //             <img src={eqIcon} alt="type" />
-  //           </div>
-  //           <div className="eq-stat"></div>
-  //           <div className="eq-img">
-  //             <img
-  //               src="https://gamepedia.cursecdn.com/exvius_gamepedia_en/0/08/Icon-Omega_Weapon_%28FFXIII%29.png?version=bad7d1545f58a722eaa2826ff978e82e"
-  //               alt="failed"
-  //             />
-  //           </div>
-  //           {info.element !== "nonelemental" ? ( //Checks to see if weapon has an element
-  //             <div className="eq-element">
-  //               <img src={weaponElement} alt="e" />
-  //             </div>
-  //           ) : null}
-  //           <div className="eq-handle">1H</div>
-  //           <div className="eq-enhancement"></div>
-  //         </div>
-  //       );
-  //     case "armor":
-  //       return (
-  //         <div className="equipment-panel-container" onClick={onClick}>
-  //           <div className="eq-name">{info.name}</div>
-  //           <div className="eq-class">
-  //             <img src={eqIcon} alt="type" />
-  //           </div>
-  //           <div className="eq-stat"></div>
-  //           <div className="eq-img">
-  //             <img
-  //               src="https://gamepedia.cursecdn.com/exvius_gamepedia_en/0/08/Icon-Omega_Weapon_%28FFXIII%29.png?version=bad7d1545f58a722eaa2826ff978e82e"
-  //               alt="failed"
-  //             />
-  //           </div>
-  //           {/* <div className='eq-element'>
-  //                               <img src={ earth } alt='element' />
-  //                           </div> */}
-  //           <div className="eq-handle">1H</div>
-  //           <div className="eq-enhancement"></div>
-  //         </div>
-  //       );
-  //     default:
-  //       //accessory
-  //       return (
-  //         <div className="equipment-panel-container" onClick={onClick}>
-  //           <div className="eq-name"> {info.name} </div>
-  //           <div className="eq-class">
-  //             <img src={eqIcon} alt="type" />
-  //           </div>
-  //           <div className="eq-stat"></div>
-  //           <div className="eq-img">
-  //             <img
-  //               src="https://gamepedia.cursecdn.com/exvius_gamepedia_en/0/08/Icon-Omega_Weapon_%28FFXIII%29.png?version=bad7d1545f58a722eaa2826ff978e82e"
-  //               alt="failed"
-  //             />
-  //           </div>
-  //           {/* <div className='eq-element'>
-  //                               <img src={ earth } alt='element' />
-  //                           </div> */}
-  //           <div className="eq-handle">1H</div>
-  //           <div className="eq-enhancement"></div>
-  //         </div>
-  //       );
-  //   }
-  // }
 
   const displayTypeIcon = (type) => {
-    switch(type) {
+    switch (type) {
       case 1:
         return dagger;
       case 2:
         return sword;
-      case 3: 
+      case 3:
         return greatsword;
-      case 4: 
+      case 4:
         return katana;
       case 5:
         return staff;
@@ -292,83 +101,172 @@ const EquipmentPanel = ({ info, onClick }) => {
     }
   };
 
+  const getSlotTitle = (slot) => {
+    // Checks for an instance of a number instead of an exact string match
+    if (slot.indexOf("r") !== -1) {
+      return "R HAND";
+    } else if (slot.indexOf("l") !== -1) {
+      return "L HAND";
+    } else if (slot.indexOf("head") !== -1) {
+      return "HEAD";
+    } else if (slot.indexOf("body") !== -1) {
+      return "BODY";
+    } else if (slot.indexOf(1) !== -1) {
+      return "ACC 1";
+    } else if (slot.indexOf(2) !== -1) {
+      return "ACC 2";
+    } else {
+      return "Error: Title Unknown";
+    }
+  };
+
   console.log("Render: EqPanel ");
-  // console.log(typeof info);
-  // console.log(info);
 
-  return (
-    <div className="equipment-panel-container">
-      {/* <div className="equipment-panel-slot">L. Hand</div> */}
-
-      {(Object.keys(info).length === 0 && info.constructor === Object) ? (
-        <div className="equipment-panel-selection-area" onClick={onClick}>
-          <div className="equipment-panel-name">Equipment</div>
-          {/* <img className="equipment-panel-type" src={dagger}></img> */}
-          <img className="equipment-panel-img" src={materia} alt="equipment" />
-          <div className="equipment-panel-desc">
-            {/* <div>ATK: 163</div>
-            <div>DEF: 59</div>
-            <div>MAG: 170</div>
-            <div>SPR: 80</div> */}
-          </div>
+  return info.eq_id === 0 ? (
+    <div className="equipment-panel-container" onClick={onClick}>
+      <div className="equipment-panel-header">
+        <div className="equipment-panel-slot">{getSlotTitle(slot)}</div>
+        <div className="equipment-panel-name">
+          <span className="equipment-panel-name-empty">Empty</span>
         </div>
-      ) : (
-
-        <div className="equipment-panel-selection-area" onClick={onClick}>
-          <div className="equipment-panel-name">{info.name}</div>
-          {/* <img className="equipment-panel-type" src={dagger}></img> */}
-          <img className="equipment-panel-type" src={displayTypeIcon(info.type)} alt="type"></img> 
-          <img className="equipment-panel-img" src={materia} alt="equipment" />
-          <div className="equipment-panel-desc">
-            {(info.hp !==0) ? (<div>HP: {info.hp}</div>) : (null)}
-            {(info.mp !==0) ? (<div>MP: {info.mp}</div>) : (null)}
-            {(info.atk !==0) ? (<div>ATK: {info.atk}</div>) : (null)}
-            {(info.def !==0) ? (<div>DEF: {info.def}</div>) : (null)}
-            {(info.mag !==0) ? (<div>MAG: {info.mag}</div>) : (null)}
-            {(info.spr !==0) ? (<div>SPR: {info.spr}</div>) : (null)}
-            
-            {/* <div>DEF: 59</div>
-            <div>MAG: 170</div>
-            <div>SPR: 80</div> */}
-          </div>
-        </div>
-      )}
-
-
-      {/* <div className="equipment-panel-selection-area" onClick={onClick}>
-        <div className="equipment-panel-name">Equipment</div>
-        <img className="equipment-panel-type" src={dagger}></img>
+        <img
+          className="equipment-panel-type"
+          src={displayTypeIcon(info.type)}
+          alt="type"
+        />
+      </div>
+      <div className="equipment-panel-row-2">
         <img className="equipment-panel-img" src={materia} alt="equipment" />
-        <div className="equipment-panel-desc" />
-      </div> */}
-      
-      {/* <div className="equipment-panel-name">Equipment</div>
-      <img className="equipment-panel-type" src={dagger}></img>
-      <img className="equipment-panel-img" src={materia} alt="equipment" />
-      <div className="equipment-panel-desc" /> */}
-      
-      
-
-
-
-
-      {/* {Object.keys(info).length !== 0 ? (
-        displaySwitch()
-      ) : (
-        <div className="equipment-panel-container" onClick={onClick}>
-          <div className="eq-name">Empty</div>
-          <div className="eq-class"></div>
-          <div className="eq-stat"></div>
-          <div className="eq-img">
-            <img src="" alt="eq" />
-          </div>
-
-          <div className="eq-handle">1H</div>
-          <div className="eq-enhancement"></div>
+        <div className="equipment-panel-desc">
+          {/* <div className="equipment-panel-desc-stat-wrapper">
+            <div className="equipment-panel-desc-stat-atk">
+              <div>ATK</div>
+              <div>{info.atk}</div>
+            </div>
+            <div className="equipment-panel-desc-stat-def">
+              <div>DEF</div>
+              <div>{info.def}</div>
+            </div>
+            <div className="equipment-panel-desc-stat-mag">
+              <div>MAG</div>
+              <div>{info.mag}</div>
+            </div>
+            <div className="equipment-panel-desc-stat-spr">
+              <div>SPR</div>
+              <div>{info.spr}</div>
+            </div>
+            <div className="equipment-panel-desc-stat-hp">
+              <div>HP</div>
+              <div>{info.hp}</div>
+            </div>
+            <div className="equipment-panel-desc-stat-mp">
+              <div>MP</div>
+              <div>{info.mp}</div>
+            </div>
+          </div> */}
         </div>
-      )} */}
+      </div>
+    </div>
+  ) : (
+    <div className="equipment-panel-container" onClick={onClick}>
+      <div className="equipment-panel-header">
+        <div className="equipment-panel-slot">{getSlotTitle(slot)}</div>
+        <div className="equipment-panel-name">{info.name}</div>
+        <img
+          className="equipment-panel-type"
+          src={displayTypeIcon(info.type)}
+          alt="type"
+        />
+      </div>
+      <div className="equipment-panel-row-2">
+        <img className="equipment-panel-img" src={materia} alt="equipment" />
+        <div className="equipment-panel-desc">
+          <div className="equipment-panel-desc-stat-wrapper">
+            {info.atk !== 0 ? (
+              <div className="equipment-panel-desc-stat-atk">
+                <div>ATK</div>
+                <div>{info.atk}</div>
+              </div>
+            ) : null}
+            {info.def !== 0 ? (
+              <div className="equipment-panel-desc-stat-def">
+                <div>DEF</div>
+                <div>{info.def}</div>
+              </div>
+            ) : null}
+            {info.mag !== 0 ? (
+              <div className="equipment-panel-desc-stat-mag">
+                <div>MAG</div>
+                <div>{info.mag}</div>
+              </div>
+            ) : null}
+            {info.spr !== 0 ? (
+              <div className="equipment-panel-desc-stat-spr">
+                <div>SPR</div>
+                <div>{info.spr}</div>
+              </div>
+            ) : null}
+            {info.hp !== 0 ? (
+              <div className="equipment-panel-desc-stat-hp">
+                <div>HP</div>
+                <div>{info.hp}</div>
+              </div>
+            ) : null}
+            {info.mp !== 0 ? (
+              <div className="equipment-panel-desc-stat-mp">
+                <div>MP</div>
+                <div>{info.mp}</div>
+              </div>
+            ) : null}
+          </div>
+          {/* {info.hp !== 0 ? <div>HP: {info.hp}</div> : null}
+          {info.mp !== 0 ? <div>MP: {info.mp}</div> : null}
+          {info.atk !== 0 ? <div>ATK: {info.atk}</div> : null}
+          {info.def !== 0 ? <div>DEF: {info.def}</div> : null}
+          {info.mag !== 0 ? <div>MAG: {info.mag}</div> : null}
+          {info.spr !== 0 ? <div>SPR: {info.spr}</div> : null} */}
+        </div>
+      </div>
     </div>
   );
+
+  // return (
+  //   <div className="equipment-panel-container">
+  //     {/* <div className="equipment-panel-slot">L. Hand</div> */}
+
+  //     {Object.keys(info).length === 0 && info.constructor === Object ? (
+  //       <div className="equipment-panel-selection-area" onClick={onClick}>
+  //         <div className="equipment-panel-name">Equipment</div>
+  //         {/* <img className="equipment-panel-type" src={dagger}></img> */}
+  //         <img className="equipment-panel-img" src={materia} alt="equipment" />
+  //         <div className="equipment-panel-desc"></div>
+  //       </div>
+  //     ) : (
+  //       <div className="equipment-panel-selection-area" onClick={onClick}>
+  //         <div className="equipment-panel-name">{info.name}</div>
+  //         {/* <img className="equipment-panel-type" src={dagger}></img> */}
+  //         <img
+  //           className="equipment-panel-type"
+  //           src={displayTypeIcon(info.type)}
+  //           alt="type"
+  //         ></img>
+  //         <img className="equipment-panel-img" src={materia} alt="equipment" />
+  //         <div className="equipment-panel-desc">
+  //           {info.hp !== 0 ? <div>HP: {info.hp}</div> : null}
+  //           {info.mp !== 0 ? <div>MP: {info.mp}</div> : null}
+  //           {info.atk !== 0 ? <div>ATK: {info.atk}</div> : null}
+  //           {info.def !== 0 ? <div>DEF: {info.def}</div> : null}
+  //           {info.mag !== 0 ? <div>MAG: {info.mag}</div> : null}
+  //           {info.spr !== 0 ? <div>SPR: {info.spr}</div> : null}
+
+  //           {/* <div>DEF: 59</div>
+  //           <div>MAG: 170</div>
+  //           <div>SPR: 80</div> */}
+  //         </div>
+  //       </div>
+  //     )}
+  //   </div>
+  // );
 };
 
 export default EquipmentPanel;

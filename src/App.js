@@ -71,7 +71,7 @@ class App extends Component {
       //   conditional: {},
       // },
       lHand: {
-        name: "Candy bar",
+        name: "Empty",
         rarity: 0,
         eq_id: 0,
         type: 0,
@@ -110,7 +110,7 @@ class App extends Component {
         petrify_resist: 0,
       }, 
       rHand: {
-        name: "Phaser",
+        name: "Spirit Gun",
         rarity: 0,
         eq_id: 0,
         type: 0,
@@ -149,7 +149,7 @@ class App extends Component {
         petrify_resist: 0,
       },
       head: {
-        name: "Baseball Cap",
+        name: "Empty",
         rarity: 0,
         eq_id: 0,
         type: 0,
@@ -182,7 +182,7 @@ class App extends Component {
         petrify_resist: 0,
       },
       body: {
-        name: "Shorts",
+        name: "Empty",
         rarity: 0,
         eq_id: 0,
         type: 0,
@@ -215,7 +215,7 @@ class App extends Component {
         petrify_resist: 0,
       },
       acc1: {
-        name: "Slingshot",
+        name: "Empty",
         rarity: 0,
         eq_id: 0,
         type: 0,
@@ -248,7 +248,7 @@ class App extends Component {
         petrify_resist: 0,
       },
       acc2: {
-        name: "Utility Belt",
+        name: "Empty",
         rarity: 0,
         eq_id: 0,
         type: 0,
@@ -314,254 +314,7 @@ class App extends Component {
     this.setState({comparisonEq: equipment});
   }
 
-  //Save for equipment comparisons
-  // handleEqComparison(slot, equipment) {
-  // }
-
-  //----------------------------------Continue---------------------------------
-  // calcTotalEqStats = () => {
-  //   let total = { //temp state
-  //     base: [0,0,0,0,0,0],
-  //     passive: [0,0,0,0,0,0],
-  //     status_resist: [0,0,0,0,0,0,0,0], //8:poison,blind,sleep,silence,paralysis,confusion,disease,petrification
-  //     element_resist: [0,0,0,0,0,0,0,0], //8:fire,ice,lightning,water,wind,earth,light,dark
-  //     resist_enfeeblement: [0,0,0,0,0], //5:charm,stop,berserk,break,death
-  //     killer:[0,0,0,0,0,0,0,0,0,0,0], //11:aquatic,beast,bird,demon,dragon,fairy,human,insect,machine,plant,stone
-  //     tdh: 0, 
-  //     tdw: 0,
-  //     lb_damage: 0,
-  //     lb_fill_rate: 0, 
-  //     lb_fill_stone: 0, //max 12
-  //     evasion_physical: 0, //softcap 100
-  //     evasion_magic: 0
-  //   };
-  //   let { lHand, rHand, head, body, acc1, acc2 } = this.state;
-  //   let eqArr = [lHand, rHand, head, body, acc1, acc2];
-
-  //   for (let slot of eqArr) {
-  //     if(Object.keys(slot).length > 0 && slot.constructor === Object) {
-  //       for(let key in slot){
-  //         if(key === 'name'){
-  //           //do nothing, remove later
-  //           // console.log('eq name ', key);
-  //         } else if(key === 'stats'){
-  //           for(let stat in slot[key]){
-  //             if(stat === 'hp'){
-  //               total.base[0] += slot[key][stat];
-  //             } else if(stat === 'mp'){
-  //               total.base[1] += slot[key][stat];
-  //             } else if(stat === 'atk'){
-  //               total.base[2] += slot[key][stat];
-  //             } else if(stat === 'def'){
-  //               total.base[3] += slot[key][stat];
-  //             } else if(stat === 'mag'){
-  //               total.base[4] += slot[key][stat];
-  //             } else if(stat === 'spr'){
-  //               total.base[5] += slot[key][stat];
-  //             } else if(stat === 'passive'){
-  //               let passiveArr = slot[key][stat];
-  //               total.passive = total.passive.map(function (num, index) {
-  //                 return num + passiveArr[index];
-  //               });
-  //             } 
-  //           }
-  //         } else if(key === 'resistance_ailment'){
-  //           let ailmentArr = this.calcResistAilment(slot[key]);
-  //           total.status_resist = total.status_resist.map(function (num, index) {
-  //             return num + ailmentArr[index];
-  //           });
-  //         } else if(key === 'resistance_element'){
-  //           let elementArr = this.calcResistElement(slot[key]);
-  //           total.element_resist = total.element_resist.map(function (num, index) {
-  //             return num + elementArr[index];
-  //           });
-  //         } else if(key === 'resistance_enfeeblement'){
-  //           let enfeeblementArr = this.setResistEnfeeblement(slot[key]);
-  //           total.resist_enfeeblement = total.resist_enfeeblement.map(function (num, index) {
-  //             return num + enfeeblementArr[index];
-  //           });
-  //         } else if(key === 'killer'){
-  //           let killerArr = this.calcKiller(slot[key]);
-  //           total.killer = total.killer.map(function (num, index) {
-  //             return num + killerArr[index];
-  //           });
-  //         } else if(key === 'tdh'){
-  //           total.tdh += slot[key];
-  //         } else if(key === 'tdw'){
-  //           total.tdw += slot[key];
-  //         } else if(key === 'lb_damage'){
-  //           total.lb_damage += slot[key];
-  //         } else if(key === 'lb_fill_rate'){
-  //           total.lb_fill_rate += slot[key];
-  //         } else if(key === 'lb_fill_stone'){
-  //           total.lb_fill_stone += slot[key];
-  //         } else if(key === 'evasion_magic'){
-  //           total.evasion_magic += slot[key];
-  //         } else if(key === 'evasion_physical'){
-  //           total.evasion_physical += slot[key];
-  //         } else if(key === 'regen_hp'){
-  //           total.regen_hp += slot[key];
-  //         } else if(key === 'regen_mp'){
-  //           total.regen_mp += slot[key];
-  //         } else if(key === 'conditional'){
-  //           this.calcConditional(slot[key], total);
-  //         }
-  //         // console.log('bracket ', slot[key]);
-  //       }
-  //     }
-  //   }
-
-  //   this.calcConditional(this.state.unit_2.conditional, total);
-  //   return total;
-  // }
-
-  // calcConditional = (obj, total) => {
-  //   let eqArr = [];
-  //   if(Object.keys(this.state.lHand).length > 0 && this.state.lHand.constructor === Object){
-  //     eqArr.push(this.state.lHand);
-  //   }
-  //   if(Object.keys(this.state.rHand).length > 0 && this.state.rHand.constructor === Object){
-  //     eqArr.push(this.state.rHand);
-  //   }
-  //   if(Object.keys(this.state.head).length > 0 && this.state.head.constructor === Object){
-  //     eqArr.push(this.state.head);
-  //   }
-  //   if(Object.keys(this.state.body).length > 0 && this.state.body.constructor === Object){
-  //     eqArr.push(this.state.body);
-  //   }
-
-  //   let tmrFlag = false;
-  //   let tmrArr = [...eqArr];
-  //   if(Object.keys(this.state.acc1).length > 0 && this.state.acc1.constructor === Object){
-  //     tmrArr.push(this.state.acc1);
-  //   }
-  //   if(Object.keys(this.state.acc2).length > 0 && this.state.acc2.constructor === Object){
-  //     tmrArr.push(this.state.acc2);
-  //   }
-
-  //   for(let condition in obj){
-  //     //Checks specifically for equipment conditionals
-  //     if(eqArr.some(function(element){ return element.type === condition ? true : false; })){
-  //       for(let key in obj[condition]){
-  //         this.addStats(obj[condition], key, total);
-  //       }
-  //     } else if (condition === 'tmr'){
-  //       if(tmrArr.some(function(element){ return element.name === obj[condition]['name'] ? true : false; })){
-  //         tmrFlag = true;     
-  //         for(let key in obj[condition]){
-  //           this.addStats(obj[condition], key, total);
-  //         }
-  //       }
-  //     } else if (tmrFlag === false && condition === 'stmr'){
-  //       if(tmrArr.some(function(element){ return element.name === obj[condition]['name'] ? true : false; })){
-  //         tmrFlag = true;    
-  //         for(let key in obj[condition]){
-  //           this.addStats(obj[condition], key, total);
-  //         }
-  //       }
-  //     }
-  //   }
-  //   // console.log('con total: ', total);
-  // }
-
-  // addStats = (obj, key, total) => {
-  //   if( key === 'hp'){
-  //     total.passive[0] += obj[key];
-  //   } else if(key === 'mp'){
-  //     total.passive[1] += obj[key];
-  //   } else if(key === 'atk'){
-  //     total.passive[2] += obj[key];
-  //   } else if(key === 'def'){
-  //     total.passive[3] += obj[key];
-  //   } else if(key === 'mag'){
-  //     total.passive[4] += obj[key];
-  //   } else if(key === 'spr'){
-  //     total.passive[5] += obj[key];
-  //   } else if(key === 'resistance_ailment'){
-  //     let ailmentArr = this.calcResistAilment(obj[key]);
-  //     total.status_resist = total.status_resist.map(function (num, index) {
-  //       return num + ailmentArr[index];
-  //     });
-  //   } else if(key === 'resistance_element'){
-  //     let elementArr = this.calcResistElement(obj[key]);
-  //     total.element_resist = total.element_resist.map(function (num, index) {
-  //       return num + elementArr[index];
-  //     });
-  //   } else if(key === 'resistance_enfeeblement'){
-  //     let enfeeblementArr = this.setResistEnfeeblement(obj[key]);
-  //     total.resist_enfeeblement = total.resist_enfeeblement.map(function (num, index) {
-  //       return num + enfeeblementArr[index];
-  //     });
-  //   } else if(key === 'killer'){
-  //     let killerArr = this.calcKiller(obj[key]);
-  //     total.killer = total.killer.map(function (num, index) {
-  //       return num + killerArr[index];
-  //     });
-  //   } else if(key === 'tdh'){ //Next
-  //     total.tdh += obj[key];
-  //   } else if(key === 'tdw'){
-  //     total.tdw += obj[key];
-  //   } else if(key === 'lb_damage'){
-  //     total.lb_damage += obj[key];
-  //   } else if(key === 'lb_fill_rate'){
-  //     total.lb_fill_rate += obj[key];
-  //   } else if(key === 'lb_fill_stone'){
-  //     total.lb_fill_stone += obj[key];
-  //   } else if(key === 'evasion_magic'){
-  //     total.evasion_magic += obj[key];
-  //   } else if(key === 'evasion_physical'){
-  //     total.evasion_physical += obj[key];
-  //   } else if(key === 'regen_hp'){
-  //     total.regen_hp += obj[key];
-  //   } else if(key === 'regen_mp'){
-  //     total.regen_mp += obj[key];
-  //   }
-  // }
-
-
-  //Researved for search field
-  // onUnitSelection = (unitName) => {
-  //   fetch("http://localhost:3000/loadUnit", {
-  //       method: "post",
-  //       headers: { 
-  //         "Accept": "application/json",
-  //         "Content-Type": "application/json" },
-  //       body: JSON.stringify({
-  //         unitName: unitName,
-  //         // password: this.state.signInPassword
-  //       })
-  //     })
-  //     .then(response => response.json())
-  //     .then(res => {this.setState(initUnitState => ({
-  //       unit_2: {
-  //         ...initUnitState.unit_2,
-  //         name: res.name,
-  //         hp: res.stats.hp,
-  //         mp: res.stats.mp,
-  //         atk: res.stats.atk,
-  //         def: res.stats.def,
-  //         mag: res.stats.mag,
-  //         spr: res.stats.spr,
-  //         passive: res.stats.passive,
-  //         weapon: res.weapon,
-  //         armor: res.armor,
-  //         element_resist: this.calcResistElement(res.resistance_element),
-  //         status_resist: this.calcResistAilment(res.resistance_ailment),
-  //         resist_enfeeblement: this.calcResistEnfeeblement(res.resistance_enfeeblement),
-  //         killer: this.calcKiller(res.killer),
-  //         tdh: res.tdh,
-  //         tdw: res.tdw,
-  //         lb_damage: res.lb_damage,
-  //         lb_fill_rate: res.lb_fill_rate,
-  //         lb_fill_stone: res.lb_fill_stone,
-  //         evasion_magic: res.evasion_magic,
-  //         evasion_physical: res.evasion_physical,
-  //         regen_hp: res.regen_hp,
-  //         regen_mp: res.regen_mp,
-  //         conditional: res.conditional
-  //       }
-  //     }))})
-  // };
+  
 
   //---------------------------------------------New
   // New on searchbar selection
@@ -611,114 +364,7 @@ class App extends Component {
     this.setState({unit_1: this.initUnitState});
   };
 
-  //change the function's name to something more meaningful
-  //8:fire,ice,lightning,water,wind,earth,light,dark
-  // calcResistElement = (obj) => {
-  //   let elementArr = [0,0,0,0,0,0,0,0];
-  //   if(obj !== undefined){
-  //     for(let element in obj){
-  //       if(element === 'fire') {
-  //         elementArr[0] += obj[element];
-  //       } else if(element === 'ice') {
-  //         elementArr[1] += obj[element]; 
-  //       } else if(element === 'lightning') {
-  //         elementArr[2] += obj[element]; 
-  //       } else if(element === 'water') {
-  //         elementArr[3] += obj[element]; 
-  //       } else if(element === 'wind') {
-  //         elementArr[4] += obj[element]; 
-  //       } else if(element === 'earth') {
-  //         elementArr[5] += obj[element]; 
-  //       } else if(element === 'light') {
-  //         elementArr[6] += obj[element]; 
-  //       } else if(element === 'dark') {
-  //         elementArr[7] += obj[element]; 
-  //       } 
-  //     }
-  //   }
-  //   return elementArr;
-  // }
-
-  // //8:poison,blind,sleep,silence,paralysis,confusion,disease,petrification
-  // calcResistAilment = (obj) => {
-  //   let elementArr = [0,0,0,0,0,0,0,0];
-  //   if(obj !== undefined){
-  //     for(let element in obj){
-  //       if(element === 'poison') {
-  //         elementArr[0] += obj[element];
-  //       } else if(element === 'blind') {
-  //         elementArr[1] += obj[element]; 
-  //       } else if(element === 'sleep') {
-  //         elementArr[2] += obj[element]; 
-  //       } else if(element === 'silence') {
-  //         elementArr[3] += obj[element]; 
-  //       } else if(element === 'paralysis') {
-  //         elementArr[4] += obj[element]; 
-  //       } else if(element === 'confusion') {
-  //         elementArr[5] += obj[element]; 
-  //       } else if(element === 'disease') {
-  //         elementArr[6] += obj[element]; 
-  //       } else if(element === 'petrification') {
-  //         elementArr[7] += obj[element]; 
-  //       } 
-  //     }
-  //   }
-  //   return elementArr;
-  // }
-
-  // //5:charm,stop,berserk,break,death
-  // calcResistEnfeeblement = (obj) => {
-  //   let elementArr = [0,0,0,0,0,];
-  //   if(obj !== undefined){
-  //     for(let element in obj){
-  //       if(element === 'charm') {;
-  //         elementArr[0] += obj[element];
-  //       } else if(element === 'stop') {
-  //         elementArr[1] += obj[element]; 
-  //       } else if(element === 'berserk') {
-  //         elementArr[2] += obj[element]; 
-  //       } else if(element === 'break') {
-  //         elementArr[3] += obj[element]; 
-  //       } else if(element === 'death') {
-  //         elementArr[4] += obj[element]; 
-  //       } 
-  //     }
-  //   }
-  //   return elementArr;
-  // }
-
-  // //11:aquatic,beast,bird,demon,dragon,fairy,human,insect,machine,plant,stone
-  // calcKiller = (obj) => {
-  //   let elementArr = [0,0,0,0,0,0,0,0,0,0,0];
-  //   if(obj !== undefined){
-  //     for(let element in obj){
-  //       if(element === 'aquatic') {
-  //         elementArr[0] += obj[element];
-  //       } else if(element === 'beast') {
-  //         elementArr[1] += obj[element]; 
-  //       } else if(element === 'bird') {
-  //         elementArr[2] += obj[element]; 
-  //       } else if(element === 'demon') {
-  //         elementArr[3] += obj[element]; 
-  //       } else if(element === 'dragon') {
-  //         elementArr[4] += obj[element]; 
-  //       } else if(element === 'fairy') {
-  //         elementArr[5] += obj[element]; 
-  //       } else if(element === 'human') {
-  //         elementArr[6] += obj[element]; 
-  //       } else if(element === 'insect') {
-  //         elementArr[7] += obj[element]; 
-  //       } else if(element === 'machine') {
-  //         elementArr[8] += obj[element]; 
-  //       } else if(element === 'plant') {
-  //         elementArr[9] += obj[element]; 
-  //       } else if(element === 'stone') {
-  //         elementArr[10] += obj[element]; 
-  //       } 
-  //     }
-  //   }
-  //   return elementArr;
-  // }
+ 
 
   componentDidMount () {
       this.getUnitList();
@@ -788,7 +434,11 @@ class App extends Component {
     console.log('Render: App');
     return (
       <div className="App">
-        <h1 className="app-header">FFBE Unit Builder</h1>
+        <header className="app-header-container">
+          <h1 className="app-header-title">FFBE: Unit Builder</h1>
+          <h1 className="app-header-reset">RESET BUILDER</h1>
+        </header>
+        
         <UnitSearch 
           unitList={this.state.unitList} 
           onUnitSelection={this.onUnitSelection}
@@ -835,8 +485,7 @@ class App extends Component {
           mat4={this.state.materia4}
         
         />
-        <button onClick={() => {this.resetUnit()}} > Reset </button>
-        {/* <button onClick={() => {this.calcTotalEqStats()}} > Calc </button> */}
+        {/* <button onClick={() => {this.resetUnit()}} > Reset </button> */}
       </div>
     );
   }

@@ -23,7 +23,6 @@ const Equipment = ({
   acc1,
   acc2,
 }) => {
-
   const [fetchComplete, setFetchComplete] = useState(false);
   useEffect(() => {
     const fetchEquipmentList = async () => {
@@ -42,13 +41,12 @@ const Equipment = ({
   }, [weaponList]);
   const [armorList, setArmorList] = useState([]);
   useEffect(() => {
-    console.log('Armor List: ', armorList);
+    console.log("Armor List: ", armorList);
   }, [armorList]);
   const [accessoryList, setAccessoryList] = useState([]);
   useEffect(() => {
-    console.log('Accessory List: ', accessoryList);
+    console.log("Accessory List: ", accessoryList);
   }, [accessoryList]);
-
 
   const [displayEqSelection, setDisplayEqSelection] = useState({
     flag: false,
@@ -175,17 +173,19 @@ const Equipment = ({
     <div className="equipment-top-container">
       <div className="equipment-container">
         <div className="equipment-slot-lhand">
-          <div className="equipment-slot-name">L. Hand</div>
+          {/* <div className="equipment-slot-name">L. Hand</div> */}
           <EquipmentPanel
+            slot={"lHand"}
             info={lHand}
-            onClick={() => 
+            onClick={() =>
               setDisplayEqSelection({ flag: true, activeSlot: "lHand" })
             }
           />
         </div>
         <div className="equipment-slot-rhand">
-          <div className="equipment-slot-name">R. Hand</div>
+          {/* <div className="equipment-slot-name">R. Hand</div> */}
           <EquipmentPanel
+            slot={"rHand"}
             info={rHand}
             onClick={() => {
               setDisplayEqSelection({ flag: true, activeSlot: "rHand" });
@@ -193,8 +193,9 @@ const Equipment = ({
           />
         </div>
         <div className="equipment-slot-head">
-          <div className="equipment-slot-name">Head</div>
+          {/* <div className="equipment-slot-name">Head</div> */}
           <EquipmentPanel
+            slot={"head"}
             info={head}
             onClick={() => {
               setDisplayEqSelection({ flag: true, activeSlot: "head" });
@@ -202,8 +203,9 @@ const Equipment = ({
           />
         </div>
         <div className="equipment-slot-body">
-          <div className="equipment-slot-name">Body</div>
+          {/* <div className="equipment-slot-name">Body</div> */}
           <EquipmentPanel
+            slot={"body"}
             info={body}
             onClick={() => {
               setDisplayEqSelection({ flag: true, activeSlot: "body" });
@@ -211,8 +213,9 @@ const Equipment = ({
           />
         </div>
         <div className="equipment-slot-acc1">
-          <div className="equipment-slot-name">Acc 1</div>
+          {/* <div className="equipment-slot-name">Acc 1</div> */}
           <EquipmentPanel
+            slot={"acc1"}
             info={acc1}
             onClick={() => {
               setDisplayEqSelection({ flag: true, activeSlot: "acc1" });
@@ -220,8 +223,9 @@ const Equipment = ({
           />
         </div>
         <div className="equipment-slot-acc2">
-          <div className="equipment-slot-name">Acc 2</div>
+          {/* <div className="equipment-slot-name">Acc 2</div> */}
           <EquipmentPanel
+            slot={"acc2"}
             info={acc2}
             onClick={() => {
               setDisplayEqSelection({ flag: true, activeSlot: "acc2" });
@@ -239,5 +243,5 @@ const Equipment = ({
   );
 };
 
-export default React.memo (Equipment);
+export default React.memo(Equipment);
 // export default Equipment;
