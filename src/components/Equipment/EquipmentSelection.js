@@ -142,7 +142,7 @@ const EquipmentSelection = ({
               <img className="icon-hat" alt="hat" src={hat} />
               <img className="icon-helm" alt="helm" src={helm} />
             </div>
-            <img className="icon-accessory" alt="accessory" src={accessory} />
+            {/* <img className="icon-accessory" alt="accessory" src={accessory} /> */} 
           </div> : null}
           
           <div className="eq-list">

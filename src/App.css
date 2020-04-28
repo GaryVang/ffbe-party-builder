@@ -1,21 +1,12 @@
 .App {
   /* text-align: center; */
-  
 }
 
-/* @font-face {
-  font-family: 'FINALFANTASY LOGO FONT';
-  font-style: normal;
-  font-weight: normal;
-  src: local('FINALFANTASY LOGO FONT'), url('finalf.ttf') format('truetype');
-} */
 
 .app-header-container{
   /* width: 375px; */
   width: 100%;
   height: 40px;
-  /* margin-left: 10px; */
-  
 
   display: inline-flex;
   /* border-bottom: 5px solid black; */

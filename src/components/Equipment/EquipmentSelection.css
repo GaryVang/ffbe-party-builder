@@ -5,7 +5,9 @@
 
   opacity: 1;
 
-  max-height: 60vh;
+  /* max-height: 60vh; */
+
+  max-height: 50.8vh;
   /* width: 20%; */
   overflow: scroll;
   /* position:relative; */
@@ -151,5 +153,5 @@
   justify-items: center;
   width: 100%;
 
-  row-gap: 3px;
+  row-gap: 10px;
 }
