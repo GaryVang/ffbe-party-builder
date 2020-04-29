@@ -1,3 +1,9 @@
+.materia-top-container {
+    display: flex;
+    position: relative;
+    /* width: 100%; */
+}
+
 .materia-container {
     display: inline-flex;
     flex-wrap: wrap;
@@ -9,6 +15,7 @@
 
     margin: 9px 8px 8px 8px;
     background: #0C2233;
+    position: relative;
 }
 
 .materia-container > MateriaPanel {
@@ -53,7 +60,8 @@
     /* background-color: skyblue; */
     background: #065471;
     width: 100%;
-    /* top: 50.8vh; */
-    top: 49.2vh;
+    /* top: 49.2vh; */
+    /* top: 328px; */
+    top: -191px;
 }
 

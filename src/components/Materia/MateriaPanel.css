@@ -8,6 +8,7 @@
     width: 165px;
     height: 51px;
     background: #08141E;
+    
 }
 
 .materia-panel-header {
@@ -22,7 +23,11 @@
     /* border: .5px solid yellow; */
     text-align: left;
     white-space: nowrap;
-    overflow: scroll;
+    /* overflow: scroll; */
+    /* overflow: auto; */
+    overflow: hidden;
+    /* scrollbar-width: thin; */
+    scrollbar-width: none;
 
     font-family: Trebuchet MS;
     font-style: normal;
@@ -89,7 +94,10 @@
     /* border: .1px solid plum; */
     font-size: 10px;
     text-align: left;
-    overflow: scroll;
+    /* overflow: scroll; */
+    overflow: auto;
+    /* scrollbar-width: thin; */
+    scrollbar-width: none;
 
     font-family: Trebuchet MS;
     font-style: normal;

@@ -1,5 +1,6 @@
 .equipment-top-container {
     display: flex;
+    position: relative;
 }
 
 .equipment-container {
@@ -46,5 +47,7 @@
     z-index: 1;
     /* background-color: grey; */
     background: #065471;
+    /* width: 50%; */
     width: 100%;
+    /* margin: 0 8px 0 8px; */
 }

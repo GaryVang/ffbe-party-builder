@@ -1,6 +1,17 @@
 .App {
   /* text-align: center; */
+  height: 667px;
+  width: 375px;
+
+  background: #08141E;
+
+  -ms-overflow-style: none;
+  /* overflow: -moz-scrollbars-none; */
 }
+
+/* ::-webkit-scrollbar {
+  display: none;
+} */
 
 
 .app-header-container{

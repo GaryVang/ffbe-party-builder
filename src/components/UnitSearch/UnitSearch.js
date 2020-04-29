@@ -32,7 +32,8 @@ class UnitSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "",
+      // value: "",
+      value: this.props.defaultValue,
       filteredList: [],
       esper: "",
     };
@@ -41,8 +42,38 @@ class UnitSearch extends React.Component {
     this.resetSearchBar = this.resetSearchBar.bind(this);
   }
 
+
+  // static getDerivedStateFromProps(props, current_state) {
+  //   if (props.resetFlag === true) {
+  //     return {
+  //       value: ""
+  //     }
+  //   }
+  //   return null
+  // }
+
+  // componentDidUpdate(prevProps) {
+  //   // console.log(prevProps);
+  //   // console.log(333333, this.props);
+  //   if(prevProps.resetFlag === true){
+  //     // this.setState({value: ""});
+  //     // this.filterUnitList("");
+  //     this.setState({ value: "" }, function () {
+  //       // this.filterUnitList();
+  //       this.filterUnitList([]);
+  //     });
+  //     this.props.reset();
+  //     console.log(111111111111111,this.state.value);
+  //   }
+  // }
+
+  // if(this.props.resetFlag === true){
+
+  // }
+
   // filterUnitList = () => {
   filterUnitList = (value) => {
+    // console.log(3333333333, this.props.unitList);
     const { unitList } = this.props;
     const { filteredList } = this.state;
     // const { filteredList, value } = this.state;
@@ -93,7 +124,7 @@ class UnitSearch extends React.Component {
   }
 
   handleChange(event) {
-    console.log("input changed");
+    // console.log("input changed");
     event.persist();
     this.setState({ value: event.target.value }, function () {
       // this.filterUnitList();
@@ -102,7 +133,11 @@ class UnitSearch extends React.Component {
   }
 
   handleEsperChange(event) {
-    //Do something
+    event.persist();
+    this.setState({ esper: event.target.value }, function () {
+      // this.filterUnitList();
+      // this.filterUnitList(event.target.value);
+    });
   }
 
   //SearchList is being rendered before state is set
@@ -114,7 +149,8 @@ class UnitSearch extends React.Component {
             className="unit-search-box"
             type="text"
             // placeholder="Ex: Olive"
-            placeholder="Select Unit"
+            // placeholder="Select Unit"
+            placeholder="Search Unit"
             // onKeyUp={filterUnitList()}
             value={this.state.value} //Specifies initial value
             onChange={this.handleChange}

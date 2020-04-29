@@ -59,42 +59,44 @@ const Materia = ({ setEq, setComparisonEq, mat1, mat2, mat3, mat4 }) => {
   };
 
   return (
-    <div className="materia-container">
-      {/* <div className="materia-container-header">
+    <div className="materia-top-container">
+      <div className="materia-container">
+        {/* <div className="materia-container-header">
         <span>Materia</span>
       </div> */}
-      <MateriaPanel
-        className="materia-1"
-        slot="materia1"
-        info={mat1}
-        onClick={() => {
-          setDisplayEqSelection({ flag: true, activeSlot: "materia1" });
-        }}
-      />
-      <MateriaPanel
-        className="materia-2"
-        slot="materia2"
-        info={mat2}
-        onClick={() => {
-          setDisplayEqSelection({ flag: true, activeSlot: "materia2" });
-        }}
-      />
-      <MateriaPanel
-        className="materia-3"
-        slot="materia3"
-        info={mat3}
-        onClick={() => {
-          setDisplayEqSelection({ flag: true, activeSlot: "materia3" });
-        }}
-      />
-      <MateriaPanel
-        className="materia-4"
-        slot="materia4"
-        info={mat4}
-        onClick={() => {
-          setDisplayEqSelection({ flag: true, activeSlot: "materia4" });
-        }}
-      />
+        <MateriaPanel
+          className="materia-1"
+          slot="materia1"
+          info={mat1}
+          onClick={() => {
+            setDisplayEqSelection({ flag: true, activeSlot: "materia1" });
+          }}
+        />
+        <MateriaPanel
+          className="materia-2"
+          slot="materia2"
+          info={mat2}
+          onClick={() => {
+            setDisplayEqSelection({ flag: true, activeSlot: "materia2" });
+          }}
+        />
+        <MateriaPanel
+          className="materia-3"
+          slot="materia3"
+          info={mat3}
+          onClick={() => {
+            setDisplayEqSelection({ flag: true, activeSlot: "materia3" });
+          }}
+        />
+        <MateriaPanel
+          className="materia-4"
+          slot="materia4"
+          info={mat4}
+          onClick={() => {
+            setDisplayEqSelection({ flag: true, activeSlot: "materia4" });
+          }}
+        />
+      </div>
       <div className="materia-selection-container">
         {/* {displayEqSelection.flag ? renderSwitch(activeSlot) : null} */}
         {displayEqSelection.flag ? renderMateriaSelection() : null}

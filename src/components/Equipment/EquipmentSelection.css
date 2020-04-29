@@ -7,14 +7,12 @@
 
   /* max-height: 60vh; */
 
-  max-height: 50.8vh;
-  /* width: 20%; */
-  overflow: scroll;
-  /* position:relative; */
-  /* position: absolute; */
-  /* z-index: 1; */
-  /* position: fixed; */
-  /* position: relative; */
+  /* max-height: 50.8vh; */
+  height: 339px;
+  
+  overflow: auto;
+
+  background: #0C2233;
 }
 
 .eq-select-header {
@@ -27,6 +25,7 @@
   align-items: center;
 
   background: #065471;
+  
   /* background: red; */
   height: 46px;
 }
@@ -154,4 +153,6 @@
   width: 100%;
 
   row-gap: 10px;
+
+  /* background: #0C2233; */
 }

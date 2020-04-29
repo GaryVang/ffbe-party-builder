@@ -106,7 +106,9 @@
     z-index: 0; */
     /* z-index: 1; */
     
-    
+    overflow: scroll;
+    max-height: 570px;
+    z-index: 100;
 }
 
 .search-list-container .search-list-item {
