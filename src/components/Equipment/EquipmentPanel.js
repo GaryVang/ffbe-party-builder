@@ -1,14 +1,14 @@
 import React from "react";
 import "./EquipmentPanel.css";
 // element icons
-import fire from "../UnitInfo/ElementalIcon/element-fire.png";
-import ice from "../UnitInfo/ElementalIcon/element-ice.png";
-import lightning from "../UnitInfo/ElementalIcon/element-lightning.png";
-import water from "../UnitInfo/ElementalIcon/element-water.png";
-import wind from "../UnitInfo/ElementalIcon/element-wind.png";
-import earth from "../UnitInfo/ElementalIcon/element-earth.png";
-import light from "../UnitInfo/ElementalIcon/element-light.png";
-import dark from "../UnitInfo/ElementalIcon/element-dark.png";
+// import fire from "../UnitInfo/ElementalIcon/element-fire.png";
+// import ice from "../UnitInfo/ElementalIcon/element-ice.png";
+// import lightning from "../UnitInfo/ElementalIcon/element-lightning.png";
+// import water from "../UnitInfo/ElementalIcon/element-water.png";
+// import wind from "../UnitInfo/ElementalIcon/element-wind.png";
+// import earth from "../UnitInfo/ElementalIcon/element-earth.png";
+// import light from "../UnitInfo/ElementalIcon/element-light.png";
+// import dark from "../UnitInfo/ElementalIcon/element-dark.png";
 
 //equipment icons
 import dagger from "./EquipmentIcon/Weapon/equipment-dagger.png";
@@ -39,10 +39,7 @@ import accessory from "./EquipmentIcon/equipment-accessory.png";
 
 import materia from "../Materia/MateriaIcon/materia-general.png"; // Remove when finish
 
-//removed 'key' from prop due to warning
 const EquipmentPanel = ({ slot, info, onClick }) => {
-  // Maybe rename file to something more meaningful
-
   const displayTypeIcon = (type) => {
     switch (type) {
       case 1:
@@ -96,7 +93,6 @@ const EquipmentPanel = ({ slot, info, onClick }) => {
       case 60:
         return accessory;
       default:
-        // console.log("Error: Default Icon Displayed!");
         return accessory;
     }
   };
@@ -120,8 +116,6 @@ const EquipmentPanel = ({ slot, info, onClick }) => {
     }
   };
 
-  console.log("Render: EqPanel ");
-
   return info.eq_id === 0 ? (
     <div className="equipment-panel-container" onClick={onClick}>
       <div className="equipment-panel-header">
@@ -137,34 +131,7 @@ const EquipmentPanel = ({ slot, info, onClick }) => {
       </div>
       <div className="equipment-panel-row-2">
         <img className="equipment-panel-img" src={materia} alt="equipment" />
-        <div className="equipment-panel-desc">
-          {/* <div className="equipment-panel-desc-stat-wrapper">
-            <div className="equipment-panel-desc-stat-atk">
-              <div>ATK</div>
-              <div>{info.atk}</div>
-            </div>
-            <div className="equipment-panel-desc-stat-def">
-              <div>DEF</div>
-              <div>{info.def}</div>
-            </div>
-            <div className="equipment-panel-desc-stat-mag">
-              <div>MAG</div>
-              <div>{info.mag}</div>
-            </div>
-            <div className="equipment-panel-desc-stat-spr">
-              <div>SPR</div>
-              <div>{info.spr}</div>
-            </div>
-            <div className="equipment-panel-desc-stat-hp">
-              <div>HP</div>
-              <div>{info.hp}</div>
-            </div>
-            <div className="equipment-panel-desc-stat-mp">
-              <div>MP</div>
-              <div>{info.mp}</div>
-            </div>
-          </div> */}
-        </div>
+        <div className="equipment-panel-desc"></div>
       </div>
     </div>
   ) : (
@@ -219,54 +186,10 @@ const EquipmentPanel = ({ slot, info, onClick }) => {
               </div>
             ) : null}
           </div>
-          {/* {info.hp !== 0 ? <div>HP: {info.hp}</div> : null}
-          {info.mp !== 0 ? <div>MP: {info.mp}</div> : null}
-          {info.atk !== 0 ? <div>ATK: {info.atk}</div> : null}
-          {info.def !== 0 ? <div>DEF: {info.def}</div> : null}
-          {info.mag !== 0 ? <div>MAG: {info.mag}</div> : null}
-          {info.spr !== 0 ? <div>SPR: {info.spr}</div> : null} */}
         </div>
       </div>
     </div>
   );
-
-  // return (
-  //   <div className="equipment-panel-container">
-  //     {/* <div className="equipment-panel-slot">L. Hand</div> */}
-
-  //     {Object.keys(info).length === 0 && info.constructor === Object ? (
-  //       <div className="equipment-panel-selection-area" onClick={onClick}>
-  //         <div className="equipment-panel-name">Equipment</div>
-  //         {/* <img className="equipment-panel-type" src={dagger}></img> */}
-  //         <img className="equipment-panel-img" src={materia} alt="equipment" />
-  //         <div className="equipment-panel-desc"></div>
-  //       </div>
-  //     ) : (
-  //       <div className="equipment-panel-selection-area" onClick={onClick}>
-  //         <div className="equipment-panel-name">{info.name}</div>
-  //         {/* <img className="equipment-panel-type" src={dagger}></img> */}
-  //         <img
-  //           className="equipment-panel-type"
-  //           src={displayTypeIcon(info.type)}
-  //           alt="type"
-  //         ></img>
-  //         <img className="equipment-panel-img" src={materia} alt="equipment" />
-  //         <div className="equipment-panel-desc">
-  //           {info.hp !== 0 ? <div>HP: {info.hp}</div> : null}
-  //           {info.mp !== 0 ? <div>MP: {info.mp}</div> : null}
-  //           {info.atk !== 0 ? <div>ATK: {info.atk}</div> : null}
-  //           {info.def !== 0 ? <div>DEF: {info.def}</div> : null}
-  //           {info.mag !== 0 ? <div>MAG: {info.mag}</div> : null}
-  //           {info.spr !== 0 ? <div>SPR: {info.spr}</div> : null}
-
-  //           {/* <div>DEF: 59</div>
-  //           <div>MAG: 170</div>
-  //           <div>SPR: 80</div> */}
-  //         </div>
-  //       </div>
-  //     )}
-  //   </div>
-  // );
 };
 
 export default EquipmentPanel;

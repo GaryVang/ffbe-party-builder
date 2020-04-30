@@ -3,18 +3,14 @@ import "./Equipment.css";
 import EquipmentPanel from "./EquipmentPanel";
 import EquipmentSelection from "./EquipmentSelection";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
-// const DB_URL = "http://localhost:3000/loadEq";
 const DB_URL = "http://localhost:3000/equipment";
 
 const Equipment = ({
-  // Consider removing weapon_option and armor_option if equipment_option suffices
   setEq,
   setComparisonEq,
-  // unit_weapon_option,
-  // unit_armor_option,
   unit_equipment_option,
   lHand,
   rHand,
@@ -27,7 +23,6 @@ const Equipment = ({
   useEffect(() => {
     const fetchEquipmentList = async () => {
       const res = await axios.get(DB_URL);
-      // console.log(res);
       setWeaponList(res.data.weapon_list);
       setArmorList(res.data.armor_list);
       setAccessoryList(res.data.accessory_list);
@@ -36,17 +31,8 @@ const Equipment = ({
   }, []);
 
   const [weaponList, setWeaponList] = useState([]);
-  useEffect(() => {
-    console.log("Weapon List: ", weaponList);
-  }, [weaponList]);
   const [armorList, setArmorList] = useState([]);
-  useEffect(() => {
-    console.log("Armor List: ", armorList);
-  }, [armorList]);
   const [accessoryList, setAccessoryList] = useState([]);
-  useEffect(() => {
-    console.log("Accessory List: ", accessoryList);
-  }, [accessoryList]);
 
   const [displayEqSelection, setDisplayEqSelection] = useState({
     flag: false,
@@ -54,7 +40,6 @@ const Equipment = ({
   });
 
   function renderSwitch(param) {
-    // console.log(55555);
     let filteredEqList = [];
 
     switch (param) {
@@ -153,8 +138,7 @@ const Equipment = ({
             activeSlot={displayEqSelection.activeSlot}
           />
         );
-      default:
-        // accessory 2
+      case "acc2":
         return (
           <EquipmentSelection
             eqList={accessoryList}
@@ -164,16 +148,14 @@ const Equipment = ({
             activeSlot={displayEqSelection.activeSlot}
           />
         );
+      default:
     }
   }
-
-  console.log("Render: Eq");
 
   return (
     <div className="equipment-top-container">
       <div className="equipment-container">
         <div className="equipment-slot-lhand">
-          {/* <div className="equipment-slot-name">L. Hand</div> */}
           <EquipmentPanel
             slot={"lHand"}
             info={lHand}
@@ -183,7 +165,6 @@ const Equipment = ({
           />
         </div>
         <div className="equipment-slot-rhand">
-          {/* <div className="equipment-slot-name">R. Hand</div> */}
           <EquipmentPanel
             slot={"rHand"}
             info={rHand}
@@ -193,7 +174,6 @@ const Equipment = ({
           />
         </div>
         <div className="equipment-slot-head">
-          {/* <div className="equipment-slot-name">Head</div> */}
           <EquipmentPanel
             slot={"head"}
             info={head}
@@ -203,7 +183,6 @@ const Equipment = ({
           />
         </div>
         <div className="equipment-slot-body">
-          {/* <div className="equipment-slot-name">Body</div> */}
           <EquipmentPanel
             slot={"body"}
             info={body}
@@ -213,7 +192,6 @@ const Equipment = ({
           />
         </div>
         <div className="equipment-slot-acc1">
-          {/* <div className="equipment-slot-name">Acc 1</div> */}
           <EquipmentPanel
             slot={"acc1"}
             info={acc1}
@@ -223,7 +201,6 @@ const Equipment = ({
           />
         </div>
         <div className="equipment-slot-acc2">
-          {/* <div className="equipment-slot-name">Acc 2</div> */}
           <EquipmentPanel
             slot={"acc2"}
             info={acc2}
@@ -234,7 +211,6 @@ const Equipment = ({
         </div>
       </div>
       <div className="equipment-selection-container">
-        {/* {displayEqSelection.flag ? renderSwitch(activeSlot) : null} */}
         {displayEqSelection.flag
           ? renderSwitch(displayEqSelection.activeSlot)
           : null}

@@ -9,42 +9,21 @@ import axios from "axios";
 const MATERIA_URL = "http://localhost:3000/materia";
 
 const Materia = ({ setEq, setComparisonEq, mat1, mat2, mat3, mat4 }) => {
-  console.log("Render: Materia");
-
   const [fetchComplete, setFetchComplete] = useState(false);
   useEffect(() => {
     const fetchEquipmentList = async () => {
       const res = await axios.get(MATERIA_URL);
-      // console.log(res);
-      //   setWeaponList(res.data.weapon_list);
       setmateriaList(res.data);
     };
     fetchEquipmentList();
   }, []);
 
   const [materiaList, setmateriaList] = useState([]);
-  useEffect(() => {
-    console.log("Materia List: ", materiaList);
-  }, [materiaList]);
 
   const [displayEqSelection, setDisplayEqSelection] = useState({
     flag: false,
     activeSlot: "",
   });
-
-  const handleClick = (activeSlot) => (e) => {
-    setDisplayEqSelection({ flag: true, activeSlot: activeSlot });
-
-    return (
-      <EquipmentSelection
-        eqList={materiaList}
-        setDisplayEqSelection={setDisplayEqSelection}
-        setEq={setEq}
-        setComparisonEq={setComparisonEq}
-        activeSlot={activeSlot}
-      />
-    );
-  };
 
   const renderMateriaSelection = () => {
     return (
@@ -61,9 +40,6 @@ const Materia = ({ setEq, setComparisonEq, mat1, mat2, mat3, mat4 }) => {
   return (
     <div className="materia-top-container">
       <div className="materia-container">
-        {/* <div className="materia-container-header">
-        <span>Materia</span>
-      </div> */}
         <MateriaPanel
           className="materia-1"
           slot="materia1"
@@ -98,7 +74,6 @@ const Materia = ({ setEq, setComparisonEq, mat1, mat2, mat3, mat4 }) => {
         />
       </div>
       <div className="materia-selection-container">
-        {/* {displayEqSelection.flag ? renderSwitch(activeSlot) : null} */}
         {displayEqSelection.flag ? renderMateriaSelection() : null}
       </div>
     </div>

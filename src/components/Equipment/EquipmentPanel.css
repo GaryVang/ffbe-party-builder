@@ -1,198 +1,107 @@
 .equipment-panel-container {
-    display: flex;
-    flex-wrap: wrap;
-    /* border: .5px solid red; */
-    /* width: 45vw;
-    height: 9.5vh; */
-
-    width: 165px;
-    height: 51px;
-    background: #08141E;
+  display: flex;
+  flex-wrap: wrap;
+  width: 165px;
+  height: 51px;
+  background: #08141e;
 }
 
 .equipment-panel-header {
-    display: inline-flex;
-    width: 100%;
-    /* margin: 3px 0 2px 0; */
-    margin-top: 1px;
-    height: 16px;
+  display: inline-flex;
+  width: 100%;
+  margin-top: 1px;
+  height: 16px;
 }
 
 .equipment-panel-header > div {
-    display: flex;
-    align-items: center;
-    /* border: .5px solid yellow; */
-    text-align: left;
-    white-space: nowrap;
-    /* overflow: scroll; */
-
-    font-family: Trebuchet MS;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 10px;
-    line-height: 12px;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  white-space: nowrap;
+  font-family: Trebuchet MS;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
 }
 
 .equipment-panel-slot {
-    margin-left: 8px;
-    color: white;
-    width: 34px;
-    justify-content: center;
+  margin-left: 8px;
+  color: white;
+  width: 34px;
+  justify-content: center;
 }
 
 .equipment-panel-name {
-    margin-left: 8px;
-    flex: 1;
-    color: #FFC045;
-    flex-wrap: nowrap;
-    overflow: hidden;
+  margin-left: 8px;
+  flex: 1;
+  color: #ffc045;
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 .equipment-panel-name-empty {
-    color: #7C7C7C;
-    font-style: italic;
+  color: #7c7c7c;
+  font-style: italic;
 }
 
 .equipment-panel-type {
-    height: 16px;
+  height: 16px;
 }
 
 .equipment-panel-row-2 {
-    display: inline-flex;
-    margin-bottom: 3px;
-    height: 31px;
-    width: 100%;
+  display: inline-flex;
+  margin-bottom: 3px;
+  height: 31px;
+  width: 100%;
 }
 
 .equipment-panel-img {
-    height: 100%;
-    /* border: .1px solid blue; */
-    margin-left: 10px;
+  height: 100%;
+  margin-left: 10px;
 }
 
 .equipment-panel-desc {
-    height: 100%;
-    flex: 1;
-    /* border: .1px solid plum; */
-    font-size: 10px;
-    text-align: left;
-    /* overflow: scroll; */
-    /* overflow: hidden; */
-
-    font-family: Trebuchet MS;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 10px;
-    line-height: 12px;
-    margin-left: 10px;
-
-    color: white;
-
-    display: flex;
-    text-align: center;
-
-    align-items: center;
-
-    /* overflow: scroll; */
-    overflow: auto;
-    /* scrollbar-width: thin; */
-    scrollbar-width: none;
+  height: 100%;
+  flex: 1;
+  font-size: 10px;
+  text-align: left;
+  font-family: Trebuchet MS;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  margin-left: 10px;
+  color: white;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  overflow: auto;
+  /* scrollbar-width: thin; */
+  scrollbar-width: none;
 }
 
 /* For Chrome */
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .equipment-panel-desc-stat-wrapper {
-    width: 100%;
-    display: inline-flex;
-    /* overflow: scroll; */
-    flex: 1;
-    height: 100%;
+  width: 100%;
+  display: inline-flex;
+  flex: 1;
+  height: 100%;
 }
 
 .equipment-panel-desc-stat-wrapper > div > div {
-    width: 18px;
-    height: 12px;
+  width: 18px;
+  height: 12px;
 }
 
 .equipment-panel-desc-stat-wrapper > div {
-    margin-right: 6px;
+  margin-right: 6px;
 }
 
 .equipment-panel-desc-stat-wrapper > div > div:nth-child(1) {
-    text-decoration-line: underline;
+  text-decoration-line: underline;
 }
-
-
-/* --------------------------------------old------------------------ */
-
-/* .equipment-panel-container {
-    display: flex;
-    flex-wrap: wrap;
-    border: .5px solid red;
-    width: 45vw;
- 
-}
-
-.equipment-panel-selection-area {
-    display: flex;
-    flex-wrap: wrap;
-
-    width: 100%;
-
-}
-
-.equipment-panel-name {
-    display: flex;
-
-    align-items: center;
-
-    border: .5px solid yellow;
-    width: 80%;
-    text-align: left;
-
-    padding-left: 5px;
- 
-    flex: 1 0 80%;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-}
-
-.equipment-panel-type{
-    width: 10%;
-
-
-}
-
-.equipment-panel-img {
-
-    height: 6.5vh;
-    border: .1px solid blue;
-
-}
-
-.equipment-panel-desc{
-    height: 6.5vh;
-
-    flex: 1;
-
-    border: .1px solid plum;
-    display: flex;
- 
-    font-size: 12px;
-    text-align: center;
-
-    align-items: center;
-
-    overflow: hidden;
-    
-}
-
-.equipment-panel-desc > div {
-    width: 25%;
-} */
-

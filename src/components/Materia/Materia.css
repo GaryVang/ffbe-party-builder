@@ -1,67 +1,59 @@
 .materia-top-container {
-    display: flex;
-    position: relative;
-    /* width: 100%; */
+  display: flex;
+  position: relative;
 }
 
 .materia-container {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-
-    /* height: 22.5vh; */
-    height: 129px;
-
-    margin: 9px 8px 8px 8px;
-    background: #0C2233;
-    position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 129px;
+  margin: 9px 8px 8px 8px;
+  background: #0c2233;
+  position: relative;
 }
 
 .materia-container > MateriaPanel {
-    flex: 1 1;
+  flex: 1 1;
 }
 
 .materia-container-header {
-    width: 100%;
-    font-size: 10px;
-    text-align: left;
-    padding-left: 10px;
-    overflow: hidden;
-    height: 12px;
-    /* margin-top: -20px; */
+  width: 100%;
+  font-size: 10px;
+  text-align: left;
+  padding-left: 10px;
+  overflow: hidden;
+  height: 12px;
 }
 
 .materia-container-header > span {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
-.materia-container-header > span:before, .materia-container-header > span:after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    border-bottom: 2px solid;
-    width: 592px;
+.materia-container-header > span:before,
+.materia-container-header > span:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  border-bottom: 2px solid;
+  width: 592px;
 }
 
-.materia-container-header > span:before{
-    right: 100%;
+.materia-container-header > span:before {
+  right: 100%;
 }
 
-.materia-container-header > span:after{
-    left:100%;
+.materia-container-header > span:after {
+  left: 100%;
 }
 
 .materia-selection-container {
-    position: absolute;
-    left: 0px;
-    z-index: 1;
-    /* background-color: skyblue; */
-    background: #065471;
-    width: 100%;
-    /* top: 49.2vh; */
-    /* top: 328px; */
-    top: -191px;
+  position: absolute;
+  left: 0px;
+  z-index: 1;
+  background: #065471;
+  width: 100%;
+  top: -191px;
 }
-

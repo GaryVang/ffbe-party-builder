@@ -1,110 +1,75 @@
 .materia-panel-container {
-    display: flex;
-    flex-wrap: wrap;
-    /* border: .5px solid red; */
-    /* width: 45vw;
-    height: 9.5vh; */
-
-    width: 165px;
-    height: 51px;
-    background: #08141E;
-    
+  display: flex;
+  flex-wrap: wrap;
+  width: 165px;
+  height: 51px;
+  background: #08141e;
 }
 
 .materia-panel-header {
-    display: inline-flex;
-    width: 100%;
-    margin: 3px 0 2px 0;
+  display: inline-flex;
+  width: 100%;
+  margin: 3px 0 2px 0;
 }
 
 .materia-panel-header > div {
-    display: flex;
-    align-items: center;
-    /* border: .5px solid yellow; */
-    text-align: left;
-    white-space: nowrap;
-    /* overflow: scroll; */
-    /* overflow: auto; */
-    overflow: hidden;
-    /* scrollbar-width: thin; */
-    scrollbar-width: none;
-
-    font-family: Trebuchet MS;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 10px;
-    line-height: 12px;
-    
+  display: flex;
+  align-items: center;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  scrollbar-width: none;
+  font-family: Trebuchet MS;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
 }
 
 .materia-panel-slot {
-    margin-left: 11px;
-    color: white;
-    width: 28px;
-    justify-content: center;
+  margin-left: 11px;
+  color: white;
+  width: 28px;
+  justify-content: center;
 }
 
 .materia-panel-name {
-    margin-left: 11px;
-    flex: 1;
-    color: #FFC045;
-    flex-wrap: nowrap;
-    overflow: hidden;
+  margin-left: 11px;
+  flex: 1;
+  color: #ffc045;
+  flex-wrap: nowrap;
+  overflow: hidden;
 }
 
 .materia-panel-name-empty {
-    color: #7C7C7C;
-    font-style: italic;
+  color: #7c7c7c;
+  font-style: italic;
 }
 
-/* .materia-panel-name {
-    display: flex;
-
-    align-items: center;
-    width: 50vw;
-    height: 3vh;
-
-    border: .5px solid yellow;
-    width: 100%;
-    text-align: left;
-
-    padding-left: 5px;
-    white-space: nowrap;
-    overflow: scroll;
-} */
-
-
-
 .materia-panel-row-2 {
-    display: inline-flex;
-    margin-bottom: 3px;
-    height: 31px;
-    width: 100%;
+  display: inline-flex;
+  margin-bottom: 3px;
+  height: 31px;
+  width: 100%;
 }
 
 .materia-panel-img {
-    height: 100%;
-    /* border: .1px solid blue; */
-    margin-left: 10px;
+  height: 100%;
+  margin-left: 10px;
 }
 
-.materia-panel-desc{
-    height: 100%;
-    flex: 1;
-    /* border: .1px solid plum; */
-    font-size: 10px;
-    text-align: left;
-    /* overflow: scroll; */
-    overflow: auto;
-    /* scrollbar-width: thin; */
-    scrollbar-width: none;
-
-    font-family: Trebuchet MS;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 10px;
-    line-height: 12px;
-    margin-left: 10px;
-
-    color: white;
+.materia-panel-desc {
+  height: 100%;
+  flex: 1;
+  font-size: 10px;
+  text-align: left;
+  overflow: auto;
+  scrollbar-width: none;
+  font-family: Trebuchet MS;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  line-height: 12px;
+  margin-left: 10px;
+  color: white;
 }

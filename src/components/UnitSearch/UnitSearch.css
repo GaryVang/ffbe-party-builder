@@ -1,157 +1,83 @@
 .unit-search-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin: 0 8px 0 8px;
-    /* padding-top: 8px; */
-    padding: 8px 0 8px 0;
-    
-    background: #0C2233;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 8px 0 8px;
+  padding: 8px 0 8px 0;
+  background: #0c2233;
 }
 
-.unit-search-box, .unit-search-box-esper{
-    color: #0C2233;
-    background: #FFC045;
-    border: none;
-
-    text-indent: 5px;
-
-    height: 32px;
-    width: 164px;
-
-    font-family: Trebuchet MS;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 16px;
+.unit-search-box,
+.unit-search-box-esper {
+  color: #0c2233;
+  background: #ffc045;
+  border: none;
+  text-indent: 5px;
+  height: 32px;
+  width: 164px;
+  font-family: Trebuchet MS;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
 }
 
 .unit-search-box {
-    margin-left: 8px;
+  margin-left: 8px;
 }
 
-.unit-search-box-esper{
-    margin-right: 8px;
+.unit-search-box-esper {
+  margin-right: 8px;
 }
 
-
-
-/* ::placeholder {
-    color: white;
-    opacity: 0.5;
-} */
-
-/* .button-browse {
-    background: black;
-    color: white;
-    border-radius: 4px;
-    border: none;
-} */
-
-/* button {
-    background: black;
-    color: white;
-    border-radius: 4px;
-    border: none;
-    margin-left: 4px;
-    font-size: 12px;
-    height: 17px;
-} */
-
-.button-browse, .button-unequip-all {
-    background: black;
-    color: white;
-    border-radius: 4px;
-    border: none;
-    margin-left: 4px;
-    font-size: 12px;
-    height: 17px;
+.button-browse,
+.button-unequip-all {
+  background: black;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  margin-left: 4px;
+  font-size: 12px;
+  height: 17px;
 }
 
-.unit-search-wrapper, .unit-search-esper-wrapper{
-    /* background-color: yellow; */
-
-    display: flex;
-
-    flex-direction: column;
-    position: relative;
+.unit-search-wrapper,
+.unit-search-esper-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
-
 
 .search-list-container {
-    list-style-type: none;
-    /* padding: 0;
-    margin: 0; */
-    /* left: 32.3%; */
-
-    /* left: -31px; */
-    /* position: relative; */
-    /* display: inline-block; */
-    /* display: flex; */
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    top: 100%;
-    width: 100%;
-    /* width: 100%; */
-    /* left: 0; */
-    /* right: 0; */
-
-    /* position: absolute;
-    left: 50%;
-    margin-left: -120px;
-    top: 50%;
-    margin-top: -265px;
-    z-index: 0; */
-    /* z-index: 1; */
-    
-    overflow: scroll;
-    max-height: 570px;
-    z-index: 100;
+  list-style-type: none;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 100%;
+  width: 100%;
+  overflow: scroll;
+  scrollbar-width: none;
+  max-height: 570px;
+  z-index: 100;
 }
 
 .search-list-container .search-list-item {
-
-  padding: 12px 16px;
   text-decoration: none;
   display: block;
   background-color: rgb(20, 20, 20);
   color: white;
-
   text-align: left;
   width: 147px;
-  /* height: 10px; */
-
-  margin-top: -.5px;
-  margin-left: 8px;
-
-  /* padding: 4px 27px 4px 5px; */
+  margin: -0.5px 0 0 8px;
   padding: 4px 12px 4px 5px;
 }
 
 .search-list-item {
-    /* height: 1px; */
-    font-size: 12px;
-    
-    /* border-style: solid;
-    border-width: .5px;
-    border-color: rgb(27, 27, 27); */
+  font-size: 12px;
 }
-
 
 /*------------------Desktop-------------------------*/
 .search-list-item:hover {
-    background-color: rgb(117, 117, 117);
+  background-color: rgb(117, 117, 117);
 }
 /*--------------------------------------------------*/
-
-/* li:hover:not(.header) {
-     background:#ffffff;
-    background:-moz-linear-gradient(top,  #ffffff 0%, #f6f6f6 47%, #ededed 100%); 
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color- stop(47%,#f6f6f6), color-stop(100%,#ededed)); 
-    background:-webkit-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); 
-    background:-o-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); 
-    background:-ms-linear-gradient(top,  #ffffff 0%,#f6f6f6 47%,#ededed 100%);
-    background:linear-gradient(to bottom,  #ffffff 0%,#f6f6f6 47%,#ededed 100%); 
-} */

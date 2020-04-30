@@ -5,7 +5,6 @@ import general from "./MateriaIcon/materia-general.png";
 const MateriaPanel = ({ slot, info, onClick }) => {
   const getDescription = (skills) => {
     let description = "";
-    // skills.forEach(skill => string += skill.effect + " ")
     for (let i = 0; i < skills.length; i++) {
       if (i + 1 === skills.length) {
         description += skills[i].effect + ".";
@@ -29,26 +28,15 @@ const MateriaPanel = ({ slot, info, onClick }) => {
     } else {
       return "Error: Title Unknown";
     }
-
-    // switch (slot) {
-    //     case "materia1":
-    //         return "MAT 1";
-    //     case "materia2":
-    //         return "MAT 2";
-    //     case "materia3":
-    //         return "MAT 3";
-    //     case "materia4":
-    //         return "MAT 4";
-    //     default:
-    //         return "Title Error";
-    // }
   };
 
   return info == null ? (
     <div className="materia-panel-container" onClick={onClick}>
       <div className="materia-panel-header">
         <div className="materia-panel-slot">{getSlotTitle(slot)}</div>
-        <div className="materia-panel-name"><span className="materia-panel-name-empty">Empty</span></div>
+        <div className="materia-panel-name">
+          <span className="materia-panel-name-empty">Empty</span>
+        </div>
       </div>
       <div className="materia-panel-row-2">
         <img className="materia-panel-img" src={general} alt="materia" />
