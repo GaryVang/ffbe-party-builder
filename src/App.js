@@ -323,8 +323,9 @@ class App extends Component {
     this.setState({ comparisonEq: equipment });
   }
 
-  onUnitSelection = (unit_id) => {
-    fetch(`http://localhost:3000/unit/${unit_id}`, {
+  onUnitSelection = (unit_id) => { // https://damp-reaches-02112.herokuapp.com/
+    // fetch(`http://localhost:3000/unit/${unit_id}`, {
+    fetch(`https://damp-reaches-02112.herokuapp.com/${unit_id}`, {
       method: "get",
       headers: {
         Accept: "application/json",
@@ -382,8 +383,9 @@ class App extends Component {
     this.getUnitList();
   }
 
-  getUnitList = async () => {
-    let res = await axios.get("http://localhost:3000/unit");
+  getUnitList = async () => {// https://damp-reaches-02112.herokuapp.com/
+    // let res = await axios.get("http://localhost:3000/unit");
+    let res = await axios.get("https://damp-reaches-02112.herokuapp.com/unit");
     let data = res.data;
     this.setState({
       unitList: data,

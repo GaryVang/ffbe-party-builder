@@ -6,7 +6,9 @@ import "./Materia.css";
 
 import axios from "axios";
 
-const MATERIA_URL = "http://localhost:3000/materia";
+// https://damp-reaches-02112.herokuapp.com/
+// const MATERIA_URL = "http://localhost:3000/materia";
+const MATERIA_URL = "https://damp-reaches-02112.herokuapp.com/materia";
 
 const Materia = ({ setEq, setComparisonEq, mat1, mat2, mat3, mat4 }) => {
   const [fetchComplete, setFetchComplete] = useState(false);

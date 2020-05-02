@@ -6,7 +6,9 @@ import EquipmentSelection from "./EquipmentSelection";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const DB_URL = "http://localhost:3000/equipment";
+// https://damp-reaches-02112.herokuapp.com/
+// const DB_URL = "http://localhost:3000/equipment";
+const DB_URL = "https://damp-reaches-02112.herokuapp.com/equipment";
 
 const Equipment = ({
   setEq,
