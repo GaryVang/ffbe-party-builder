@@ -325,7 +325,7 @@ class App extends Component {
 
   onUnitSelection = (unit_id) => { // https://damp-reaches-02112.herokuapp.com/
     // fetch(`http://localhost:3000/unit/${unit_id}`, {
-    fetch(`https://damp-reaches-02112.herokuapp.com/${unit_id}`, {
+    fetch(`https://damp-reaches-02112.herokuapp.com/unit/${unit_id}`, {
       method: "get",
       headers: {
         Accept: "application/json",
