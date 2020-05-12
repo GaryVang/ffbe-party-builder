@@ -445,6 +445,7 @@ class App extends Component {
           materia3={this.state.materia3}
           materia4={this.state.materia4}
           comparisonSlot={this.state.comparisonSlot}
+          comparisonEq={this.state.comparisonEq}
         />
         <Equipment
           setEq={this.setEq}

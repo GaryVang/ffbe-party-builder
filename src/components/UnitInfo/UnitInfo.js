@@ -30,6 +30,7 @@ const UnitInfo = ({
   materia3,
   materia4,
   comparisonSlot,
+  comparisonEq,
 }) => {
   const [unitBaseStat, setUnitBaseStat] = useState({
     hp: 0,
@@ -573,6 +574,180 @@ const UnitInfo = ({
       default:
     }
   };
+
+  //------------------------------Comparison Code
+
+  // Used for comparisons
+  const [compTotalStat, setCompTotalStat] = useState(null);
+  useEffect(() => {
+    if(comparisonSlot != null) {
+      let eqArr = [];
+      if(comparisonSlot === 'lHand'){
+        eqArr = [comparisonEq, rHand, head, body, acc1, acc2];
+      } else if(comparisonSlot === 'rHand') {
+        eqArr = [comparisonEq, lHand, head, body, acc1, acc2];
+      } else if(comparisonSlot === 'head') {
+        eqArr = [comparisonEq, lHand, rHand, body, acc1, acc2];
+      } else if(comparisonSlot === 'body') {
+        eqArr = [comparisonEq, lHand, rHand, head, acc1, acc2];
+      } else if(comparisonSlot === 'acc1') {
+        eqArr = [comparisonEq, lHand, rHand, head, body, acc2];
+      } else if(comparisonSlot === 'acc2') {
+        eqArr = [comparisonEq, lHand, rHand, head, body, acc1];
+      }
+
+      // calcEqBaseStat(eqArr);
+      setCompEqBaseStat(calcEqBaseStat(eqArr));
+
+      calcSkills(
+        setCompSkillStat,
+        unit,
+        eqArr,
+        [materia1, materia2, materia3, materia4]
+      );
+
+      calcTotalStat(setCompTotalStat);
+
+    } else {
+      setCompTotalStat(null);
+    }
+  }, [comparisonEq]);
+
+  const [compSkillStat, setCompSkillStat] = useState({
+    hp: 0,
+    mp: 0,
+    atk: 0,
+    def: 0,
+    mag: 0,
+    spr: 0,
+    tdh_hp: 0,
+    tdh_mp: 0,
+    tdh_atk: 0,
+    tdh_def: 0,
+    tdh_mag: 0,
+    tdh_spr: 0,
+    tdw_hp: 0,
+    tdw_mp: 0,
+    tdw_atk: 0,
+    tdw_def: 0,
+    tdw_mag: 0,
+    tdw_spr: 0,
+    element_resist: [0, 0, 0, 0, 0, 0, 0, 0],
+    status_resist: [0, 0, 0, 0, 0, 0, 0, 0],
+  });
+  useEffect(() => {
+    if(comparisonEq == null){
+      setCompSkillStat({ // Resets state
+        hp: 0,
+        mp: 0,
+        atk: 0,
+        def: 0,
+        mag: 0,
+        spr: 0,
+        tdh_hp: 0,
+        tdh_mp: 0,
+        tdh_atk: 0,
+        tdh_def: 0,
+        tdh_mag: 0,
+        tdh_spr: 0,
+        tdw_hp: 0,
+        tdw_mp: 0,
+        tdw_atk: 0,
+        tdw_def: 0,
+        tdw_mag: 0,
+        tdw_spr: 0,
+        element_resist: [0, 0, 0, 0, 0, 0, 0, 0],
+        status_resist: [0, 0, 0, 0, 0, 0, 0, 0],
+      });
+    }
+  }, [comparisonEq]);
+
+
+  const [compEqBaseStat, setCompEqBaseStat] = useState(null);
+  // useEffect(() => {
+  //   console.log(22222222222222222, compEqBaseStat);
+  // }, [compEqBaseStat]);
+
+
+  //---------------------Complete Next
+  const calcTotalStat = (setTotal) => {
+
+  };
+
+  //------------------------------To-do
+
+  const calcEqBaseStat = (eqArr) => {
+    console.log(111111111111, eqArr);
+    let tmp = {
+      hp:0,
+      mp:0,
+      atk:0,
+      def:0,
+      mag:0,
+      spr:0,
+      element_resist: [0,0,0,0,0,0,0,0],
+      status_resist: [0,0,0,0,0,0,0,0],
+    };
+
+    eqArr.forEach(eq => {
+      let elementResistArr = getEqElementResist(eq);
+      let statusResistArr = getEqStatusResist(eq);
+      // console.log(33333333333333333, eq.hp);
+      tmp.hp += eq.hp;
+      tmp.mp += eq.mp;
+      tmp.atk += eq.atk;
+      tmp.def += eq.def;
+      tmp.mag += eq.mag;
+      tmp.spr += eq.spr;
+      tmp.element_resist = tmp.element_resist.map((element, index) => { return element + elementResistArr[index]; });
+      tmp.status_resist = tmp.status_resist.map((status, index) => { return status + statusResistArr[index]; })
+    });
+
+
+    console.log(444444444444, tmp);
+    return tmp;
+    // setEqBaseStat({
+    //   hp: lHand.hp + rHand.hp + head.hp + body.hp + acc1.hp + acc2.hp,
+    //   mp: lHand.mp + rHand.mp + head.mp + body.mp + acc1.mp + acc2.mp,
+    //   atk: lHand.atk + rHand.atk + head.atk + body.atk + acc1.atk + acc2.atk,
+    //   def: lHand.def + rHand.def + head.def + body.def + acc1.def + acc2.def,
+    //   mag: lHand.mag + rHand.mag + head.mag + body.mag + acc1.mag + acc2.mag,
+    //   spr: lHand.spr + rHand.spr + head.spr + body.spr + acc1.spr + acc2.spr,
+    //   //8:fire,ice,lightning,water,wind,earth,light,dark
+    //   element_resist: [
+    //     getResist("fire"),
+    //     getResist("ice"),
+    //     getResist("lightning"),
+    //     getResist("water"),
+    //     getResist("wind"),
+    //     getResist("earth"),
+    //     getResist("light"),
+    //     getResist("dark"),
+    //   ],
+    //   //8:poison,blind,sleep,silence,paralyze,confusion,disease,petrify
+    //   status_resist: [
+    //     getResist("poison"),
+    //     getResist("blind"),
+    //     getResist("sleep"),
+    //     getResist("silence"),
+    //     getResist("paralyze"),
+    //     getResist("confusion"),
+    //     getResist("disease"),
+    //     getResist("petrify"),
+    //   ],
+    // });
+  };
+
+
+  const getEqElementResist = (eq) => {
+    return [eq.fire_resist, eq.ice_resist, eq.lightning_resist, eq.water_resist, eq.wind_resist, eq.earth_resist, eq.light_resist, eq.dark_resist];
+  };
+
+  const getEqStatusResist = (eq) => {
+    return [eq.poison_resist, eq.blind_resist, eq.sleep_resist, eq.silence_resist, eq.paralyze_resist, eq.confusion_resist, eq.disease_resist, eq.petrify_resist];
+  };
+
+  //--------------End Comparison Code
 
   return (
     <div className="new-unit-info-container">
