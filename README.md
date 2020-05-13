@@ -1,6 +1,6 @@
 Hosted on Heroku [Click here for Website](https://ffbe-builder-v.herokuapp.com/).
 
-## What is Final Fantasy Brave Exvius(FFBE) Party Builder?
+## What is Final Fantasy Brave Exvius (FFBE) Party Builder?
 
 ### Purpose
 
@@ -26,7 +26,7 @@ On a more personal note, this project is a combination of my love of video games
 
 ### Additional Tools
 
-[Data Scrapper:](https://github.com/GaryVang/ffbe-data-scraper) Unit previews and DB inserts+updates. **Update feature needs some more work*
+[Data Scraper:](https://github.com/GaryVang/ffbe-data-scraper) Unit previews and DB inserts+updates. **Update feature needs some more work*
 
 ## How to run locally
 
