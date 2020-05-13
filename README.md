@@ -1,68 +1,38 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hosted on Heroku [Click here for Website](https://ffbe-builder-v.herokuapp.com/).
 
-## Available Scripts
+## What is Final Fantasy Brave Exvius(FFBE) Party Builder?
 
-In the project directory, you can run:
+### Purpose
 
-### `npm start`
+Organizing thoughts and parties can be quite difficult and tedious once a player has acquired a large number of units and equipment. The purpose of this project is to aid players in this process by allowing them to gear a unit while providing them with the necessary information in the most concise and user-friendly way possible.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+On a more personal note, this project is a combination of my love of video games and programming. As someone that's learning JS and ReactJS, this project's purpose is to be used as a stepping stone in front-end and back-end development.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Planned updates and features
 
-### `npm test`
+- Desktop version
+- Login system
+- Save feature
+- Equipment filters
+- Game: Add Espers
+- Game: Add Extra damage modifiers
+- Game: Add Active abilities
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technology Used
 
-### `npm run build`
+Front-end: ReactJS v16.12.0
+Back-end: PostgreSQL v11.5
+[RESTful-API:](https://github.com/GaryVang/ffbe-api) Express.js v4.17.1
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Additional Tools
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+[Data Scrapper:](https://github.com/GaryVang/ffbe-data-scraper) Unit previews and DB inserts+updates. *Update feature needs some more work
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### How to run locally
 
-### `npm run eject`
+### `npm run local`
+You can run a local instance of the app using the above command.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Resources
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+My database was populated using [aEnigmatic's](https://github.com/aEnigmatic/ffbe) datamine. Definitely check his profile out if you're interested in making a tool for the game or are just curious.
