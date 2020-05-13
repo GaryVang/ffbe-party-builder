@@ -325,3 +325,11 @@
   width: 21px;
   text-align: left;
 }
+
+.positive-num-color {
+  color: #0aab4a;
+}
+
+.negative-num-color {
+  color: red;
+}

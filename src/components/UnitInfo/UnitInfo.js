@@ -384,6 +384,7 @@ const UnitInfo = ({
   };
 
   const calcSkills = (setStat, unit, eqArr, matArr) => {
+    // console.log('calcSkills.unit', unit);
     if (unit.skills != null) {
       unit.skills.forEach((skill) => {
         if (skill.requirements == null) {
@@ -577,42 +578,6 @@ const UnitInfo = ({
 
   //------------------------------Comparison Code
 
-  // Used for comparisons
-  const [compTotalStat, setCompTotalStat] = useState(null);
-  useEffect(() => {
-    if(comparisonSlot != null) {
-      let eqArr = [];
-      if(comparisonSlot === 'lHand'){
-        eqArr = [comparisonEq, rHand, head, body, acc1, acc2];
-      } else if(comparisonSlot === 'rHand') {
-        eqArr = [comparisonEq, lHand, head, body, acc1, acc2];
-      } else if(comparisonSlot === 'head') {
-        eqArr = [comparisonEq, lHand, rHand, body, acc1, acc2];
-      } else if(comparisonSlot === 'body') {
-        eqArr = [comparisonEq, lHand, rHand, head, acc1, acc2];
-      } else if(comparisonSlot === 'acc1') {
-        eqArr = [comparisonEq, lHand, rHand, head, body, acc2];
-      } else if(comparisonSlot === 'acc2') {
-        eqArr = [comparisonEq, lHand, rHand, head, body, acc1];
-      }
-
-      // calcEqBaseStat(eqArr);
-      setCompEqBaseStat(calcEqBaseStat(eqArr));
-
-      calcSkills(
-        setCompSkillStat,
-        unit,
-        eqArr,
-        [materia1, materia2, materia3, materia4]
-      );
-
-      calcTotalStat(setCompTotalStat);
-
-    } else {
-      setCompTotalStat(null);
-    }
-  }, [comparisonEq]);
-
   const [compSkillStat, setCompSkillStat] = useState({
     hp: 0,
     mp: 0,
@@ -635,174 +600,458 @@ const UnitInfo = ({
     element_resist: [0, 0, 0, 0, 0, 0, 0, 0],
     status_resist: [0, 0, 0, 0, 0, 0, 0, 0],
   });
+  useEffect(() => {}, [comparisonEq]);
   useEffect(() => {
-    if(comparisonEq == null){
-      setCompSkillStat({ // Resets state
-        hp: 0,
-        mp: 0,
-        atk: 0,
-        def: 0,
-        mag: 0,
-        spr: 0,
-        tdh_hp: 0,
-        tdh_mp: 0,
-        tdh_atk: 0,
-        tdh_def: 0,
-        tdh_mag: 0,
-        tdh_spr: 0,
-        tdw_hp: 0,
-        tdw_mp: 0,
-        tdw_atk: 0,
-        tdw_def: 0,
-        tdw_mag: 0,
-        tdw_spr: 0,
-        element_resist: [0, 0, 0, 0, 0, 0, 0, 0],
-        status_resist: [0, 0, 0, 0, 0, 0, 0, 0],
-      });
+    if (comparisonEq != null) {
+      let eqArr = [];
+      let matArr = [];
+
+      if (comparisonSlot === "lHand") {
+        eqArr = [comparisonEq, rHand, head, body, acc1, acc2];
+        matArr = [materia1, materia2, materia3, materia4];
+      } else if (comparisonSlot === "rHand") {
+        eqArr = [lHand, comparisonEq, head, body, acc1, acc2];
+        matArr = [materia1, materia2, materia3, materia4];
+      } else if (comparisonSlot === "head") {
+        eqArr = [lHand, rHand, comparisonEq, body, acc1, acc2];
+        matArr = [materia1, materia2, materia3, materia4];
+      } else if (comparisonSlot === "body") {
+        eqArr = [lHand, rHand, head, comparisonEq, acc1, acc2];
+        matArr = [materia1, materia2, materia3, materia4];
+      } else if (comparisonSlot === "acc1") {
+        eqArr = [lHand, rHand, head, body, comparisonEq, acc2];
+        matArr = [materia1, materia2, materia3, materia4];
+      } else if (comparisonSlot === "acc2") {
+        eqArr = [lHand, rHand, head, body, acc1, comparisonEq];
+        matArr = [materia1, materia2, materia3, materia4];
+      } else {
+        eqArr = [lHand, rHand, head, body, acc1, acc2];
+        if (comparisonSlot === "materia1") {
+          matArr = [comparisonEq, materia2, materia3, materia4];
+        } else if (comparisonSlot === "materia2") {
+          matArr = [materia1, comparisonEq, materia3, materia4];
+        } else if (comparisonSlot === "materia3") {
+          matArr = [materia1, materia2, comparisonEq, materia4];
+        } else if (comparisonSlot === "materia4") {
+          matArr = [materia1, materia2, materia3, comparisonEq];
+        }
+      }
+
+      resetSkillStat(setCompSkillStat);
+
+      calcSkills(setCompSkillStat, unit, eqArr, matArr);
     }
   }, [comparisonEq]);
 
+  const [compEqBaseStat, setCompEqBaseStat] = useState({
+    hp: 0,
+    mp: 0,
+    atk: 0,
+    def: 0,
+    mag: 0,
+    spr: 0,
+    tdh_hp: 0,
+    tdh_mp: 0,
+    tdh_atk: 0,
+    tdh_def: 0,
+    tdh_mag: 0,
+    tdh_spr: 0,
+    tdw_hp: 0,
+    tdw_mp: 0,
+    tdw_atk: 0,
+    tdw_def: 0,
+    tdw_mag: 0,
+    tdw_spr: 0,
+    element_resist: [0, 0, 0, 0, 0, 0, 0, 0],
+    status_resist: [0, 0, 0, 0, 0, 0, 0, 0],
+  });
+  useEffect(() => {
+    if (comparisonSlot != null) {
+      let eqArr = [];
+      if (comparisonSlot === "lHand") {
+        eqArr = [comparisonEq, rHand, head, body, acc1, acc2];
+      } else if (comparisonSlot === "rHand") {
+        eqArr = [lHand, comparisonEq, head, body, acc1, acc2];
+      } else if (comparisonSlot === "head") {
+        eqArr = [lHand, rHand, comparisonEq, body, acc1, acc2];
+      } else if (comparisonSlot === "body") {
+        eqArr = [lHand, rHand, head, comparisonEq, acc1, acc2];
+      } else if (comparisonSlot === "acc1") {
+        eqArr = [lHand, rHand, head, body, comparisonEq, acc2];
+      } else if (comparisonSlot === "acc2") {
+        eqArr = [lHand, rHand, head, body, acc1, comparisonEq];
+      } else {
+        eqArr = [lHand, rHand, head, body, acc1, acc2];
+      }
 
-  const [compEqBaseStat, setCompEqBaseStat] = useState(null);
-  // useEffect(() => {
-  //   console.log(22222222222222222, compEqBaseStat);
-  // }, [compEqBaseStat]);
+      setCompEqBaseStat(calcEqBaseStat(eqArr));
+    }
+  }, [comparisonEq]);
 
+  const [compTotalStat, setCompTotalStat] = useState({
+    hp: 0,
+    mp: 0,
+    atk: 0,
+    def: 0,
+    mag: 0,
+    spr: 0,
+    tdh_hp: 0,
+    tdh_mp: 0,
+    tdh_atk: 0,
+    tdh_def: 0,
+    tdh_mag: 0,
+    tdh_spr: 0,
+    tdw_hp: 0,
+    tdw_mp: 0,
+    tdw_atk: 0,
+    tdw_def: 0,
+    tdw_mag: 0,
+    tdw_spr: 0,
+    element_resist: [0, 0, 0, 0, 0, 0, 0, 0],
+    status_resist: [0, 0, 0, 0, 0, 0, 0, 0],
+  });
+  useEffect(() => {
+    const totalStatFunction = () => {
+      if (comparisonSlot != null) {
+        let eqArr = [];
+        if (comparisonSlot === "lHand") {
+          eqArr = [comparisonEq, rHand, head, body, acc1, acc2];
+        } else if (comparisonSlot === "rHand") {
+          eqArr = [lHand, comparisonEq, head, body, acc1, acc2];
+        } else if (comparisonSlot === "head") {
+          eqArr = [lHand, rHand, comparisonEq, body, acc1, acc2];
+        } else if (comparisonSlot === "body") {
+          eqArr = [lHand, rHand, head, comparisonEq, acc1, acc2];
+        } else if (comparisonSlot === "acc1") {
+          eqArr = [lHand, rHand, head, body, comparisonEq, acc2];
+        } else if (comparisonSlot === "acc2") {
+          eqArr = [lHand, rHand, head, body, acc1, comparisonEq];
+        } else {
+          eqArr = [lHand, rHand, head, body, acc1, acc2];
+        }
 
-  //---------------------Complete Next
-  const calcTotalStat = (setTotal) => {
+        calcTotalStat(
+          eqArr[0],
+          eqArr[1],
+          compSkillStat,
+          compEqBaseStat,
+          setCompTotalStat
+        );
+      } else {
+        setCompTotalStat({
+          hp: 0,
+          mp: 0,
+          atk: 0,
+          def: 0,
+          mag: 0,
+          spr: 0,
+          tdh_hp: 0,
+          tdh_mp: 0,
+          tdh_atk: 0,
+          tdh_def: 0,
+          tdh_mag: 0,
+          tdh_spr: 0,
+          tdw_hp: 0,
+          tdw_mp: 0,
+          tdw_atk: 0,
+          tdw_def: 0,
+          tdw_mag: 0,
+          tdw_spr: 0,
+          element_resist: [0, 0, 0, 0, 0, 0, 0, 0],
+          status_resist: [0, 0, 0, 0, 0, 0, 0, 0],
+        });
+      }
+    };
+    totalStatFunction();
+  }, [compEqBaseStat, compSkillStat]);
 
+  const calcTotalStat = (lHand, rHand, skillStat, eqBaseStat, setter) => {
+    if (
+      (lHand.type === 0 && rHand.type !== 30 && rHand.type !== 31) ||
+      (rHand.type === 0 && lHand.type !== 30 && lHand.type !== 31)
+    ) {
+      setter({
+        hp: Math.ceil(
+          unitBaseStat.hp * (1 + checkStatLimit(skillStat.hp) / 100) +
+            eqBaseStat.hp * (1 + checkTDHLimit(skillStat.tdh_hp) / 100)
+        ),
+        mp: Math.ceil(
+          unitBaseStat.mp * (1 + checkStatLimit(skillStat.mp) / 100) +
+            eqBaseStat.mp * (1 + checkTDHLimit(skillStat.tdh_mp) / 100)
+        ),
+        atk: Math.ceil(
+          unitBaseStat.atk * (1 + checkStatLimit(skillStat.atk) / 100) +
+            eqBaseStat.atk * (1 + checkTDHLimit(skillStat.tdh_atk) / 100)
+        ),
+        def: Math.ceil(
+          unitBaseStat.def * (1 + checkStatLimit(skillStat.def) / 100) +
+            eqBaseStat.def * (1 + checkTDHLimit(skillStat.tdh_def) / 100)
+        ),
+        mag: Math.ceil(
+          unitBaseStat.mag * (1 + checkStatLimit(skillStat.mag) / 100) +
+            eqBaseStat.mag * (1 + checkTDHLimit(skillStat.tdh_mag) / 100)
+        ),
+        spr: Math.ceil(
+          unitBaseStat.spr * (1 + checkStatLimit(skillStat.spr) / 100) +
+            eqBaseStat.spr * (1 + checkTDHLimit(skillStat.tdh_spr) / 100)
+        ),
+        element_resist: calcTotalResist(
+          unitBaseStat.element_resist,
+          skillStat.element_resist,
+          eqBaseStat.element_resist
+        ),
+        status_resist: calcTotalResist(
+          unitBaseStat.status_resist,
+          skillStat.status_resist,
+          eqBaseStat.status_resist
+        ),
+      });
+    } else if (
+      lHand.type !== 0 &&
+      rHand.type !== 0 &&
+      rHand.type !== 30 &&
+      rHand.type !== 31 &&
+      lHand.type !== 30 &&
+      lHand.type !== 31
+    ) {
+      setter({
+        hp: Math.ceil(
+          unitBaseStat.hp * (1 + checkStatLimit(skillStat.hp) / 100) +
+            eqBaseStat.hp * (1 + checkTDWLimit(skillStat.tdw_hp) / 100)
+        ),
+        mp: Math.ceil(
+          unitBaseStat.mp * (1 + checkStatLimit(skillStat.mp) / 100) +
+            eqBaseStat.mp * (1 + checkTDWLimit(skillStat.tdw_mp) / 100)
+        ),
+        atk: Math.ceil(
+          unitBaseStat.atk * (1 + checkStatLimit(skillStat.atk) / 100) +
+            eqBaseStat.atk * (1 + checkTDWLimit(skillStat.tdw_atk) / 100)
+        ),
+        def: Math.ceil(
+          unitBaseStat.def * (1 + checkStatLimit(skillStat.def) / 100) +
+            eqBaseStat.def * (1 + checkTDWLimit(skillStat.tdw_def) / 100)
+        ),
+        mag: Math.ceil(
+          unitBaseStat.mag * (1 + checkStatLimit(skillStat.mag) / 100) +
+            eqBaseStat.mag * (1 + checkTDWLimit(skillStat.tdw_mag) / 100)
+        ),
+        spr: Math.ceil(
+          unitBaseStat.spr * (1 + checkStatLimit(skillStat.spr) / 100) +
+            eqBaseStat.spr * (1 + checkTDWLimit(skillStat.tdw_spr) / 100)
+        ),
+        element_resist: calcTotalResist(
+          unitBaseStat.element_resist,
+          skillStat.element_resist,
+          eqBaseStat.element_resist
+        ),
+        status_resist: calcTotalResist(
+          unitBaseStat.status_resist,
+          skillStat.status_resist,
+          eqBaseStat.status_resist
+        ),
+      });
+    } else {
+      setter({
+        hp: Math.ceil(
+          unitBaseStat.hp * (1 + checkStatLimit(skillStat.hp) / 100) +
+            eqBaseStat.hp * 1
+        ),
+        mp: Math.ceil(
+          unitBaseStat.mp * (1 + checkStatLimit(skillStat.mp) / 100) +
+            eqBaseStat.mp * 1
+        ),
+        atk: Math.ceil(
+          unitBaseStat.atk * (1 + checkStatLimit(skillStat.atk) / 100) +
+            eqBaseStat.atk * 1
+        ),
+        def: Math.ceil(
+          unitBaseStat.def * (1 + checkStatLimit(skillStat.def) / 100) +
+            eqBaseStat.def * 1
+        ),
+        mag: Math.ceil(
+          unitBaseStat.mag * (1 + checkStatLimit(skillStat.mag) / 100) +
+            eqBaseStat.mag * 1
+        ),
+        spr: Math.ceil(
+          unitBaseStat.spr * (1 + checkStatLimit(skillStat.spr) / 100) +
+            eqBaseStat.spr * 1
+        ),
+        element_resist: calcTotalResist(
+          unitBaseStat.element_resist,
+          skillStat.element_resist,
+          eqBaseStat.element_resist
+        ),
+        status_resist: calcTotalResist(
+          unitBaseStat.status_resist,
+          skillStat.status_resist,
+          eqBaseStat.status_resist
+        ),
+      });
+    }
   };
 
-  //------------------------------To-do
-
   const calcEqBaseStat = (eqArr) => {
-    console.log(111111111111, eqArr);
     let tmp = {
-      hp:0,
-      mp:0,
-      atk:0,
-      def:0,
-      mag:0,
-      spr:0,
-      element_resist: [0,0,0,0,0,0,0,0],
-      status_resist: [0,0,0,0,0,0,0,0],
+      hp: 0,
+      mp: 0,
+      atk: 0,
+      def: 0,
+      mag: 0,
+      spr: 0,
+      element_resist: [0, 0, 0, 0, 0, 0, 0, 0],
+      status_resist: [0, 0, 0, 0, 0, 0, 0, 0],
     };
 
-    eqArr.forEach(eq => {
+    eqArr.forEach((eq) => {
       let elementResistArr = getEqElementResist(eq);
       let statusResistArr = getEqStatusResist(eq);
-      // console.log(33333333333333333, eq.hp);
+
       tmp.hp += eq.hp;
       tmp.mp += eq.mp;
       tmp.atk += eq.atk;
       tmp.def += eq.def;
       tmp.mag += eq.mag;
       tmp.spr += eq.spr;
-      tmp.element_resist = tmp.element_resist.map((element, index) => { return element + elementResistArr[index]; });
-      tmp.status_resist = tmp.status_resist.map((status, index) => { return status + statusResistArr[index]; })
+      tmp.element_resist = tmp.element_resist.map((element, index) => {
+        return element + elementResistArr[index];
+      });
+      tmp.status_resist = tmp.status_resist.map((status, index) => {
+        return status + statusResistArr[index];
+      });
     });
 
-
-    console.log(444444444444, tmp);
     return tmp;
-    // setEqBaseStat({
-    //   hp: lHand.hp + rHand.hp + head.hp + body.hp + acc1.hp + acc2.hp,
-    //   mp: lHand.mp + rHand.mp + head.mp + body.mp + acc1.mp + acc2.mp,
-    //   atk: lHand.atk + rHand.atk + head.atk + body.atk + acc1.atk + acc2.atk,
-    //   def: lHand.def + rHand.def + head.def + body.def + acc1.def + acc2.def,
-    //   mag: lHand.mag + rHand.mag + head.mag + body.mag + acc1.mag + acc2.mag,
-    //   spr: lHand.spr + rHand.spr + head.spr + body.spr + acc1.spr + acc2.spr,
-    //   //8:fire,ice,lightning,water,wind,earth,light,dark
-    //   element_resist: [
-    //     getResist("fire"),
-    //     getResist("ice"),
-    //     getResist("lightning"),
-    //     getResist("water"),
-    //     getResist("wind"),
-    //     getResist("earth"),
-    //     getResist("light"),
-    //     getResist("dark"),
-    //   ],
-    //   //8:poison,blind,sleep,silence,paralyze,confusion,disease,petrify
-    //   status_resist: [
-    //     getResist("poison"),
-    //     getResist("blind"),
-    //     getResist("sleep"),
-    //     getResist("silence"),
-    //     getResist("paralyze"),
-    //     getResist("confusion"),
-    //     getResist("disease"),
-    //     getResist("petrify"),
-    //   ],
-    // });
   };
 
-
   const getEqElementResist = (eq) => {
-    return [eq.fire_resist, eq.ice_resist, eq.lightning_resist, eq.water_resist, eq.wind_resist, eq.earth_resist, eq.light_resist, eq.dark_resist];
+    return [
+      eq.fire_resist,
+      eq.ice_resist,
+      eq.lightning_resist,
+      eq.water_resist,
+      eq.wind_resist,
+      eq.earth_resist,
+      eq.light_resist,
+      eq.dark_resist,
+    ];
   };
 
   const getEqStatusResist = (eq) => {
-    return [eq.poison_resist, eq.blind_resist, eq.sleep_resist, eq.silence_resist, eq.paralyze_resist, eq.confusion_resist, eq.disease_resist, eq.petrify_resist];
+    return [
+      eq.poison_resist,
+      eq.blind_resist,
+      eq.sleep_resist,
+      eq.silence_resist,
+      eq.paralyze_resist,
+      eq.confusion_resist,
+      eq.disease_resist,
+      eq.petrify_resist,
+    ];
+  };
+
+  const calcTotalResist = (unit, totalSkillStat, totalEqBaseStat) => {
+    let tmpArr = [0, 0, 0, 0, 0, 0, 0, 0];
+
+    for (let i = 0; i < 8; i++) {
+      tmpArr[i] = unit[i] + totalSkillStat[i] + totalEqBaseStat[i];
+    }
+
+    return tmpArr;
+  };
+
+  // Resets state
+  const resetSkillStat = (setter) => {
+    setter({
+      hp: 0,
+      mp: 0,
+      atk: 0,
+      def: 0,
+      mag: 0,
+      spr: 0,
+      tdh_hp: 0,
+      tdh_mp: 0,
+      tdh_atk: 0,
+      tdh_def: 0,
+      tdh_mag: 0,
+      tdh_spr: 0,
+      tdw_hp: 0,
+      tdw_mp: 0,
+      tdw_atk: 0,
+      tdw_def: 0,
+      tdw_mag: 0,
+      tdw_spr: 0,
+      element_resist: [0, 0, 0, 0, 0, 0, 0, 0],
+      status_resist: [0, 0, 0, 0, 0, 0, 0, 0],
+    });
+  };
+
+  const compareStat = (oldStat, newStat) => {
+    const diff = newStat - oldStat;
+    if (diff === 0) {
+      return <span></span>;
+    } else if (diff > 0) {
+      return <span className="positive-num-color">+{diff}</span>;
+    } else {
+      return <span className="negative-num-color">{diff}</span>;
+    }
   };
 
   //--------------End Comparison Code
 
-  return (
+  return comparisonEq == null ? (
     <div className="new-unit-info-container">
       <div className="new-unit-stat-general-container">
         <div className="new-unit-stat-general-hp-wrapper">
           <div className="new-unit-stat-hp">HP:</div>
           <div className="new-unit-stat-hp-total">{totalStat.hp}</div>
-          <div className="new-unit-stat-hp-change">+1553</div>
+          <div className="new-unit-stat-hp-change"></div>
           <div>{skillStat.hp}%</div>
-          <div>+100%</div>
+          <div></div>
         </div>
 
         <div className="new-unit-stat-general-mp-wrapper">
           <div className="new-unit-stat-mp">MP:</div>
           <div className="new-unit-stat-mp-total">{totalStat.mp}</div>
-          <div className="new-unit-stat-mp-change">+53</div>
+          <div className="new-unit-stat-mp-change"></div>
 
           <div>{skillStat.mp}%</div>
-          <div>+75%</div>
+          <div></div>
         </div>
 
         <div className="new-unit-stat-general-atk-wrapper">
           <div className="new-unit-stat-atk">ATK:</div>
           <div className="new-unit-stat-atk-total">{totalStat.atk}</div>
-          <div className="new-unit-stat-atk-change">+53</div>
+          <div className="new-unit-stat-atk-change"></div>
 
           <div>{skillStat.atk}%</div>
-          <div>+75%</div>
+          <div></div>
         </div>
 
         <div className="new-unit-stat-general-def-wrapper">
           <div className="new-unit-stat-def">DEF:</div>
           <div className="new-unit-stat-def-total">{totalStat.def}</div>
-          <div className="new-unit-stat-def-change">+53</div>
+          <div className="new-unit-stat-def-change"></div>
 
           <div>{skillStat.def}%</div>
-          <div>+75%</div>
+          <div></div>
         </div>
 
         <div className="new-unit-stat-general-mag-wrapper">
           <div className="new-unit-stat-mag">MAG:</div>
           <div className="new-unit-stat-mag-total">{totalStat.mag}</div>
-          <div className="new-unit-stat-mag-change">+53</div>
+          <div className="new-unit-stat-mag-change"></div>
 
           <div>{skillStat.mag}%</div>
-          <div>+75%</div>
+          <div></div>
         </div>
 
         <div className="new-unit-stat-general-spr-wrapper">
           <div className="new-unit-stat-spr">SPR:</div>
           <div className="new-unit-stat-spr-total">{totalStat.spr}</div>
-          <div className="new-unit-stat-spr-change">+53</div>
+          <div className="new-unit-stat-spr-change"></div>
 
           <div>{skillStat.spr}%</div>
-          <div>+75%</div>
+          <div></div>
         </div>
       </div>
 
@@ -856,11 +1105,168 @@ const UnitInfo = ({
           </div>
           <div className="new-unit-stat-br-td-stat">
             <div className="new-unit-stat-br-td-stat-type">ATK:</div>
-            <div className="new-unit-stat-br-td-stat-total">100</div>
-            <div className="new-unit-stat-br-td-stat-change">+50</div>
+            <div className="new-unit-stat-br-td-stat-total">
+              {skillStat.tdh_atk}
+            </div>
+            <div className="new-unit-stat-br-td-stat-change"></div>
 
-            <div className="new-unit-stat-br-td-stat-total-tdw">100</div>
-            <div className="new-unit-stat-br-td-stat-change-tdw">+50</div>
+            <div className="new-unit-stat-br-td-stat-total-tdw">
+              {skillStat.tdw_atk}
+            </div>
+            <div className="new-unit-stat-br-td-stat-change-tdw"></div>
+          </div>
+        </div>
+        <div className="new-unit-stat-br-killer-container">
+          <div className="new-unit-stat-br-killer-header">
+            <div>KILLER</div>
+            <div>PHYS</div>
+            <div>MAG</div>
+          </div>
+          <div className="new-unit-stat-br-killer">
+            <div className="new-unit-stat-br-killer-type">Beast:</div>
+            <div className="new-unit-stat-br-killer-physical">125</div>
+            <div className="new-unit-stat-br-killer-physical-change">+0</div>
+            <div className="new-unit-stat-br-killer-magic">125</div>
+            <div className="new-unit-stat-br-killer-magic-change">+125</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div className="new-unit-info-container">
+      <div className="new-unit-stat-general-container">
+        <div className="new-unit-stat-general-hp-wrapper">
+          <div className="new-unit-stat-hp">HP:</div>
+          <div className="new-unit-stat-hp-total">{totalStat.hp}</div>
+          <div className="new-unit-stat-hp-change">
+            {compareStat(totalStat.hp, compTotalStat.hp)}
+          </div>
+          {/* <div className="new-unit-stat-hp-change">{compareStat(totalStat.hp, compTotalStat.hp)}</div> */}
+          <div>{skillStat.hp}%</div>
+          {/* <div>{compSkillStat.hp}%</div> */}
+          {/* {compareStat(skillStat.hp, compSkillStat.hp)} */}
+          <div>{compareStat(skillStat.hp, compSkillStat.hp)}</div>
+        </div>
+
+        <div className="new-unit-stat-general-mp-wrapper">
+          <div className="new-unit-stat-mp">MP:</div>
+          <div className="new-unit-stat-mp-total">{totalStat.mp}</div>
+          <div className="new-unit-stat-mp-change">
+            {compareStat(totalStat.mp, compTotalStat.mp)}
+          </div>
+
+          <div>{skillStat.mp}%</div>
+          <div>{compareStat(skillStat.mp, compSkillStat.mp)}</div>
+        </div>
+
+        <div className="new-unit-stat-general-atk-wrapper">
+          <div className="new-unit-stat-atk">ATK:</div>
+          <div className="new-unit-stat-atk-total">{totalStat.atk}</div>
+          <div className="new-unit-stat-atk-change">
+            {compareStat(totalStat.atk, compTotalStat.atk)}
+          </div>
+
+          <div>{skillStat.atk}%</div>
+          <div>{compareStat(skillStat.atk, compSkillStat.atk)}</div>
+        </div>
+
+        <div className="new-unit-stat-general-def-wrapper">
+          <div className="new-unit-stat-def">DEF:</div>
+          <div className="new-unit-stat-def-total">{totalStat.def}</div>
+          <div className="new-unit-stat-def-change">
+            {compareStat(totalStat.def, compTotalStat.def)}
+          </div>
+
+          <div>{skillStat.def}%</div>
+          <div>{compareStat(skillStat.def, compSkillStat.def)}</div>
+        </div>
+
+        <div className="new-unit-stat-general-mag-wrapper">
+          <div className="new-unit-stat-mag">MAG:</div>
+          <div className="new-unit-stat-mag-total">{totalStat.mag}</div>
+          <div className="new-unit-stat-mag-change">
+            {compareStat(totalStat.mag, compTotalStat.mag)}
+          </div>
+
+          <div>{skillStat.mag}%</div>
+          <div>{compareStat(skillStat.mag, compSkillStat.mag)}</div>
+        </div>
+
+        <div className="new-unit-stat-general-spr-wrapper">
+          <div className="new-unit-stat-spr">SPR:</div>
+          <div className="new-unit-stat-spr-total">{totalStat.spr}</div>
+          <div className="new-unit-stat-spr-change">
+            {compareStat(totalStat.spr, compTotalStat.spr)}
+          </div>
+
+          <div>{skillStat.spr}%</div>
+          <div>{compareStat(skillStat.spr, compSkillStat.spr)}</div>
+        </div>
+      </div>
+
+      <div className="new-unit-stat-resist">
+        <div className="new-unit-stat-resist-ailment-wrapper">
+          <img src={poison} alt="" />
+          <img src={blind} alt="" />
+          <img src={sleep} alt="" />
+          <img src={silence} alt="" />
+          <img src={paralysis} alt="" />
+          <img src={confusion} alt="" />
+          <img src={disease} alt="" />
+          <img src={petrification} alt="" />
+
+          <div>{totalStat.status_resist[0]}</div>
+          <div>{totalStat.status_resist[1]}</div>
+          <div>{totalStat.status_resist[2]}</div>
+          <div>{totalStat.status_resist[3]}</div>
+          <div>{totalStat.status_resist[4]}</div>
+          <div>{totalStat.status_resist[5]}</div>
+          <div>{totalStat.status_resist[6]}</div>
+          <div>{totalStat.status_resist[7]}</div>
+        </div>
+
+        <div className="new-unit-stat-resist-element-wrapper">
+          <img src={fire} alt="" />
+          <img src={ice} alt="" />
+          <img src={lightning} alt="" />
+          <img src={water} alt="" />
+          <img src={wind} alt="" />
+          <img src={earth} alt="" />
+          <img src={light} alt="" />
+          <img src={dark} alt="" />
+
+          <div>{totalStat.element_resist[0]}</div>
+          <div>{totalStat.element_resist[1]}</div>
+          <div>{totalStat.element_resist[2]}</div>
+          <div>{totalStat.element_resist[3]}</div>
+          <div>{totalStat.element_resist[4]}</div>
+          <div>{totalStat.element_resist[5]}</div>
+          <div>{totalStat.element_resist[6]}</div>
+          <div>{totalStat.element_resist[7]}</div>
+        </div>
+      </div>
+
+      <div className="new-unit-stat-br-container">
+        <div className="new-unit-stat-br-td-container">
+          <div className="new-unit-stat-br-td-header">
+            <div>TDH</div>
+            <div>TDW</div>
+          </div>
+          <div className="new-unit-stat-br-td-stat">
+            <div className="new-unit-stat-br-td-stat-type">ATK:</div>
+            <div className="new-unit-stat-br-td-stat-total">
+              {skillStat.tdh_atk}
+            </div>
+            <div className="new-unit-stat-br-td-stat-change">
+              {compareStat(skillStat.tdh_atk, compSkillStat.tdh_atk)}
+            </div>
+
+            <div className="new-unit-stat-br-td-stat-total-tdw">
+              {skillStat.tdw_atk}
+            </div>
+            <div className="new-unit-stat-br-td-stat-change-tdw">
+              {compareStat(skillStat.tdw_atk, compSkillStat.tdw_atk)}
+            </div>
           </div>
         </div>
         <div className="new-unit-stat-br-killer-container">
