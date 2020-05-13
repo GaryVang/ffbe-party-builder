@@ -18,17 +18,17 @@ On a more personal note, this project is a combination of my love of video games
 - Game: Add Extra damage modifiers
 - Game: Add Active abilities
 
-## Technology Used
+## Technologies Used
 
-Front-end: ReactJS v16.12.0
-Back-end: PostgreSQL v11.5
-[RESTful-API:](https://github.com/GaryVang/ffbe-api) Express.js v4.17.1
+- Front-end: ReactJS v16.12.0
+- Back-end: PostgreSQL v11.5
+- [RESTful-API:](https://github.com/GaryVang/ffbe-api) Express.js v4.17.1
 
 ### Additional Tools
 
-[Data Scrapper:](https://github.com/GaryVang/ffbe-data-scraper) Unit previews and DB inserts+updates. *Update feature needs some more work
+[Data Scrapper:](https://github.com/GaryVang/ffbe-data-scraper) Unit previews and DB inserts+updates. **Update feature needs some more work*
 
-### How to run locally
+## How to run locally
 
 ### `npm run local`
 You can run a local instance of the app using the above command.
