@@ -420,7 +420,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="app-header-container">
-          <h1 className="app-header-title">FFBE: Unit Builder</h1>
+          <h1 className="app-header-title">FFBE: Party Builder</h1>
           <h1 className="app-header-reset" onClick={this.resetBuilder}>
             RESET BUILDER
           </h1>
