@@ -686,7 +686,7 @@ const UnitInfo = ({
 
       setCompEqBaseStat(calcEqBaseStat(eqArr));
     }
-  }, [comparisonEq]);
+  }, [compSkillStat]);
 
   const [compTotalStat, setCompTotalStat] = useState({
     hp: 0,
@@ -763,7 +763,7 @@ const UnitInfo = ({
       }
     };
     totalStatFunction();
-  }, [compEqBaseStat, compSkillStat]);
+  }, [compEqBaseStat]);
 
   const calcTotalStat = (lHand, rHand, skillStat, eqBaseStat, setter) => {
     if (
@@ -996,7 +996,7 @@ const UnitInfo = ({
     }
   };
 
-  //--------------End Comparison Code
+  //---End of Comparison Code
 
   return comparisonEq == null ? (
     <div className="new-unit-info-container">
