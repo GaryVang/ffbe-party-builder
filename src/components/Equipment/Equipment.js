@@ -131,9 +131,11 @@ const Equipment = ({
           />
         );
       case "acc1":
+        // let accSort = accessoryList.sort((a,b) => b.atk - a.atk);
         return (
           <EquipmentSelection
             eqList={accessoryList}
+            // eqList={accSort}
             setDisplayEqSelection={setDisplayEqSelection}
             setEq={setEq}
             setComparisonEq={setComparisonEq}

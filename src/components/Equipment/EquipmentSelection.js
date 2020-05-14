@@ -37,6 +37,7 @@ const EquipmentSelection = ({
   activeSlot,
 }) => {
   const [filterFlag, setFilterFlag] = useState(false);
+  const [sortFlag, setSortFlag] = useState(false);
 
   let selectedEquipment;
 
@@ -172,6 +173,10 @@ const EquipmentSelection = ({
     setFilterFlag(!filterFlag);
   };
 
+  const onSortClick = () => {
+    setSortFlag(!sortFlag);
+  };
+
   return (
     <div className="eq-select-container">
       <div className="eq-select-header">
@@ -181,7 +186,9 @@ const EquipmentSelection = ({
           placeholder="Ex: tdw, atk, 1h, fire"
         />
 
-        <button className="button-sort">Sort</button>
+        <button className="button-sort" onClick={onSortClick}>
+          Sort
+        </button>
         <button className="button-filter" onClick={onFilterClick}>
           Filter
         </button>
