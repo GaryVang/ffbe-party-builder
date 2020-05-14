@@ -126,6 +126,23 @@ const EquipmentSelection = ({
             </div>
           ) : null}
 
+          {sortFlag ? ( // Consider using buttons instead of divs
+            <div className="eq-sort-container">
+              <div className="eq-sort-orderby">
+                <div>ASC</div>
+                <div>DESC</div>
+              </div>
+              <div className="eq-sort-stat-container">
+                <div className="eq-sort-stat-hp">HP</div>
+                <div className="eq-sort-stat-mp">MP</div>
+                <div className="eq-sort-stat-atk">ATK</div>
+                <div className="eq-sort-stat-DEF">DEF</div>
+                <div className="eq-sort-stat-MAG">MAG</div>
+                <div className="eq-sort-stat-SPR">SPR</div>
+              </div>
+            </div>
+          ) : null}
+
           <div className="eq-list">
             {eqList !== undefined
               ? eqList.map((key, index) => {
