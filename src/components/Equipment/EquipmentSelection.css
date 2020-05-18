@@ -22,13 +22,10 @@
   color: #7c7c7c;
   background: white;
   padding: 0;
-  /* margin: 0 14px 0 8px; */
   margin: 0 3.7335% 0 2.1335%;
-  /* width: 185px; */
   width: 49.335%;
   height: 28px;
   border: 1px solid #ffc045;
-  /* padding-left: 8px; */
   padding-left: 2.1335%;
 
   font-family: Trebuchet MS;
@@ -43,7 +40,6 @@
   color: black;
   border-radius: 4px;
   border: none;
-  /* margin-right: 14px; */
   margin-right: 3.735%;
   border-radius: 2px;
   border: 1px solid #ffc045;
@@ -52,7 +48,6 @@
   font-weight: normal;
   font-size: 12px;
   line-height: 14px;
-  /* width: 38px; */
   width: 10.1335%;
   height: 30px;
 
@@ -69,9 +64,7 @@
   font-weight: normal;
   font-size: 12px;
   line-height: 14px;
-  /* margin-right: 30px; */
   margin-right: 8%;
-  /* width: 46px; */
   width: 12.27%;
   height: 30px;
 }
@@ -90,7 +83,6 @@
 .eq-select-content-container {
   margin-top: 46px;
   height: 100%;
-  /* overflow: auto; */
 }
 
 .eq-icon-container {
@@ -111,7 +103,6 @@
 }
 
 .eq-list {
-  /* margin-top: 46px; */
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-content: flex-end;
