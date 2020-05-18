@@ -1,7 +1,7 @@
 .unit-search-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  /* justify-content: space-between; */
+  /* align-items: center; */
   margin: 0 8px 0 8px;
   padding: 8px 0 8px 0;
   background: #0c2233;
@@ -14,7 +14,8 @@
   border: none;
   text-indent: 5px;
   height: 32px;
-  width: 164px;
+  /* width: 164px; */
+  width: 91.365%;
   font-family: Trebuchet MS;
   font-style: normal;
   font-weight: bold;
@@ -46,6 +47,10 @@
   display: flex;
   flex-direction: column;
   position: relative;
+}
+
+.unit-search-esper-wrapper {
+  align-items: flex-end;
 }
 
 .search-list-container {
