@@ -191,7 +191,7 @@ const EquipmentSelection = ({
   };
 
   const onSortClick = () => {
-    setSortFlag(!sortFlag);
+    // setSortFlag(!sortFlag);
   };
 
   return (
