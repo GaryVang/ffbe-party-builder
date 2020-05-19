@@ -5,6 +5,8 @@
   height: 339px;
   overflow: auto;
   background: #0c2233;
+
+  scrollbar-width: none; /* Firefox Desktop */
 }
 
 .eq-select-header {
