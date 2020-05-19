@@ -69,6 +69,12 @@
   height: 30px;
 }
 
+.button-sort,
+.button-filter {
+  padding: 1px 6px 1px 6px;
+}
+
+
 .button-close {
   color: #ffc045;
   font-size: 25px;
