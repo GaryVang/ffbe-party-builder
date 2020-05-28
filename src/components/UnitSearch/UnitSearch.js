@@ -20,6 +20,28 @@ const SearchList = ({ items, onUnitSelection, resetSearchBar }) => {
   );
 };
 
+const EsperList =({ espers, onEsperSelection, resetEsperSearchBar }) => {
+  return (
+    <div className="search-list-container">
+      {espers.map((item, i) => (
+        <li
+          // key={item.sub_id}
+          key={item}
+          className="search-list-item"
+          onClick={(e) => {
+            // onUnitSelection(item.sub_id, e);
+            // resetEsperSearchBar(item.name, e);
+            // console.log("nooooo");
+            resetEsperSearchBar(item, e);
+          }}
+        >
+          {item}
+        </li>
+      ))}
+    </div>
+  );
+};
+
 class UnitSearch extends React.Component {
   constructor(props) {
     super(props);
@@ -27,10 +49,15 @@ class UnitSearch extends React.Component {
       value: this.props.defaultValue,
       filteredList: [],
       esper: "",
+      esperList: ["Ifrit", "Ramuh", "Shiva"],
+      esperFocus: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleEsperChange = this.handleEsperChange.bind(this);
     this.resetSearchBar = this.resetSearchBar.bind(this);
+    this.handleEsperFocus = this.handleEsperFocus.bind(this);
+    this.handleEsperBlur = this.handleEsperBlur.bind(this);
+    this.resetEsperSearchBar = this.resetEsperSearchBar.bind(this);
   }
 
   filterUnitList = (value) => {
@@ -65,6 +92,12 @@ class UnitSearch extends React.Component {
     });
   }
 
+  resetEsperSearchBar(name, event) {
+    // console.log(name);
+    console.log(111111);
+    this.setState({ esper: name });
+  }
+
   handleChange(event) {
     event.persist();
     this.setState({ value: event.target.value }, function () {
@@ -75,6 +108,17 @@ class UnitSearch extends React.Component {
   handleEsperChange(event) {
     event.persist();
     this.setState({ esper: event.target.value }, function () {});
+  }
+
+  handleEsperFocus(event) {
+    // event.persist();
+    this.setState({ esperFocus: true });
+    // console.log("esper focus");
+  }
+
+  handleEsperBlur(event) {
+    // event.persist();
+    this.setState({ esperFocus: false })
   }
 
   render() {
@@ -101,7 +145,17 @@ class UnitSearch extends React.Component {
             placeholder="Select Esper"
             value={this.state.esper} //Specifies initial value
             onChange={this.handleEsperChange}
+            onFocus={this.handleEsperFocus}
+            onBlur={this.handleEsperBlur} //Problem: cannot trigger onClick event on list
           />
+          {this.state.esperFocus ? 
+            // <div>Hello</div> 
+            <EsperList
+              espers={this.state.esperList}
+              resetEsperSearchBar={this.resetEsperSearchBar}
+            ></EsperList>
+            : null
+          }
         </div>
       </div>
     );

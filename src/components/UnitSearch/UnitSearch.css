@@ -34,6 +34,10 @@
   margin-right: 8px;
 }
 
+/* .unit-search-box-esper:focus {
+  background-color: white;
+} */
+
 .button-browse,
 .button-unequip-all {
   background: black;
