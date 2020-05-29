@@ -20,7 +20,7 @@ const SearchList = ({ items, onUnitSelection, resetSearchBar }) => {
   );
 };
 
-const EsperList =({ espers, onEsperSelection, resetEsperSearchBar }) => {
+const EsperList =({ espers, onEsperSelection, resetEsperSearchBar, closeDropDown }) => {
   return (
     <div className="search-list-container">
       {espers.map((item, i) => (
@@ -31,8 +31,8 @@ const EsperList =({ espers, onEsperSelection, resetEsperSearchBar }) => {
           onClick={(e) => {
             // onUnitSelection(item.sub_id, e);
             // resetEsperSearchBar(item.name, e);
-            // console.log("nooooo");
             resetEsperSearchBar(item, e);
+            closeDropDown(e);
           }}
         >
           {item}
@@ -93,8 +93,6 @@ class UnitSearch extends React.Component {
   }
 
   resetEsperSearchBar(name, event) {
-    // console.log(name);
-    console.log(111111);
     this.setState({ esper: name });
   }
 
@@ -106,19 +104,18 @@ class UnitSearch extends React.Component {
   }
 
   handleEsperChange(event) {
-    event.persist();
     this.setState({ esper: event.target.value }, function () {});
   }
 
   handleEsperFocus(event) {
-    // event.persist();
     this.setState({ esperFocus: true });
-    // console.log("esper focus");
   }
 
   handleEsperBlur(event) {
-    // event.persist();
-    this.setState({ esperFocus: false })
+    setTimeout( // Pushes blur to the top of event loop
+      () => this.setState({ esperFocus: false }),
+      0
+    );
   }
 
   render() {
@@ -136,7 +133,7 @@ class UnitSearch extends React.Component {
             items={this.state.filteredList}
             onUnitSelection={this.props.onUnitSelection}
             resetSearchBar={this.resetSearchBar}
-          ></SearchList>
+          />
         </div>
         <div className="unit-search-esper-wrapper">
           <input
@@ -146,14 +143,14 @@ class UnitSearch extends React.Component {
             value={this.state.esper} //Specifies initial value
             onChange={this.handleEsperChange}
             onFocus={this.handleEsperFocus}
-            onBlur={this.handleEsperBlur} //Problem: cannot trigger onClick event on list
+            onBlur={this.handleEsperBlur} 
           />
           {this.state.esperFocus ? 
-            // <div>Hello</div> 
             <EsperList
               espers={this.state.esperList}
               resetEsperSearchBar={this.resetEsperSearchBar}
-            ></EsperList>
+              closeDropDown={this.handleEsperBlur}
+            />
             : null
           }
         </div>
