@@ -74,8 +74,8 @@
 .button-sort,
 .button-filter {
   padding: 1px 6px 1px 6px;
+  cursor: pointer;
 }
-
 
 .button-close {
   color: #ffc045;
@@ -86,6 +86,10 @@
   height: 30px;
   flex: 1;
   line-height: 15px;
+
+  cursor: pointer;
+
+  padding-bottom: 5px;
 }
 
 .eq-select-content-container {

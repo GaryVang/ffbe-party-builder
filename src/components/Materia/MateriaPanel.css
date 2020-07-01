@@ -4,6 +4,8 @@
   width: 165px;
   height: 51px;
   background: #08141e;
+
+  cursor: pointer;
 }
 
 .materia-panel-header {
