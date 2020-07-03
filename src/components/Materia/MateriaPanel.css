@@ -8,6 +8,13 @@
   cursor: pointer;
 }
 
+.materia-panel-container:hover {
+  box-sizing: border-box;
+  /* border: 1px solid silver; */
+  outline: 1px solid silver;
+  /* margin: -1px; */
+}
+
 .materia-panel-header {
   display: inline-flex;
   width: 100%;

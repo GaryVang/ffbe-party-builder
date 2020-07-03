@@ -8,6 +8,13 @@
   cursor: pointer;
 }
 
+.equipment-panel-container:hover {
+  /* opacity: .4; */
+  box-sizing: border-box;
+  /* border: 1px solid silver; */
+  outline: 1px solid silver;
+}
+
 .equipment-panel-header {
   display: inline-flex;
   width: 100%;
