@@ -161,3 +161,9 @@ font-size: 12px;
 .eq-sort-stat-container {
   background: white;
 }
+
+.eq-select-outline {
+  /* outline: 2px solid red !important; */
+  /* outline: 2px solid #ffc045 !important; */
+  outline: 2px solid #065471 !important;
+}

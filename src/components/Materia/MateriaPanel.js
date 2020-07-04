@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./MateriaPanel.css";
 import general from "./MateriaIcon/materia-general.png";
 
-const MateriaPanel = ({ slot, info, onClick }) => {
+const MateriaPanel = ({ slot, info, onClick, isSelected }) => {
+
   const getDescription = (skills) => {
     let description = "";
     for (let i = 0; i < skills.length; i++) {
@@ -16,8 +17,7 @@ const MateriaPanel = ({ slot, info, onClick }) => {
   };
 
   const getSlotTitle = (slot) => {
-    // Checks for an instance of a number instead of an exact string match
-    if (slot.indexOf(1) !== -1) {
+    if (slot.indexOf(1) !== -1) {// Checks for an instance of a number instead of an exact string match
       return "MAT 1";
     } else if (slot.indexOf(2) !== -1) {
       return "MAT 2";
@@ -44,7 +44,8 @@ const MateriaPanel = ({ slot, info, onClick }) => {
       </div>
     </div>
   ) : (
-    <div className="materia-panel-container" onClick={onClick}>
+    // <div className="materia-panel-container" onClick={onClick}>
+    <div className={isSelected ? "materia-panel-container " + isSelected : "materia-panel-container"} onClick={onClick}>
       <div className="materia-panel-header">
         <div className="materia-panel-slot">{getSlotTitle(slot)}</div>
         <div className="materia-panel-name">{info.name}</div>

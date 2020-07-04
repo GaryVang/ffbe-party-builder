@@ -39,7 +39,7 @@ import accessory from "./EquipmentIcon/equipment-accessory.png";
 
 import materia from "../Materia/MateriaIcon/materia-general.png"; // Remove when finish
 
-const EquipmentPanel = ({ slot, info, onClick }) => {
+const EquipmentPanel = ({ slot, info, onClick, isSelected }) => {
   const displayTypeIcon = (type) => {
     switch (type) {
       case 1:
@@ -135,7 +135,7 @@ const EquipmentPanel = ({ slot, info, onClick }) => {
       </div>
     </div>
   ) : (
-    <div className="equipment-panel-container" onClick={onClick}>
+    <div className={isSelected ? "equipment-panel-container " + isSelected : "equipment-panel-container"} onClick={onClick}>
       <div className="equipment-panel-header">
         <div className="equipment-panel-slot">{getSlotTitle(slot)}</div>
         <div className="equipment-panel-name">{info.name}</div>

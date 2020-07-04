@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import "./EquipmentSelection.css";
 import EquipmentPanel from "./EquipmentPanel";
@@ -39,16 +39,36 @@ const EquipmentSelection = ({
   const [filterFlag, setFilterFlag] = useState(false);
   const [sortFlag, setSortFlag] = useState(false);
 
-  let selectedEquipment;
+  const [didMount, setDidMount] = useState(false);
+  useEffect(() => setDidMount(true), []);
+
+  const [selectedEquipment, setselectedEquipment] = useState({});
+  useEffect(() => {
+    if (didMount) {
+      setComparisonEq(activeSlot, selectedEquipment);
+    }
+  }, [selectedEquipment]);
+
+  // let selectedEquipment;
 
   const handleChange = (equipment) => (e) => {
-    selectedEquipment = equipment;
-    setComparisonEq(activeSlot, selectedEquipment);
+    setselectedEquipment(equipment);
+    // setComparisonEq(activeSlot, selectedEquipment);
+    //-------------------
+    // setselectedEquipment(equipment);
   };
 
   const handleClose = (e) => {
     setDisplayEqSelection({ flag: false });
-    if (selectedEquipment) {
+
+    // if (selectedEquipment) {
+    //   setEq(activeSlot, selectedEquipment);
+    //   setComparisonEq(null, null);
+    // }
+    if (
+      Object.keys(selectedEquipment).length !== 0 &&
+      selectedEquipment.constructor === Object
+    ) {
       setEq(activeSlot, selectedEquipment);
       setComparisonEq(null, null);
     }
@@ -146,12 +166,18 @@ const EquipmentSelection = ({
           <div className="eq-list">
             {eqList !== undefined
               ? eqList.map((key, index) => {
+                  // console.log('eq: ', key);
                   return (
                     <EquipmentPanel
                       slot={activeSlot}
                       info={key}
                       key={key.eq_id}
                       onClick={handleChange(key)}
+                      isSelected={
+                        selectedEquipment.eq_id === key.eq_id
+                          ? "eq-select-outline"
+                          : false
+                      }
                     />
                   );
                 })
@@ -174,8 +200,13 @@ const EquipmentSelection = ({
                     <MateriaPanel
                       slot={activeSlot}
                       info={key}
-                      key={index}
+                      key={key.mat_id}
                       onClick={handleChange(key)}
+                      isSelected={
+                        selectedEquipment.mat_id === key.mat_id
+                          ? "eq-select-outline"
+                          : false
+                      }
                     />
                   );
                 })

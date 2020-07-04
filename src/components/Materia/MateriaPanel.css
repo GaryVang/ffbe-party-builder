@@ -8,8 +8,12 @@
   cursor: pointer;
 }
 
+.materia-panel-clicked {
+  background: red;
+}
+
 .materia-panel-container:hover {
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   /* border: 1px solid silver; */
   outline: 1px solid silver;
   /* margin: -1px; */
@@ -82,3 +86,10 @@
   margin-left: 10px;
   color: white;
 }
+
+/* .eq-select-test {
+  border: 1px solid red;
+  outline: 1px solid blue;
+  color: pink;
+  background-color: red;
+} */
