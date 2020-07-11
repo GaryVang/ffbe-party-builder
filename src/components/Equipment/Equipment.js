@@ -214,7 +214,8 @@ const Equipment = ({
           />
         </div>
       </div>
-      <div className="equipment-selection-container">
+      {/* <div className="equipment-selection-container"> */}
+      <div className={displayEqSelection.flag ? "equipment-selection-container slide-in" : "equipment-selection-container slide-out"}>
         {displayEqSelection.flag
           ? renderSwitch(displayEqSelection.activeSlot)
           : null}
