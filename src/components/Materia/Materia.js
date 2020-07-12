@@ -32,6 +32,7 @@ const Materia = ({ setEq, setComparisonEq, mat1, mat2, mat3, mat4 }) => {
 
   const [isEqSelectOpen, setIsEqSelectOpen] = useState("");
   useEffect(() => {
+    
     if(isEqSelectOpen && !compDidMount.current){
       setDisplayEqSelection({flag: true, activeSlot: isEqSelectOpen});
     } 
@@ -104,8 +105,8 @@ const Materia = ({ setEq, setComparisonEq, mat1, mat2, mat3, mat4 }) => {
       </div>
       {/* <div className="materia-selection-container"> */}
       <div className={isEqSelectOpen ? "materia-selection-container slide-in" : "materia-selection-container slide-out"}>
-        {/* {displayEqSelection.flag ? renderMateriaSelection() : null} */}
-        {renderMateriaSelection()}
+        {displayEqSelection.flag ? renderMateriaSelection() : null}
+        {/* {renderMateriaSelection()} */}
       </div>
     </div>
   );

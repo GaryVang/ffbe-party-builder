@@ -42,10 +42,13 @@ const Equipment = ({
   }, []);
 
   const [isEqSelectOpen, setIsEqSelectOpen] = useState("");
-  useEffect(() => {
+  useEffect(() => { //Consider cancelling the timeoutID instead of offscreen rendering
     if(isEqSelectOpen && !compDidMount.current){
       setDisplayEqSelection({flag: true, activeSlot: isEqSelectOpen});
     } 
+    // else if (!isEqSelectOpen && !compDidMount.current) {
+    //   setDisplayEqSelection({flag: false, activeSlot: isEqSelectOpen});
+    // }
     // else if(!isEqSelectOpen && !compDidMount.current) {
     //   // setTimeout( () => {setDisplayEqSelection({flag: false, activeSlot: isEqSelectOpen});}, 300);
     // }
@@ -250,10 +253,10 @@ const Equipment = ({
       </div>
       {/* <div className="equipment-selection-container"> */}
       <div className={isEqSelectOpen ? "equipment-selection-container slide-in" : "equipment-selection-container slide-out"}>
-        {/* {displayEqSelection.flag
+        {displayEqSelection.flag
           ? renderSwitch(displayEqSelection.activeSlot)
-          : null} */}
-          {renderSwitch(displayEqSelection.activeSlot)}
+          : null}
+          {/* {renderSwitch(displayEqSelection.activeSlot)} */}
       </div>
     </div>
   );

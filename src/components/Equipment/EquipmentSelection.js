@@ -42,9 +42,9 @@ const EquipmentSelection = ({
   const [didMount, setDidMount] = useState(false);
   useEffect(() => setDidMount(true), []);
 
-  const [selectedEquipment, setselectedEquipment] = useState({});
+  const [selectedEquipment, setSelectedEquipment] = useState({});
   useEffect(() => {
-    if (didMount) {
+    if (didMount && (Object.keys(selectedEquipment).length !== 0 && selectedEquipment.constructor === Object)) {
       setComparisonEq(activeSlot, selectedEquipment);
     }
   }, [selectedEquipment]);
@@ -52,15 +52,16 @@ const EquipmentSelection = ({
   // let selectedEquipment;
 
   const handleChange = (equipment) => (e) => {
-    setselectedEquipment(equipment);
+    setSelectedEquipment(equipment);
     // setComparisonEq(activeSlot, selectedEquipment);
     //-------------------
-    // setselectedEquipment(equipment);
+    // setSelectedEquipment(equipment);
   };
 
   const handleClose = (e) => {
     // setDisplayEqSelection({ flag: false });
     setDisplayEqSelection("");
+    setSelectedEquipment({});
 
     // if (selectedEquipment) {
     //   setEq(activeSlot, selectedEquipment);
