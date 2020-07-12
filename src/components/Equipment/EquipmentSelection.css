@@ -90,7 +90,17 @@
   cursor: pointer;
 
   padding-bottom: 5px;
+
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
 }
+
+/* button shifting right onClick */
+/* .button-close:active {
+  padding: 0px;
+} */
 
 .eq-select-content-container {
   margin-top: 46px;

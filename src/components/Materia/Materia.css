@@ -56,4 +56,7 @@
   background: #065471;
   width: 100%;
   top: -191px;
+
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
 }

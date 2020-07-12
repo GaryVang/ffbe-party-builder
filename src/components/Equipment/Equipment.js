@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "./Equipment.css";
 import EquipmentPanel from "./EquipmentPanel";
 import EquipmentSelection from "./EquipmentSelection";
 
-import { useEffect, useState } from "react";
 import axios from "axios";
 
 // https://damp-reaches-02112.herokuapp.com/
@@ -31,6 +30,29 @@ const Equipment = ({
     };
     fetchEquipmentList();
   }, []);
+
+  //-----------------------------------------
+  const compDidMount = useRef(true);
+  useEffect (() => {
+    if (compDidMount.current) {
+      console.log(compDidMount.current);
+      compDidMount.current = false;
+      return;
+    }
+  }, []);
+
+  const [isEqSelectOpen, setIsEqSelectOpen] = useState("");
+  useEffect(() => {
+    if(isEqSelectOpen && !compDidMount.current){
+      setDisplayEqSelection({flag: true, activeSlot: isEqSelectOpen});
+    } 
+    // else if(!isEqSelectOpen && !compDidMount.current) {
+    //   // setTimeout( () => {setDisplayEqSelection({flag: false, activeSlot: isEqSelectOpen});}, 300);
+    // }
+  }, [isEqSelectOpen]);
+
+//----------------------------------
+
 
   const [weaponList, setWeaponList] = useState([]);
   const [armorList, setArmorList] = useState([]);
@@ -65,7 +87,8 @@ const Equipment = ({
         return (
           <EquipmentSelection
             eqList={filteredEqList}
-            setDisplayEqSelection={setDisplayEqSelection}
+            // setDisplayEqSelection={setDisplayEqSelection}
+            setDisplayEqSelection={setIsEqSelectOpen}
             setEq={setEq}
             setComparisonEq={setComparisonEq}
             activeSlot={displayEqSelection.activeSlot}
@@ -91,7 +114,8 @@ const Equipment = ({
         return (
           <EquipmentSelection
             eqList={filteredEqList}
-            setDisplayEqSelection={setDisplayEqSelection}
+            // setDisplayEqSelection={setDisplayEqSelection}
+            setDisplayEqSelection={setIsEqSelectOpen}
             setEq={setEq}
             setComparisonEq={setComparisonEq}
             activeSlot={displayEqSelection.activeSlot}
@@ -108,7 +132,8 @@ const Equipment = ({
         return (
           <EquipmentSelection
             eqList={filteredEqList}
-            setDisplayEqSelection={setDisplayEqSelection}
+            // setDisplayEqSelection={setDisplayEqSelection}
+            setDisplayEqSelection={setIsEqSelectOpen}
             setEq={setEq}
             setComparisonEq={setComparisonEq}
             activeSlot={displayEqSelection.activeSlot}
@@ -124,7 +149,8 @@ const Equipment = ({
         return (
           <EquipmentSelection
             eqList={filteredEqList}
-            setDisplayEqSelection={setDisplayEqSelection}
+            // setDisplayEqSelection={setDisplayEqSelection}
+            setDisplayEqSelection={setIsEqSelectOpen}
             setEq={setEq}
             setComparisonEq={setComparisonEq}
             activeSlot={displayEqSelection.activeSlot}
@@ -136,7 +162,8 @@ const Equipment = ({
           <EquipmentSelection
             eqList={accessoryList}
             // eqList={accSort}
-            setDisplayEqSelection={setDisplayEqSelection}
+            // setDisplayEqSelection={setDisplayEqSelection}
+            setDisplayEqSelection={setIsEqSelectOpen}
             setEq={setEq}
             setComparisonEq={setComparisonEq}
             activeSlot={displayEqSelection.activeSlot}
@@ -146,7 +173,8 @@ const Equipment = ({
         return (
           <EquipmentSelection
             eqList={accessoryList}
-            setDisplayEqSelection={setDisplayEqSelection}
+            // setDisplayEqSelection={setDisplayEqSelection}
+            setDisplayEqSelection={setIsEqSelectOpen}
             setEq={setEq}
             setComparisonEq={setComparisonEq}
             activeSlot={displayEqSelection.activeSlot}
@@ -164,7 +192,8 @@ const Equipment = ({
             slot={"lHand"}
             info={lHand}
             onClick={() =>
-              setDisplayEqSelection({ flag: true, activeSlot: "lHand" })
+              // setDisplayEqSelection({ flag: true, activeSlot: "lHand" })
+              setIsEqSelectOpen("lHand")
             }
           />
         </div>
@@ -173,7 +202,8 @@ const Equipment = ({
             slot={"rHand"}
             info={rHand}
             onClick={() => {
-              setDisplayEqSelection({ flag: true, activeSlot: "rHand" });
+              // setDisplayEqSelection({ flag: true, activeSlot: "rHand" });
+              setIsEqSelectOpen("rHand");
             }}
           />
         </div>
@@ -182,7 +212,8 @@ const Equipment = ({
             slot={"head"}
             info={head}
             onClick={() => {
-              setDisplayEqSelection({ flag: true, activeSlot: "head" });
+              // setDisplayEqSelection({ flag: true, activeSlot: "head" });
+              setIsEqSelectOpen("head");
             }}
           />
         </div>
@@ -191,7 +222,8 @@ const Equipment = ({
             slot={"body"}
             info={body}
             onClick={() => {
-              setDisplayEqSelection({ flag: true, activeSlot: "body" });
+              // setDisplayEqSelection({ flag: true, activeSlot: "body" });
+              setIsEqSelectOpen("body");
             }}
           />
         </div>
@@ -200,7 +232,8 @@ const Equipment = ({
             slot={"acc1"}
             info={acc1}
             onClick={() => {
-              setDisplayEqSelection({ flag: true, activeSlot: "acc1" });
+              // setDisplayEqSelection({ flag: true, activeSlot: "acc1" });
+              setIsEqSelectOpen("acc1");
             }}
           />
         </div>
@@ -209,16 +242,18 @@ const Equipment = ({
             slot={"acc2"}
             info={acc2}
             onClick={() => {
-              setDisplayEqSelection({ flag: true, activeSlot: "acc2" });
+              // setDisplayEqSelection({ flag: true, activeSlot: "acc2" });
+              setIsEqSelectOpen("acc2");
             }}
           />
         </div>
       </div>
       {/* <div className="equipment-selection-container"> */}
-      <div className={displayEqSelection.flag ? "equipment-selection-container slide-in" : "equipment-selection-container slide-out"}>
-        {displayEqSelection.flag
+      <div className={isEqSelectOpen ? "equipment-selection-container slide-in" : "equipment-selection-container slide-out"}>
+        {/* {displayEqSelection.flag
           ? renderSwitch(displayEqSelection.activeSlot)
-          : null}
+          : null} */}
+          {renderSwitch(displayEqSelection.activeSlot)}
       </div>
     </div>
   );

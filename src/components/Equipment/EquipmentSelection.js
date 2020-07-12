@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./EquipmentSelection.css";
 import EquipmentPanel from "./EquipmentPanel";
 import MateriaPanel from "../Materia/MateriaPanel";
@@ -28,6 +27,7 @@ import heavyarmor from "./EquipmentIcon/Armor/equipment-heavyarmor.png";
 import robe from "./EquipmentIcon/Armor/equipment-robe.png";
 import hat from "./EquipmentIcon/Armor/equipment-hat.png";
 import helm from "./EquipmentIcon/Armor/equipment-helm.png";
+import { set } from "lodash";
 
 const EquipmentSelection = ({
   eqList,
@@ -59,7 +59,8 @@ const EquipmentSelection = ({
   };
 
   const handleClose = (e) => {
-    setDisplayEqSelection({ flag: false });
+    // setDisplayEqSelection({ flag: false });
+    setDisplayEqSelection("");
 
     // if (selectedEquipment) {
     //   setEq(activeSlot, selectedEquipment);
