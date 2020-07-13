@@ -26,10 +26,10 @@
   padding: 1px 0 1px 0;
 }
 
-.unit-search-box::placeholder,
+/* .unit-search-box::placeholder,
 .unit-search-box-esper::placeholder {
   color: #8f8f8f;
-}
+} */
 
 .unit-search-box {
   margin-left: 8px;
