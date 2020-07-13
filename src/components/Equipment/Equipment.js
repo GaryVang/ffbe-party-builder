@@ -33,7 +33,7 @@ const Equipment = ({
 
   //-----------------------------------------
   const compDidMount = useRef(true);
-  useEffect (() => {
+  useEffect(() => {
     if (compDidMount.current) {
       console.log(compDidMount.current);
       compDidMount.current = false;
@@ -42,20 +42,25 @@ const Equipment = ({
   }, []);
 
   const [isEqSelectOpen, setIsEqSelectOpen] = useState("");
-  useEffect(() => { //Consider cancelling the timeoutID instead of offscreen rendering
-    if(isEqSelectOpen && !compDidMount.current){
-      setDisplayEqSelection({flag: true, activeSlot: isEqSelectOpen});
-    } 
+  useEffect(() => {
+    //Consider cancelling the timeoutID instead of offscreen rendering
+    if (isEqSelectOpen && !compDidMount.current) {
+      setDisplayEqSelection({ flag: true, activeSlot: isEqSelectOpen });
+    }
     // else if (!isEqSelectOpen && !compDidMount.current) {
     //   setDisplayEqSelection({flag: false, activeSlot: isEqSelectOpen});
     // }
-    // else if(!isEqSelectOpen && !compDidMount.current) {
-    //   // setTimeout( () => {setDisplayEqSelection({flag: false, activeSlot: isEqSelectOpen});}, 300);
-    // }
+    else if (!isEqSelectOpen && !compDidMount.current) {
+      const timeout = setTimeout(() => {
+        setDisplayEqSelection({ flag: false, activeSlot: isEqSelectOpen });
+      }, 300);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }
   }, [isEqSelectOpen]);
 
-//----------------------------------
-
+  //----------------------------------
 
   const [weaponList, setWeaponList] = useState([]);
   const [armorList, setArmorList] = useState([]);
@@ -252,11 +257,17 @@ const Equipment = ({
         </div>
       </div>
       {/* <div className="equipment-selection-container"> */}
-      <div className={isEqSelectOpen ? "equipment-selection-container slide-in" : "equipment-selection-container slide-out"}>
+      <div
+        className={
+          isEqSelectOpen
+            ? "equipment-selection-container slide-in"
+            : "equipment-selection-container slide-out"
+        }
+      >
         {displayEqSelection.flag
           ? renderSwitch(displayEqSelection.activeSlot)
           : null}
-          {/* {renderSwitch(displayEqSelection.activeSlot)} */}
+        {/* {renderSwitch(displayEqSelection.activeSlot)} */}
       </div>
     </div>
   );

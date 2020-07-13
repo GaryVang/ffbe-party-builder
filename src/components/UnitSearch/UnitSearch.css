@@ -94,3 +94,13 @@
   background-color: rgb(117, 117, 117);
 }
 /*--------------------------------------------------*/
+
+.unit-search-box::placeholder {
+  /* color: darkgrey; */
+  color: #8f8f8f;
+}
+
+.unit-search-box-esper::placeholder {
+  /* color: #9b9b9b; */
+  color: #8f8f8f;
+}

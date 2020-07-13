@@ -36,9 +36,12 @@ const Materia = ({ setEq, setComparisonEq, mat1, mat2, mat3, mat4 }) => {
     if(isEqSelectOpen && !compDidMount.current){
       setDisplayEqSelection({flag: true, activeSlot: isEqSelectOpen});
     } 
-    // else if(!isEqSelectOpen && !compDidMount.current) {
-    //   // setTimeout( () => {setDisplayEqSelection({flag: false, activeSlot: isEqSelectOpen});}, 300);
-    // }
+    else if(!isEqSelectOpen && !compDidMount.current) {
+      const timeout = setTimeout( () => {setDisplayEqSelection({flag: false, activeSlot: isEqSelectOpen});}, 300);
+      return () => {
+        clearTimeout(timeout);
+     } 
+    }
   }, [isEqSelectOpen]);
 
   //------------------------------------------

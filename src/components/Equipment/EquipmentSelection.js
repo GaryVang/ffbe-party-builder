@@ -29,6 +29,8 @@ import hat from "./EquipmentIcon/Armor/equipment-hat.png";
 import helm from "./EquipmentIcon/Armor/equipment-helm.png";
 import { set } from "lodash";
 
+import CloseIcon from "@material-ui/icons/KeyboardArrowLeft";
+
 const EquipmentSelection = ({
   eqList,
   setDisplayEqSelection,
@@ -44,12 +46,11 @@ const EquipmentSelection = ({
 
   const [selectedEquipment, setSelectedEquipment] = useState({});
   useEffect(() => {
-    if (didMount && (Object.keys(selectedEquipment).length !== 0 && selectedEquipment.constructor === Object)) {
+    // if (didMount && (Object.keys(selectedEquipment).length !== 0 && selectedEquipment.constructor === Object)) {
+    if (didMount) {
       setComparisonEq(activeSlot, selectedEquipment);
     }
   }, [selectedEquipment]);
-
-  // let selectedEquipment;
 
   const handleChange = (equipment) => (e) => {
     setSelectedEquipment(equipment);
@@ -61,7 +62,7 @@ const EquipmentSelection = ({
   const handleClose = (e) => {
     // setDisplayEqSelection({ flag: false });
     setDisplayEqSelection("");
-    setSelectedEquipment({});
+    // setSelectedEquipment({});
 
     // if (selectedEquipment) {
     //   setEq(activeSlot, selectedEquipment);
@@ -242,9 +243,14 @@ const EquipmentSelection = ({
         <button className="button-filter" onClick={onFilterClick}>
           Filter
         </button>
-        <button className="button-close" onClick={handleClose}>
+        {/* <button className="button-close" onClick={handleClose}>
           x
-        </button>
+        </button> */}
+        <CloseIcon
+          className="eq-select-icon-close"
+          fontSize="large"
+          onClick={handleClose}
+        />
       </div>
       {renderEqOrMateria()}
     </div>

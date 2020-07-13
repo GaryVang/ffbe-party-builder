@@ -177,3 +177,14 @@ font-size: 12px;
   /* outline: 2px solid #ffc045 !important; */
   outline: 2px solid #065471 !important;
 }
+
+.eq-select-icon-close {
+  color: #ffc045;
+  cursor: pointer;
+
+  /* for chrome */
+  /* -webkit-tap-highlight-color: transparent;
+  outline: none;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation; */
+}
