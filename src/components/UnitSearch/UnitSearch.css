@@ -26,6 +26,11 @@
   padding: 1px 0 1px 0;
 }
 
+.unit-search-box::placeholder,
+.unit-search-box-esper::placeholder {
+  color: #8f8f8f;
+}
+
 .unit-search-box {
   margin-left: 8px;
 }
@@ -94,13 +99,3 @@
   background-color: rgb(117, 117, 117);
 }
 /*--------------------------------------------------*/
-
-.unit-search-box::placeholder {
-  /* color: darkgrey; */
-  color: #8f8f8f;
-}
-
-.unit-search-box-esper::placeholder {
-  /* color: #9b9b9b; */
-  color: #8f8f8f;
-}

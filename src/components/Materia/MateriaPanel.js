@@ -44,7 +44,6 @@ const MateriaPanel = ({ slot, info, onClick, isSelected }) => {
       </div>
     </div>
   ) : (
-    // <div className="materia-panel-container" onClick={onClick}>
     <div className={isSelected ? "materia-panel-container " + isSelected : "materia-panel-container"} onClick={onClick}>
       <div className="materia-panel-header">
         <div className="materia-panel-slot">{getSlotTitle(slot)}</div>

@@ -46,8 +46,8 @@ const EquipmentSelection = ({
 
   const [selectedEquipment, setSelectedEquipment] = useState({});
   useEffect(() => {
-    // if (didMount && (Object.keys(selectedEquipment).length !== 0 && selectedEquipment.constructor === Object)) {
-    if (didMount) {
+    if (didMount && (Object.keys(selectedEquipment).length !== 0 && selectedEquipment.constructor === Object)) {
+    // if (didMount) { //Uncomment if lower resource cost is preferred over quicker load time
       setComparisonEq(activeSlot, selectedEquipment);
     }
   }, [selectedEquipment]);
@@ -62,7 +62,7 @@ const EquipmentSelection = ({
   const handleClose = (e) => {
     // setDisplayEqSelection({ flag: false });
     setDisplayEqSelection("");
-    // setSelectedEquipment({});
+    setSelectedEquipment({}); //Comment if lower resource cost is preferred over quicker load time
 
     // if (selectedEquipment) {
     //   setEq(activeSlot, selectedEquipment);
@@ -169,7 +169,6 @@ const EquipmentSelection = ({
           <div className="eq-list">
             {eqList !== undefined
               ? eqList.map((key, index) => {
-                  // console.log('eq: ', key);
                   return (
                     <EquipmentPanel
                       slot={activeSlot}

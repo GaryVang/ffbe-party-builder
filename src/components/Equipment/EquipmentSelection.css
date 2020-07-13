@@ -53,7 +53,7 @@
   width: 10.1335%;
   height: 30px;
 
-  position:relative;
+  position: relative;
 }
 
 .button-filter {
@@ -95,6 +95,17 @@
   outline: none;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
+}
+
+.eq-select-icon-close {
+  color: #ffc045;
+  cursor: pointer;
+
+  /* for chrome */
+  /* -webkit-tap-highlight-color: transparent;
+  outline: none;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation; */
 }
 
 /* button shifting right onClick */
@@ -152,20 +163,20 @@
 /* ------End Dropdown sort */
 
 .eq-sort-container {
-display: flex;
-margin: 0 9px 8px 9px;
-background: #08141e;
+  display: flex;
+  margin: 0 9px 8px 9px;
+  background: #08141e;
 
-font-family: Trebuchet MS;
-font-style: normal;
-font-weight: normal;
-font-size: 12px;
+  font-family: Trebuchet MS;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
 }
 
 .eq-sort-orderby {
   background: white;
   /* color: #ffc045; */
-  border: .1px solid #ffc045;
+  border: 0.1px solid #ffc045;
 }
 
 .eq-sort-stat-container {
@@ -176,15 +187,4 @@ font-size: 12px;
   /* outline: 2px solid red !important; */
   /* outline: 2px solid #ffc045 !important; */
   outline: 2px solid #065471 !important;
-}
-
-.eq-select-icon-close {
-  color: #ffc045;
-  cursor: pointer;
-
-  /* for chrome */
-  /* -webkit-tap-highlight-color: transparent;
-  outline: none;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation; */
 }

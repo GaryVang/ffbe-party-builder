@@ -31,7 +31,6 @@ const Equipment = ({
     fetchEquipmentList();
   }, []);
 
-  //-----------------------------------------
   const compDidMount = useRef(true);
   useEffect(() => {
     if (compDidMount.current) {
@@ -43,24 +42,18 @@ const Equipment = ({
 
   const [isEqSelectOpen, setIsEqSelectOpen] = useState("");
   useEffect(() => {
-    //Consider cancelling the timeoutID instead of offscreen rendering
     if (isEqSelectOpen && !compDidMount.current) {
       setDisplayEqSelection({ flag: true, activeSlot: isEqSelectOpen });
-    }
-    // else if (!isEqSelectOpen && !compDidMount.current) {
-    //   setDisplayEqSelection({flag: false, activeSlot: isEqSelectOpen});
+    } 
+    // else if (!isEqSelectOpen && !compDidMount.current) { //Uncomment if lower resource cost is preferred over quicker load time
+    //   const timeout = setTimeout(() => {
+    //     setDisplayEqSelection({ flag: false, activeSlot: isEqSelectOpen });
+    //   }, 300);
+    //   return () => {
+    //     clearTimeout(timeout);
+    //   };
     // }
-    else if (!isEqSelectOpen && !compDidMount.current) {
-      const timeout = setTimeout(() => {
-        setDisplayEqSelection({ flag: false, activeSlot: isEqSelectOpen });
-      }, 300);
-      return () => {
-        clearTimeout(timeout);
-      };
-    }
   }, [isEqSelectOpen]);
-
-  //----------------------------------
 
   const [weaponList, setWeaponList] = useState([]);
   const [armorList, setArmorList] = useState([]);
@@ -95,7 +88,6 @@ const Equipment = ({
         return (
           <EquipmentSelection
             eqList={filteredEqList}
-            // setDisplayEqSelection={setDisplayEqSelection}
             setDisplayEqSelection={setIsEqSelectOpen}
             setEq={setEq}
             setComparisonEq={setComparisonEq}
@@ -122,7 +114,6 @@ const Equipment = ({
         return (
           <EquipmentSelection
             eqList={filteredEqList}
-            // setDisplayEqSelection={setDisplayEqSelection}
             setDisplayEqSelection={setIsEqSelectOpen}
             setEq={setEq}
             setComparisonEq={setComparisonEq}
@@ -140,7 +131,6 @@ const Equipment = ({
         return (
           <EquipmentSelection
             eqList={filteredEqList}
-            // setDisplayEqSelection={setDisplayEqSelection}
             setDisplayEqSelection={setIsEqSelectOpen}
             setEq={setEq}
             setComparisonEq={setComparisonEq}
@@ -157,7 +147,6 @@ const Equipment = ({
         return (
           <EquipmentSelection
             eqList={filteredEqList}
-            // setDisplayEqSelection={setDisplayEqSelection}
             setDisplayEqSelection={setIsEqSelectOpen}
             setEq={setEq}
             setComparisonEq={setComparisonEq}
@@ -170,7 +159,6 @@ const Equipment = ({
           <EquipmentSelection
             eqList={accessoryList}
             // eqList={accSort}
-            // setDisplayEqSelection={setDisplayEqSelection}
             setDisplayEqSelection={setIsEqSelectOpen}
             setEq={setEq}
             setComparisonEq={setComparisonEq}
@@ -181,7 +169,6 @@ const Equipment = ({
         return (
           <EquipmentSelection
             eqList={accessoryList}
-            // setDisplayEqSelection={setDisplayEqSelection}
             setDisplayEqSelection={setIsEqSelectOpen}
             setEq={setEq}
             setComparisonEq={setComparisonEq}
@@ -199,10 +186,9 @@ const Equipment = ({
           <EquipmentPanel
             slot={"lHand"}
             info={lHand}
-            onClick={() =>
-              // setDisplayEqSelection({ flag: true, activeSlot: "lHand" })
-              setIsEqSelectOpen("lHand")
-            }
+            onClick={() => {
+              setIsEqSelectOpen("lHand");
+            }}
           />
         </div>
         <div className="equipment-slot-rhand">
@@ -210,7 +196,6 @@ const Equipment = ({
             slot={"rHand"}
             info={rHand}
             onClick={() => {
-              // setDisplayEqSelection({ flag: true, activeSlot: "rHand" });
               setIsEqSelectOpen("rHand");
             }}
           />
@@ -220,7 +205,6 @@ const Equipment = ({
             slot={"head"}
             info={head}
             onClick={() => {
-              // setDisplayEqSelection({ flag: true, activeSlot: "head" });
               setIsEqSelectOpen("head");
             }}
           />
@@ -230,7 +214,6 @@ const Equipment = ({
             slot={"body"}
             info={body}
             onClick={() => {
-              // setDisplayEqSelection({ flag: true, activeSlot: "body" });
               setIsEqSelectOpen("body");
             }}
           />
@@ -240,7 +223,6 @@ const Equipment = ({
             slot={"acc1"}
             info={acc1}
             onClick={() => {
-              // setDisplayEqSelection({ flag: true, activeSlot: "acc1" });
               setIsEqSelectOpen("acc1");
             }}
           />
@@ -250,13 +232,11 @@ const Equipment = ({
             slot={"acc2"}
             info={acc2}
             onClick={() => {
-              // setDisplayEqSelection({ flag: true, activeSlot: "acc2" });
               setIsEqSelectOpen("acc2");
             }}
           />
         </div>
       </div>
-      {/* <div className="equipment-selection-container"> */}
       <div
         className={
           isEqSelectOpen
@@ -267,7 +247,6 @@ const Equipment = ({
         {displayEqSelection.flag
           ? renderSwitch(displayEqSelection.activeSlot)
           : null}
-        {/* {renderSwitch(displayEqSelection.activeSlot)} */}
       </div>
     </div>
   );
