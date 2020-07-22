@@ -11,11 +11,11 @@ On a more personal note, this project is a combination of my love of video games
 
 ### Planned updates and features
 
-- Desktop version
 - Loading screen for initial fetch
+- Equipment filters
 - Login system
 - Save feature
-- Equipment filters
+- Desktop version
 - Game: Add Espers
 - Game: Add Extra damage modifiers
 - Game: Add Active abilities

@@ -77,7 +77,7 @@
   cursor: pointer;
 }
 
-.button-close {
+/* .button-close {
   color: #ffc045;
   font-size: 25px;
   background: #065471;
@@ -95,7 +95,7 @@
   outline: none;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
-}
+} */
 
 .eq-select-icon-close {
   color: #ffc045;
@@ -187,4 +187,7 @@
   /* outline: 2px solid red !important; */
   /* outline: 2px solid #ffc045 !important; */
   outline: 2px solid #065471 !important;
+
+  /* Safari-lingering outline bug fix */
+  /* will-change: transform; */
 }
