@@ -41,6 +41,11 @@ const EquipmentSelection = ({
   const [filterFlag, setFilterFlag] = useState(false);
   const [sortFlag, setSortFlag] = useState(false);
 
+  const [sortConfig, setSortConfig] = useState({type: 'name', order: 'asc'});
+  useEffect(() => {
+    console.log('sortConfig: ', sortConfig);
+  }, [sortConfig]);
+
   const [didMount, setDidMount] = useState(false);
   useEffect(() => setDidMount(true), []);
 
@@ -152,23 +157,25 @@ const EquipmentSelection = ({
           {sortFlag ? ( // Consider using buttons instead of divs
             <div className="eq-sort-container">
               <div className="eq-sort-orderby">
-                <div>ASC</div>
-                <div>DESC</div>
+                <div onClick={() => { handleSortOrderChange('asc'); }}>ASC</div>
+                <div onClick={() => { handleSortOrderChange('desc'); }}>DESC</div>
               </div>
               <div className="eq-sort-stat-container">
-                <div className="eq-sort-stat-hp">HP</div>
-                <div className="eq-sort-stat-mp">MP</div>
-                <div className="eq-sort-stat-atk">ATK</div>
-                <div className="eq-sort-stat-DEF">DEF</div>
-                <div className="eq-sort-stat-MAG">MAG</div>
-                <div className="eq-sort-stat-SPR">SPR</div>
+                <div className="eq-sort-stat-name" onClick={() => { handleSortTypeChange('name'); }}>Name</div>
+                <div className="eq-sort-stat-hp" onClick={() => { handleSortTypeChange('hp'); }}>HP</div>
+                <div className="eq-sort-stat-mp" onClick={() => { handleSortTypeChange('mp'); }}>MP</div>
+                <div className="eq-sort-stat-atk" onClick={() => { handleSortTypeChange('atk'); }}>ATK</div>
+                <div className="eq-sort-stat-DEF" onClick={() => { handleSortTypeChange('def'); }}>DEF</div>
+                <div className="eq-sort-stat-MAG" onClick={() => { handleSortTypeChange('mag'); }}>MAG</div>
+                <div className="eq-sort-stat-SPR" onClick={() => { handleSortTypeChange('spr'); }}>SPR</div>
               </div>
             </div>
           ) : null}
 
           <div className="eq-list">
             {eqList !== undefined
-              ? eqList.map((key, index) => {
+              // ? eqList.map((key, index) => {
+                ? sortEQList(eqList, sortConfig).map((key, index) => {
                   return (
                     <EquipmentPanel
                       slot={activeSlot}
@@ -219,12 +226,96 @@ const EquipmentSelection = ({
     }
   };
 
+  //--------------Sort-------------------
+
+  const handleSortTypeChange = (str) => {
+    setSortConfig((prevState) => ({ ...prevState, type: str }));
+  };
+
+  const handleSortOrderChange = (str) => {
+    setSortConfig((prevState) => ({ ...prevState, order: str }));
+  };
+
+  const sortEQList = (eqArr, sortConfig) => {
+    let order = sortConfig.order;
+    let type = sortConfig.type;
+
+    console.log('order: ', order);
+    console.log('type: ', type);
+
+    switch(type) {
+      case 'name':  
+        if(order === 'asc'){
+          return eqArr.sort((a,b) => a.name.localeCompare(b.name));
+        } else {
+          return eqArr.sort((a,b) => b.name.localeCompare(a.name));
+        }
+        // break;
+      case 'hp':
+        if(order === 'asc'){
+          return sortAsc(eqArr, 'hp');
+          // return eqArr.sort( (a, b) => {return a.hp-b.hp});
+        } else {
+          return sortDesc(eqArr, 'hp');
+          // return eqArr.sort((a,b) => {return b.hp-a.hp})
+        }
+        // break;
+      case 'mp':
+        if(order === 'asc'){
+          return sortAsc(eqArr, 'mp');
+        } else {
+          return sortDesc(eqArr, 'mp');
+        }
+        // break;
+      case 'atk':
+        if(order === 'asc'){
+          return sortAsc(eqArr, 'atk');
+        } else {
+          return sortDesc(eqArr, 'atk');
+        }
+        // break;
+      case 'def':
+        if(order === 'asc'){
+          return sortAsc(eqArr, 'def');
+        } else {
+          return sortDesc(eqArr, 'def');
+        }
+        // break;
+      case 'mag':
+        if(order === 'asc'){
+          return sortAsc(eqArr, 'mag');
+        } else {
+          return sortDesc(eqArr, 'mag');
+        }
+        // break;
+      case 'spr':
+        if(order === 'asc'){
+          return sortAsc(eqArr, 'spr');
+        } else {
+          return sortDesc(eqArr, 'spr');
+        }
+        // break;
+      default:
+        return eqArr; 
+    }
+  };
+
+  const sortAsc = (eqArr, stat) => {
+    return eqArr.sort((a,b) => { return a[stat]-b[stat] });
+  }
+
+  const sortDesc = (eqArr, stat) => {
+    return eqArr.sort((a,b) => { return b[stat]-a[stat] });
+  }
+
+  //----------------------------------
+
   const onFilterClick = () => {
     setFilterFlag(!filterFlag);
   };
 
   const onSortClick = () => {
-    // setSortFlag(!sortFlag);
+    setSortFlag(!sortFlag);
   };
 
   return (
