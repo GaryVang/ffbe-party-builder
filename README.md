@@ -1,4 +1,4 @@
-Hosted on Heroku [Click here for Website](https://ffbe-builder-v.herokuapp.com/).
+Hosted on Heroku [Click here for Website](https://ffbe-builder.onrender.com/).
 *Please note that it takes a couple seconds for the database to wake up*
 
 ## What is Final Fantasy Brave Exvius (FFBE) Party Builder?
